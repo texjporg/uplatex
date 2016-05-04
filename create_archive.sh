@@ -3,7 +3,12 @@
 PROJECT=uplatex
 TMP=/tmp
 PWDF=`pwd`
-RELEASEDATE=`git tag | sort -r | head -n 1`
+LATESTRELEASEDATE=`git tag | sort -r | head -n 1`
+RELEASEDATE=`git tag --points-at HEAD | sort -r | head -n 1`
+
+if [ -z "$RELEASEDATE" ]; then
+    RELEASEDATE="**not tagged**; later than $LATESTRELEASEDATE?"
+fi
 
 echo " * Create $PROJECT.tds.zip"
 git archive --format=tar --prefix=$PROJECT/ HEAD | (cd $TMP && tar xf -)
