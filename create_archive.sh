@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECT=uplatex-base
+PROJECT=uplatex
 TMP=/tmp
 PWDF=`pwd`
 RELEASEDATE=`git tag | sort -r | head -n 1`
