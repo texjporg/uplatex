@@ -10,7 +10,7 @@
 %
 % \fi
 %
-% \CheckSum{164}
+% \CheckSum{204}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -58,12 +58,14 @@
 %    \cs{plEndIncludeInRelease}を新設。}
 % \changes{v1.0t-u00}{2016/04/06}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0u-u00}{2016/04/17}{\LaTeX\ \texttt{!<2016/03/31!>}版対応確認}
+% \changes{v1.0v-u00}{2016/05/07}{パッチファイルをロードするのをやめた。}
+% \changes{v1.0v-u00}{2016/05/07}{起動時の文字列を最新の\LaTeX{}に合わせた。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2016/04/17 v1.0u-u00 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2016/05/07 v1.0v-u00 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -78,8 +80,8 @@
 % \fi
 %
 % \section{バージョンの設定}
-% まず、このディストリビューションでのp\LaTeXe{}の日付とバージョン番号
-% を定義します。また、p\LaTeXe{}が起動されたときに表示される文字列の
+% まず、このディストリビューションでのup\LaTeXe{}の日付とバージョン番号
+% を定義します。また、up\LaTeXe{}が起動されたときに表示される文字列の
 % 設定もします。
 %
 % \changes{v1.0}{1995/05/16}{p\LaTeXe\ 用に\file{ltvers.dtx}を修正}
@@ -99,7 +101,7 @@
 % \changes{v1.0s}{2016/02/01}{\LaTeX\ \texttt{!<2015/01/01!>}版用に修正}
 % \changes{v1.0u-u00}{2016/04/17}{\LaTeX\ \texttt{!<2016/03/31!>}版対応確認}
 %
-% このバージョンのp\LaTeXe{}は、次のバージョンの\LaTeX{}\footnote{%
+% このバージョンのup\LaTeXe{}は、次のバージョンの\LaTeX{}\footnote{%
 % \LaTeX\ authors: Johannes Braams, David Carlisle, Alan Jeffrey,
 %   Leslie Lamport, Frank Mittelbach, Chris Rowley, Rainer Sch\"opf}を
 % もとにしています。
@@ -115,7 +117,7 @@
 %</2ekernel|latexrelease|platexrelease>
 %    \end{macrocode}
 %
-% p\LaTeXe{}のフォーマットファイル名とバージョンです。
+% up\LaTeXe{}のフォーマットファイル名とバージョンです。
 %
 % \begin{macro}{\pfmtname}
 % \begin{macro}{\pfmtversion}
@@ -134,49 +136,57 @@
 %
 % \subsection{パッチファイルのロード}
 %
-% 次の部分は、p\LaTeXe{}のパッチファイルをロードするためのコードです。
+% 次の部分は、up\LaTeXe{}のパッチファイルをロードするためのコードです。
 % バグを修正するためのパッチを配布するかもしれません。
+%
+% パッチファイルをロードするコードはコメントアウトしました。
+% \changes{v1.0v-u00}{2016/05/07}{パッチファイルをロードするのをやめた。}
 %    \begin{macrocode}
 %<*plfinal>
-\IfFileExists{uplpatch.ltx}
-  {\typeout{************************************^^J%
-            * Appliying patch file uplpatch.ltx *^^J%
-            ************************************}
-  \def\pfmtversion@topatch{unknown}
-  \input{uplpatch.ltx}
-  \ifx\pfmtversion\pfmtversion@topatch
-    \ifx\ppatch@level\@undefined
-      \typeout{^^J^^J^^J%
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
-   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J^^J%
-   !! Please check if iniptex found an old patch file:^^J%
-   !! --- if so, rename it or delete it, and redo the^^J%
-   !!     iniptex run.^^J%
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
-      \batchmode \@@end
-    \fi
-  \else
-      \typeout{^^J^^J^^J%
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
-   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J%
-   !!^^J%
-   !! Please check if iniptex found an old patch file:^^J%
-   !! --- if so, rename it or delete it, and redo the^^J%
-   !!     iniptex run.^^J%
-   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
-      \batchmode \@@end
-  \fi
-  \let\pfmtversion@topatch\relax
-  }{}
+%\IfFileExists{uplpatch.ltx}
+%  {\typeout{************************************^^J%
+%            * Appliying patch file uplpatch.ltx *^^J%
+%            ************************************}
+%  \def\pfmtversion@topatch{unknown}
+%  \input{uplpatch.ltx}
+%  \ifx\pfmtversion\pfmtversion@topatch
+%    \ifx\ppatch@level\@undefined
+%      \typeout{^^J^^J^^J%
+%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+%   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
+%   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J^^J%
+%   !! Please check if iniptex found an old patch file:^^J%
+%   !! --- if so, rename it or delete it, and redo the^^J%
+%   !!     iniptex run.^^J%
+%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
+%      \batchmode \@@end
+%    \fi
+%  \else
+%      \typeout{^^J^^J^^J%
+%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+%   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
+%   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J%
+%   !!^^J%
+%   !! Please check if iniptex found an old patch file:^^J%
+%   !! --- if so, rename it or delete it, and redo the^^J%
+%   !!     iniptex run.^^J%
+%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
+%      \batchmode \@@end
+%  \fi
+%  \let\pfmtversion@topatch\relax
+%  }{}
 %    \end{macrocode}
 %
 % 起動時に表示される文字列です。
 % \LaTeX{}にパッチがあてられている場合は、それも表示します。
+% \changes{v1.0v-u00}{2016/05/07}{起動時の文字列を最新の\LaTeX{}に合わせた。}
 %    \begin{macrocode}
-\ifx\patch@level\@undefined
-  \ifx\ppatch@level\@undefined
+\ifx\patch@level\@undefined % fallback if undefined in LaTeX
+  \def\patch@level{0}\fi
+\ifx\ppatch@level\@undefined % fallback if undefined in upLaTeX
+  \def\ppatch@level{0}\fi
+\ifnum\patch@level=0
+  \ifnum\ppatch@level=0
      \everyjob{\typeout{%
         \pfmtname\space<\pfmtversion>\space
           (based on \fmtname\space<\fmtversion>)}}
@@ -184,20 +194,32 @@
      \everyjob{\typeout{%
         \pfmtname\space<\pfmtversion>+\ppatch@level\space
           (based on \fmtname\space<\fmtversion>)}}
+  \fi
+\else\ifnum\patch@level>0
+  \ifnum\ppatch@level=0
+     \everyjob{\typeout{%
+        \pfmtname\space<\pfmtversion>\space
+          (based on \fmtname\space<\fmtversion>\space
+            patch level \patch@level)}}
+  \else
+     \everyjob{\typeout{%
+        \pfmtname\space<\pfmtversion>+\ppatch@level\space
+          (based on \fmtname\space<\fmtversion>\space
+            patch level \patch@level)}}
   \fi
 \else
-  \ifx\ppatch@level\@undefined
+  \ifnum\ppatch@level=0
      \everyjob{\typeout{%
         \pfmtname\space<\pfmtversion>\space
           (based on \fmtname\space<\fmtversion>\space
-            patch level \patch@level)}}
+            pre-release\patch@level)}}
   \else
      \everyjob{\typeout{%
         \pfmtname\space<\pfmtversion>+\ppatch@level\space
           (based on \fmtname\space<\fmtversion>\space
-            patch level \patch@level)}}
+            pre-release\patch@level)}}
   \fi
-\fi
+\fi\fi
 %</plfinal>
 %    \end{macrocode}
 %
