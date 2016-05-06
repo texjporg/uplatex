@@ -43,7 +43,7 @@ upldoc.pdf: $(PLDOC_SRC)
 	uplatex --kanji=utf8 Xins.ins && sh mkpldoc.sh && \
 	dvipdfmx upldoc.dvi
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
-	rm upldoc.glo upldoc.gls *.dvi
+	rm upldoc.glo upldoc.gls *.dvi upldoc.tex Xins.ins
 	rm *.cfg upldoc.dic mkpldoc.sh dstcheck.pl
 
 .PHONY: clean
