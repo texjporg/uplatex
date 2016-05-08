@@ -10,7 +10,7 @@
 %
 % \fi
 %
-% \CheckSum{375}
+% \CheckSum{374}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -56,13 +56,14 @@
 % \changes{v1.0e-u00}{2016/04/06}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0f-u00}{2016/04/12}{ドキュメントを更新}
 % \changes{v1.0g-u00}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
+% \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2016/05/07 v1.0g-u00 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2016/05/08 v1.0h-u00 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -511,7 +512,7 @@
 
 % Get the date from uplvers.dtx
 \makeatletter
-\let\patchdate=\@empty
+\def\patchdate{0}%% Modified (May 8, 2016)
 \begingroup
    \def\ProvidesFile#1\pfmtversion#2{\date{#2}\endinput}
    \input{uplvers.dtx}
@@ -560,7 +561,7 @@
 
 %\DocInclude{jltxdoc}  % dtx documents class
 
-\includeltpatch       % patch file
+%\includeltpatch       % patch file (comment out May 8, 2016)
 
 %    \end{macrocode}
 % \file{ltxdoc.cfg}に|\AtEndOfClass{\OnlyDescription}|が指定されている場合は、
@@ -873,7 +874,7 @@ exit;
 % \begin{thebibliography}{1}
 % \bibitem{tex-book}
 % Donald~E. Knuth.
-% \newblock ``{\em The TeX Book}''.
+% \newblock ``{\em The \TeX book}''.
 % \newblock Addison-Wesley, 1984.
 % \newblock (邦訳：斎藤信男監修, 鷺谷好輝訳,
 %             \TeX ブック 改訂新版, アスキー出版局, 1989)
