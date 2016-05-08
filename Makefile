@@ -1,5 +1,6 @@
 TARGET1 = uplatex.ltx ujarticle.cls
 TARGET2 = uplatex.pdf upldoc.pdf
+FONTMAP = -f ipaex.map -f uptex-ipaex.map -f otf-ipaex.map
 
 all: $(TARGET1) $(TARGET2)
 
@@ -32,7 +33,7 @@ ujarticle.cls: $(PLCLS_SRC)
 uplatex.pdf: $(INTRODOC_SRC)
 	uplatex --kanji=utf8 uplatex.dtx && \
 	uplatex --kanji=utf8 uplatex.dtx && \
-	dvipdfmx uplatex.dvi
+	dvipdfmx $(FONTMAP) uplatex.dvi
 	rm uplatex.aux uplatex.log uplatex.dvi
 
 upldoc.pdf: $(PLDOC_SRC)
@@ -41,7 +42,7 @@ upldoc.pdf: $(PLDOC_SRC)
 	done
 	uplatex --kanji=utf8 upldocs.ins && \
 	uplatex --kanji=utf8 Xins.ins && sh mkpldoc.sh && \
-	dvipdfmx upldoc.dvi
+	dvipdfmx $(FONTMAP) upldoc.dvi
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls *.dvi upldoc.tex Xins.ins
 	rm *.cfg upldoc.dic mkpldoc.sh dstcheck.pl
