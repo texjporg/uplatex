@@ -25,7 +25,6 @@ mv $TMP/$PROJECT/*.txt $TMP/$PROJECT/doc/uplatex/base/
 
 mkdir -p $TMP/$PROJECT/source/uplatex/base
 mv $TMP/$PROJECT/Makefile $TMP/$PROJECT/source/uplatex/base/
-cp $TMP/$PROJECT/uplpatch.ltx $TMP/$PROJECT/source/uplatex/base/
 mv $TMP/$PROJECT/*.dtx $TMP/$PROJECT/source/uplatex/base/
 mv $TMP/$PROJECT/*.ins $TMP/$PROJECT/source/uplatex/base/
 
@@ -54,7 +53,7 @@ rm $TMP/$PROJECT/ukinsoku.tex
 rm $TMP/$PROJECT/*.cls
 rm $TMP/$PROJECT/*.clo
 rm $TMP/$PROJECT/*.fd
-ls $TMP/$PROJECT/*.ltx | grep -v uplpatch.ltx | xargs rm
+rm $TMP/$PROJECT/*.ltx
 rm $TMP/$PROJECT/*.sty
 perl -pi.bak -e "s/\\\$RELEASEDATE/$RELEASEDATE/g" $TMP/$PROJECT/README.md
 rm -f $TMP/$PROJECT/README.md.bak
