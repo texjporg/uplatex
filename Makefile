@@ -1,6 +1,6 @@
 TARGET1 = uplatex.ltx ujarticle.cls
 TARGET2 = uplatex.pdf upldoc.pdf
-FONTMAP = -f ipaex.map -f uptex-ipaex.map -f otf-ipaex.map
+FONTMAP = -f ipaex.map -f uptex-ipaex.map
 
 all: $(TARGET1) $(TARGET2)
 
