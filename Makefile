@@ -1,5 +1,6 @@
 TARGET1 = uplatex.ltx ujarticle.cls
 TARGET2 = uplatex.pdf upldoc.pdf
+KANJI = -kanji=utf8
 FONTMAP = -f ipaex.map -f uptex-ipaex.map
 
 all: $(TARGET1) $(TARGET2)
@@ -23,25 +24,34 @@ PLDOC_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx \
 	ukinsoku.dtx ujclasses.dtx
 
 uplatex.ltx: $(PLFMT_SRC)
-	uplatex --kanji=utf8 uplfmt.ins
+	for x in $(PLFMT); do \
+	if [ -e $$x ]; then rm $$x; fi \
+	done
+	uplatex $(KANJI) uplfmt.ins
 	rm uplfmt.log
 
 ujarticle.cls: $(PLCLS_SRC)
-	uplatex --kanji=utf8 uplcls.ins
+	for x in $(PLCLS); do \
+	if [ -e $$x ]; then rm $$x; fi \
+	done
+	uplatex $(KANJI) uplcls.ins
 	rm uplcls.log
 
 uplatex.pdf: $(INTRODOC_SRC)
-	uplatex --kanji=utf8 uplatex.dtx && \
-	uplatex --kanji=utf8 uplatex.dtx && \
+	uplatex $(KANJI) uplatex.dtx
+	mendex -U -f -s gglo.ist -o uplatex.gls uplatex.glo
+	uplatex $(KANJI) uplatex.dtx
 	dvipdfmx $(FONTMAP) uplatex.dvi
 	rm uplatex.aux uplatex.log uplatex.dvi
+	rm uplatex.glo uplatex.gls uplatex.ilg
 
 upldoc.pdf: $(PLDOC_SRC)
 	for x in upldoc.tex Xins.ins; do \
 	if [ -e $$x ]; then rm $$x; fi \
 	done
-	uplatex --kanji=utf8 upldocs.ins && \
-	uplatex --kanji=utf8 Xins.ins && sh mkpldoc.sh && \
+	uplatex $(KANJI) upldocs.ins
+	uplatex $(KANJI) Xins.ins
+	sh mkpldoc.sh
 	dvipdfmx $(FONTMAP) upldoc.dvi
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls *.dvi upldoc.tex Xins.ins

@@ -35,7 +35,7 @@
 %%
 \def\pfmtname{pLaTeX2e}
 \def\pfmtversion
-   {2016/05/12u00}
+   {2016/05/21u01}
 \def\plIncludeInRelease#1{\kernel@ifnextchar[%
   {\@plIncludeInRelease{#1}}
   {\@plIncludeInRelease{#1}[#1]}}
@@ -1045,6 +1045,9 @@
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
 %%
+\def\documentstyle{%
+  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility mode}\@ehc
+  \documentclass}
 \ifx\patch@level\@undefined % fallback if undefined in LaTeX
   \def\patch@level{0}\fi
 \ifx\ppatch@level\@undefined % fallback if undefined in upLaTeX

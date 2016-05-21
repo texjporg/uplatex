@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{187}
+% \CheckSum{192}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -68,12 +68,14 @@
 %    元の\LaTeX{}のバナーから引き継ぐように改良}
 % \changes{v1.0w-u00}{2016/05/12}{起動時の文字列に入れるBabelのバージョンを
 %    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた}
+% \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
+%    使われた場合に明確なエラーを出すようにした。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2016/05/12 v1.0w-u00 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2016/05/21 v1.0w-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -125,10 +127,9 @@
 %</2ekernel|latexrelease|platexrelease>
 %    \end{macrocode}
 %
-% up\LaTeXe{}のフォーマットファイル名とバージョンです。
-%
 % \begin{macro}{\pfmtname}
 % \begin{macro}{\pfmtversion}
+% up\LaTeXe{}のフォーマットファイル名とバージョンです。
 %    \begin{macrocode}
 %<*plcore>
 \def\pfmtname{pLaTeX2e}
@@ -136,10 +137,27 @@
 %</plcore>
 %<platexrelease>\edef\platexreleaseversion
 %<*plcore|platexrelease>
-   {2016/05/12u00}
+   {2016/05/21u01}
 %</plcore|platexrelease>
 %    \end{macrocode}
 % \end{macro}
+% \end{macro}
+%
+% \subsection{\LaTeX~2.09互換モードの抑制}
+%
+% \begin{macro}{\documentstyle}
+% p\LaTeX{}は、|\documentclass|の代わりに|\documentstyle|が使われると
+% \LaTeX~2.09互換モードに入ります。しかし、up\LaTeX{}は新しいマクロ
+% パッケージですので、\LaTeX~2.09互換モードをサポートしません。
+% このため、\file{plcore.dtx}の定義を上書きして明確なエラーを出します。
+% \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
+%    使われた場合に明確なエラーを出すようにした。}
+%    \begin{macrocode}
+%<*plfinal>
+\def\documentstyle{%
+  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility mode}\@ehc
+  \documentclass}
+%    \end{macrocode}
 % \end{macro}
 %
 % \subsection{パッチファイルのロード}
@@ -150,7 +168,6 @@
 % パッチファイルをロードするコードはコメントアウトしました。
 % \changes{v1.0v-u00}{2016/05/07}{パッチファイルをロードするのをやめた。}
 %    \begin{macrocode}
-%<*plfinal>
 %\IfFileExists{uplpatch.ltx}
 %  {\typeout{************************************^^J%
 %            * Appliying patch file uplpatch.ltx *^^J%
