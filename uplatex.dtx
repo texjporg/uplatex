@@ -67,14 +67,14 @@
 % \changes{v1.0j}{2016/05/20}{pfltraceの説明を追加}
 % \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
 % \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0k-u00}{2016/05/21}{up\LaTeX{}用にドキュメントを全体的に改訂}
+% \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2016/05/21 v1.0k-u00 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2016/06/06 v1.0k-u01 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -126,7 +126,7 @@
 % ^^A \changes{v1.0f}{2016/04/12}{ドキュメントを更新}
 % ^^A \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
 % \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0k-u00}{2016/05/21}{up\LaTeX{}用にドキュメントを全体的に改訂}
+% \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
 % \begin{chuui}
 % これは、アスキーのオリジナル版からforkしたコミュニティ版\pLaTeXe{}の
 % 付属文書を\upLaTeXe{}用に書き換えたものです。
@@ -177,8 +177,7 @@
 % \begin{quote}
 % \begin{description}
 % \item[第\ref{platex:intro}節]
-%  この節です。この文書についての概要と、
-%  \dst{}のためのオプションについて述べています。
+%  この節です。この文書についての概要を述べています。
 %
 % \item[第\ref{platex:plcore}節]
 %  up\LaTeXe{}で拡張した機能についての概要です。
@@ -188,9 +187,12 @@
 % ^^A \item[第\ref{platex:compatibility}節]
 % ^^A  旧バージョンのp\LaTeX{}との互換性について述べています。
 %
+% \item[付録\ref{app:dst}]
+%  この文書ソースの\dst{}のためのオプションについて述べています。
+%
 % \item[付録\ref{app:pldoc}]
 %  up\LaTeXe{}のdtxファイルをまとめて一つのDVIファイルにするための
-%  文書ファイル説明をしています。
+%  文書ファイルの説明をしています。
 %
 % \item[付録\ref{app:omake}]
 %  付録\ref{app:pldoc}で説明をした文書ファイルを処理するshスクリプト（手順）、
@@ -198,56 +200,6 @@
 %  説明しています。
 % \end{description}
 % \end{quote}
-%
-%
-% \subsection{\dst{}プログラムのためのオプション}
-% この文書を\dst{}プログラムによって処理することによって、
-% いくつかの異なるファイルを生成することができます。
-%
-% この文書の\dst{}プログラムのためのオプションは、次のとおりです。
-%
-% \DeleteShortVerb{\|}
-% \begin{center}
-% \begin{tabular}{l|p{.8\linewidth}}
-% \emph{オプション} & \emph{意味}\\\hline
-% plcore & フォーマットファイルを作るためのファイルを生成\\
-% pldoc  & up\LaTeXe{}のソースファイルをまとめて組版するための
-%          文書ファイルを生成\\[2mm]
-% shprog & 上記のファイルを作成するためのshスクリプトを生成\\
-% plprog & 入れ子構造を調べる簡単なperlスクリプトを生成\\
-% Xins   & 上記のshスクリプトやperlスクリプトを取り出すための
-%            \dst{}バッチファイルを生成\\
-% \end{tabular}
-% \end{center}
-% \MakeShortVerb{\|}
-%
-% \subsubsection{ファイルの取り出し方}
-%
-% たとえば、この文書の``plcore''の部分を``\file{uplatex.ltx}''という
-% ファイルにするときの手順はつぎのようになります。
-%
-% \begin{enumerate}
-% \item uplatex docstrip
-% \item 入力ファイルの拡張子（dtx）を入力する。
-% \item 出力ファイルの拡張子（ltx）を入力する。
-% \item \dst{}オプション（plcore）を入力する。
-% \item 入力ファイル名（uplatex）を入力する。
-% \item \file{uplatex.ltx}が存在する場合は、確認を求めてくるので、
-%  ``y''を入力する。
-% \item 別の処理を行なうかを問われるので、``n''を入力する。
-% \end{enumerate}
-% これで、\file{uplatex.ltx}が作られます。
-%
-% あるいは、次のような内容のファイル\file{batch.ins}を作成し、
-% |uplatex fmt.ins|することでも\file{uplatex.ltx}を作ることができます。
-%
-% \begin{verbatim}
-%   \def\batchfile{batch.ins}
-%   \input docstrip.tex
-%   \generateFile{uplatex.ltx}{t}{\from{uplatex.dtx}{plcore}}
-% \end{verbatim}
-%
-% \dst プログラムの詳細は、\file{docstrip.dtx}を参照してください。
 %
 %
 %
@@ -295,8 +247,14 @@
 % これらは\TeX{}の内部形式に変換された形式となっています。
 % フォーマットファイルを作成するには、
 % ソースファイル``uplatex.ltx''を|iniuptex|プログラムで処理します。
+% ただし、\TeX\ LiveやW32\TeX{}ではこの処理を簡単にする|fmtutil|あるいは
+% |fmtutil-sys|というプログラムが用意されています。
+% 以下を実行すれば、フォーマットファイル\file{uplatex.fmt}が作成されます。
+% \begin{verbatim}
+%   fmtutil --byfmt uplatex
+% \end{verbatim}
 %
-% 次のリストが、その内容です。
+% 次のリストが、``uplatex.ltx''のの内容です。
 % ただし、このバージョンでは、\LaTeX{}からup\LaTeXe{}への拡張を
 % \file{uplcore.ltx}をロードすることで行ない、
 % \file{latex.ltx}には直接、手を加えないようにしています。
@@ -402,7 +360,7 @@
 % p\LaTeXe{}に含まれるファイルを修正しています。
 % ^^A 修正箇所には``\texttt{platex}''条件が付けられています。
 %
-% p\LaTeXe{}に付属のクラスファイルは、次のとおりです。
+% up\LaTeXe{}に付属のクラスファイルは、次のとおりです。
 % ^^A \changes{v1.0d}{2016/01/27}{p\LaTeXe{}に付属するファイルの説明を更新}
 % ^^A \changes{v1.0j}{2016/05/20}{pfltraceの説明を追加}
 %
@@ -497,7 +455,7 @@
 % もとに、新しいp\LaTeX{}ではplatexreleaseパッケージが用意されました。
 % 本来はup\LaTeX{}でも同様のパッケージを用意するのがよいのですが、
 % 現在はp\LaTeX{}からup\LaTeX{}への変更点が含まれていませんので、
-% 幸いplatexreleaseパッケージををそのまま用いることができます。
+% 幸いplatexreleaseパッケージをそのまま用いることができます。
 % このため、up\LaTeX{}で独自のパッケージを用意することはしていません。
 % platexreleaseパッケージを用いると、過去のup\LaTeX{}をエミュレート
 % したり、フォーマットを作り直すことなく新しいup\LaTeX{}を試したりする
@@ -506,6 +464,55 @@
 %
 %
 % \appendix
+%
+% \section{\dst{}プログラムのためのオプション}\label{app:dst}
+% この文書のソース(uplatex.dtx)を\dst{}プログラムによって処理することによって、
+% いくつかの異なるファイルを生成することができます。
+% \dst プログラムの詳細は、\file{docstrip.dtx}を参照してください。
+%
+% この文書の\dst{}プログラムのためのオプションは、次のとおりです。
+%
+% \DeleteShortVerb{\|}
+% \begin{center}
+% \begin{tabular}{l|p{.8\linewidth}}
+% \emph{オプション} & \emph{意味}\\\hline
+% plcore & フォーマットファイルを作るためのファイルを生成\\
+% pldoc  & up\LaTeXe{}のソースファイルをまとめて組版するための
+%          文書ファイルを生成\\[2mm]
+% shprog & 上記のファイルを作成するためのshスクリプトを生成\\
+% plprog & 入れ子構造を調べる簡単なperlスクリプトを生成\\
+% Xins   & 上記のshスクリプトやperlスクリプトを取り出すための
+%            \dst{}バッチファイルを生成\\
+% \end{tabular}
+% \end{center}
+% \MakeShortVerb{\|}
+%
+% \subsection{ファイルの取り出し方}
+%
+% たとえば、この文書の``plcore''の部分を``\file{uplatex.ltx}''という
+% ファイルにするときの手順はつぎのようになります。
+%
+% \begin{enumerate}
+% \item uplatex docstrip
+% \item 入力ファイルの拡張子（dtx）を入力する。
+% \item 出力ファイルの拡張子（ltx）を入力する。
+% \item \dst{}オプション（plcore）を入力する。
+% \item 入力ファイル名（uplatex）を入力する。
+% \item \file{uplatex.ltx}が存在する場合は、確認を求めてくるので、
+%  ``y''を入力する。
+% \item 別の処理を行なうかを問われるので、``n''を入力する。
+% \end{enumerate}
+% これで、\file{uplatex.ltx}が作られます。
+%
+% あるいは、次のような内容のファイル\file{fmt.ins}を作成し、
+% |uplatex fmt.ins|することでも\file{uplatex.ltx}を作ることができます。
+%
+% \begin{verbatim}
+%   \def\batchfile{fmt.ins}
+%   \input docstrip.tex
+%   \generateFile{uplatex.ltx}{t}{\from{uplatex.dtx}{plcore}}
+% \end{verbatim}
+%
 %
 % \section{文書ファイル}\label{app:pldoc}
 % ^^A \changes{v1.0c}{1997/01/25}{Add to filecontents environment for pldoc.dic.}
@@ -708,14 +715,10 @@
 % \section{おまけプログラム}\label{app:omake}
 %
 % \subsection{シェルスクリプト\file{mkpldoc.sh}}\label{app:shprog}
-% ここでは、up\LaTeXe{}のマクロ定義ファイルをまとめて組版するときに便利な、
-% シェルスクリプト\footnote{このシェルスクリプトはUNIX用です。
+% up\LaTeXe{}のマクロ定義ファイルをまとめて組版するときに便利なシェルスクリプトです。
+% このシェルスクリプト\footnote{このシェルスクリプトはUNIX用です。
 % しかしrmコマンドをdeleteコマンドにするなどすれば、簡単にDOSなどのバッチ
-% ファイルに修正することができます。}について説明をしています。
-% また、このシェルスクリプトを取り出すための、
-% \dst{}バッチファイルについても説明をしています。
-%
-% このシェルスクリプトの使用方法は次のとおりです。
+% ファイルに修正することができます。}の使用方法は次のとおりです。
 % \begin{verbatim}
 %    sh mkpldoc.sh
 % \end{verbatim}
