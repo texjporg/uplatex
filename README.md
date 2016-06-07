@@ -13,7 +13,7 @@ If you have issues, please let us know from the above page.
 ## License
 
 The bundle may be distributed and/or modified under the terms of
-the 3-clause BSD license (see LICENSE).
+the 3-clause BSD license (see [LICENSE](./LICENSE)).
 
 ## Release Date
 
