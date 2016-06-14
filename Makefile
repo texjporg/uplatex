@@ -24,16 +24,12 @@ PLDOC_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx \
 	ukinsoku.dtx ujclasses.dtx
 
 uplatex.ltx: $(PLFMT_SRC)
-	for x in $(PLFMT); do \
-	if [ -e $$x ]; then rm $$x; fi \
-	done
+	rm -f $(PLFMT)
 	uplatex $(KANJI) uplfmt.ins
 	rm uplfmt.log
 
 ujarticle.cls: $(PLCLS_SRC)
-	for x in $(PLCLS); do \
-	if [ -e $$x ]; then rm $$x; fi \
-	done
+	rm -f $(PLCLS)
 	uplatex $(KANJI) uplcls.ins
 	rm uplcls.log
 
@@ -46,9 +42,7 @@ uplatex.pdf: $(INTRODOC_SRC)
 	rm uplatex.glo uplatex.gls uplatex.ilg
 
 upldoc.pdf: $(PLDOC_SRC)
-	for x in upldoc.tex Xins.ins; do \
-	if [ -e $$x ]; then rm $$x; fi \
-	done
+	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
 	uplatex $(KANJI) Xins.ins
 	sh mkpldoc.sh
@@ -59,8 +53,6 @@ upldoc.pdf: $(PLDOC_SRC)
 
 .PHONY: clean
 clean:
-	for x in $(PLFMT) $(PLCLS) \
+	rm -f $(PLFMT) $(PLCLS) \
 	uplatex.pdf upldoc.pdf \
-	upldoc.tex Xins.ins; do \
-	if [ -e $$x ]; then rm $$x; fi \
-	done
+	upldoc.tex Xins.ins
