@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{2030}
+% \CheckSum{2029}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -78,13 +78,14 @@
 % \changes{v1.6c}{2016/06/06}{v1.6aでの修正で\'e など全てのアクセント付き文字で
 %    周囲に\cs{xkanjiskip}が入らなくなっていたのを修正。}
 % \changes{v1.6c-u00}{2016/06/06}{p\LaTeX{}の変更に追随。}
+% \changes{v1.6d}{2016/06/19}{アクセント付き文字をさらに修正(forum:1951)}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplfonts.dtx}[2016/06/06 v1.6c-u00 upLaTeX New Font Selection Scheme]
+\ProvidesFile{uplfonts.dtx}[2016/06/19 v1.6d-u00 upLaTeX New Font Selection Scheme]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplfonts.dtx}
@@ -1646,7 +1647,7 @@
 %    \begin{macrocode}
 %<*pldefs>
 \ProvidesFile{upldefs.ltx}
-      [2016/06/06 v1.6c-u00 upLaTeX Kernel (Default settings)] 
+      [2016/06/19 v1.6d-u00 upLaTeX Kernel (Default settings)] 
 %</pldefs>
 %    \end{macrocode}
 %
@@ -1671,13 +1672,14 @@
 % 第一引数のマクロ(|#1|)の置換テキストが、カテゴリコード11か12の文字トークン1文字であった
 % 場合に第二引数の内容に展開され、そうでない場合は第三引数の内容に展開されます。
 % \changes{v1.6c}{2016/06/06}{マクロ追加}
+% \changes{v1.6d}{2016/06/19}{アクセント付き文字をさらに修正(forum:1951)}
 %    \begin{macrocode}
 \def\pltx@mark{\pltx@mark@}
 \let\pltx@scanstop\relax
 \long\def\pltx@cond#1\fi{%
   #1\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi}
 \long\def\pltx@isletter#1{%
-  \expandafter\pltx@isletter@i\romannumeral-`0#1\pltx@scanstop}
+  \expandafter\pltx@isletter@i#1\pltx@scanstop}
 \long\def\pltx@isletter@i#1\pltx@scanstop{%
   \pltx@cond\ifx\pltx@mark#1\pltx@mark\fi{\@firstoftwo}%
     {\pltx@isletter@ii\pltx@scanstop#1\pltx@scanstop{}#1\pltx@mark}}

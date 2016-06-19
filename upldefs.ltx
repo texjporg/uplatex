@@ -31,14 +31,14 @@
 %%   Right brace   \}     Tilde         \~}
 %%
 \ProvidesFile{upldefs.ltx}
-      [2016/06/06 v1.6c-u00 upLaTeX Kernel (Default settings)]
+      [2016/06/19 v1.6d-u00 upLaTeX Kernel (Default settings)]
 \def\g@tlastchart@#1{#1\ifx\lastnodechar\@undefined\m@ne\else\lastnodechar\fi}
 \def\pltx@mark{\pltx@mark@}
 \let\pltx@scanstop\relax
 \long\def\pltx@cond#1\fi{%
   #1\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi}
 \long\def\pltx@isletter#1{%
-  \expandafter\pltx@isletter@i\romannumeral-`0#1\pltx@scanstop}
+  \expandafter\pltx@isletter@i#1\pltx@scanstop}
 \long\def\pltx@isletter@i#1\pltx@scanstop{%
   \pltx@cond\ifx\pltx@mark#1\pltx@mark\fi{\@firstoftwo}%
     {\pltx@isletter@ii\pltx@scanstop#1\pltx@scanstop{}#1\pltx@mark}}

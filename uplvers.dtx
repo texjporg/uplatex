@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{192}
+% \CheckSum{194}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -70,12 +70,14 @@
 %    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた}
 % \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
 %    使われた場合に明確なエラーを出すようにした。}
+% \changes{v1.0x}{2016/06/19}{パッチレベルを\file{plvers.dtx}で設定}
+% \changes{v1.0x-u01}{2016/06/19}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2016/05/21 v1.0w-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2016/06/19 v1.0x-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -129,7 +131,9 @@
 %
 % \begin{macro}{\pfmtname}
 % \begin{macro}{\pfmtversion}
+% \begin{macro}{\ppatch@level}
 % up\LaTeXe{}のフォーマットファイル名とバージョンです。
+% \changes{v1.0x}{2016/06/19}{パッチレベルを\file{plvers.dtx}で設定}
 %    \begin{macrocode}
 %<*plcore>
 \def\pfmtname{pLaTeX2e}
@@ -139,7 +143,11 @@
 %<*plcore|platexrelease>
    {2016/06/10u01}
 %</plcore|platexrelease>
+%<*plcore>
+\def\ppatch@level{1}
+%</plcore>
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 %

@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{377}
+% \CheckSum{382}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -68,13 +68,15 @@
 % \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
 % \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
+% \changes{v1.0l}{2016/06/19}{パッチレベルを\file{plvers.dtx}から取得}
+% \changes{v1.0l-u01}{2016/06/19}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2016/06/06 v1.0k-u01 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2016/06/19 v1.0l-u01 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -602,6 +604,7 @@
 % ここからが本文ページとなります。
 % ^^AA \changes{v1.0c}{1997/01/29}{Rename pltpatch to plpatch.}
 % \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
+% \changes{v1.0l}{2016/06/19}{パッチレベルを\file{plvers.dtx}から取得}
 %    \begin{macrocode}
 \begin{document}
  \title{The up\LaTeXe\ Sources}
@@ -617,11 +620,12 @@
   Things we did wrong\ldots
   \IndexInput{uplpatch.ltx}}
 
-% Get the date from uplvers.dtx
+% Get the date and patch level from uplvers.dtx
 \makeatletter
-\def\patchdate{0}%% Modified (May 8, 2016)
+\let\patchdate=\@empty
 \begingroup
-   \def\ProvidesFile#1\pfmtversion#2{\date{#2}\endinput}
+   \def\ProvidesFile#1\pfmtversion#2#3\ppatch@level#4{%
+      \date{#2}\xdef\patchdate{#4}\endinput}
    \input{uplvers.dtx}
 \global\let\X@date=\@date
 
@@ -637,7 +641,7 @@
 \ifx\@date\X@date
   \def\Xpatch{0}
   \ifx\patchdate\Xpatch\else
-    \edef\@date{\@date\space Patch level\patchdate}
+    \edef\@date{\@date\space Patch level\space\patchdate}
   \fi
 \else
    \@warning{uplpatch.ltx does not match uplvers.dtx!}
