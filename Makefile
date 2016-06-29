@@ -49,7 +49,7 @@ upldoc.pdf: $(PLDOC_SRC)
 	dvipdfmx $(FONTMAP) upldoc.dvi
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls *.dvi upldoc.tex Xins.ins
-	rm *.cfg upldoc.dic mkpldoc.sh dstcheck.pl
+	rm ltxdoc.cfg upldoc.dic mkpldoc.sh dstcheck.pl
 
 .PHONY: clean
 clean:
