@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{194}
+% \CheckSum{201}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -72,12 +72,13 @@
 %    使われた場合に明確なエラーを出すようにした。}
 % \changes{v1.0x}{2016/06/19}{パッチレベルを\file{plvers.dtx}で設定}
 % \changes{v1.0x-u01}{2016/06/19}{p\LaTeX{}の変更に追随。}
+% \changes{v1.0y-u01}{2016/06/27}{uplatex.cfgの読み込みを追加}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2016/06/19 v1.0x-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2016/06/29 v1.0y-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -302,6 +303,21 @@
 %</plcore|platexrelease>
 %    \end{macrocode}
 % \end{macro}
+%
+% 起動時にuplatex.cfgがある場合、それを読み込むようにします。
+% \changes{v1.0y-u01}{2016/06/29}{uplatex.cfgの読み込みを追加}
+%    \begin{macrocode}
+%<*plfinal>
+\everyjob\expandafter{%
+  \the\everyjob
+  \IfFileExists{uplatex.cfg}{%
+    \typeout{*************************^^J%
+             * Loading uplatex.cfg.^^J%
+             *************************}%
+    \input{uplatex.cfg}}{}%
+}
+%</plfinal>
+%    \end{macrocode}
 %
 % \LaTeXe{}が提供するlatexreleaseパッケージが読み込まれていて、
 % かつp\LaTeXe{}が提供するplatexreleaseパッケージが読み込まれていない
