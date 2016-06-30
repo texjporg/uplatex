@@ -35,8 +35,8 @@
 %%
 \def\pfmtname{pLaTeX2e}
 \def\pfmtversion
-   {2016/06/10u01}
-\def\ppatch@level{1}
+   {2016/07/01u01}
+\def\ppatch@level{0}
 \def\plIncludeInRelease#1{\kernel@ifnextchar[%
   {\@plIncludeInRelease{#1}}
   {\@plIncludeInRelease{#1}[#1]}}
@@ -957,6 +957,10 @@
   \global \@colht \textheight
   \stepcounter{page}%
   \let\firstmark\botmark
+}
+\def \AtBeginDvi #1{%
+  \global \setbox \@begindvibox
+    \vbox{\yoko \unvbox \@begindvibox #1}%
 }
 \renewcommand\@makefnmark{%
   \ifydir \hbox{}\hbox{\@textsuperscript{\normalfont\@thefnmark}}\hbox{}%
