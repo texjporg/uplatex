@@ -1,8 +1,10 @@
 TARGET1 = uplatex.ltx ujarticle.cls
 TARGET2 = uplatex.pdf upldoc.pdf
+TARGET3 = uplatex.dvi upldoc.dvi
 KANJI = -kanji=utf8
 FONTMAP = -f ipaex.map -f uptex-ipaex.map
 
+default: $(TARGET1) $(TARGET3)
 all: $(TARGET1) $(TARGET2)
 
 PLFMT = uplatex.ltx uplcore.ltx ukinsoku.tex upldefs.ltx \
@@ -33,26 +35,31 @@ ujarticle.cls: $(PLCLS_SRC)
 	uplatex $(KANJI) uplcls.ins
 	rm uplcls.log
 
-uplatex.pdf: $(INTRODOC_SRC)
+uplatex.dvi: $(INTRODOC_SRC)
 	uplatex $(KANJI) uplatex.dtx
 	mendex -U -f -s gglo.ist -o uplatex.gls uplatex.glo
 	uplatex $(KANJI) uplatex.dtx
-	dvipdfmx $(FONTMAP) uplatex.dvi
-	rm uplatex.aux uplatex.log uplatex.dvi
+	rm uplatex.aux uplatex.log
 	rm uplatex.glo uplatex.gls uplatex.ilg
 
-upldoc.pdf: $(PLDOC_SRC)
+upldoc.dvi: $(PLDOC_SRC)
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
+	rm -f mkpldoc.sh dstcheck.pl
 	uplatex $(KANJI) Xins.ins
 	sh mkpldoc.sh
-	dvipdfmx $(FONTMAP) upldoc.dvi
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
-	rm upldoc.glo upldoc.gls *.dvi upldoc.tex Xins.ins
+	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
 	rm ltxdoc.cfg upldoc.dic mkpldoc.sh dstcheck.pl
+
+uplatex.pdf: uplatex.dvi
+	dvipdfmx $(FONTMAP) uplatex.dvi
+upldoc.pdf: upldoc.dvi
+	dvipdfmx $(FONTMAP) upldoc.dvi
 
 .PHONY: clean
 clean:
 	rm -f $(PLFMT) $(PLCLS) \
+	uplatex.dvi upldoc.dvi \
 	uplatex.pdf upldoc.pdf \
 	upldoc.tex Xins.ins
