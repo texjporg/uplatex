@@ -14,7 +14,7 @@
 %
 % \fi
 %
-% \CheckSum{382}
+% \CheckSum{389}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -68,15 +68,16 @@
 % \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
 % \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
-% \changes{v1.0l}{2016/06/19}{パッチレベルを\file{plvers.dtx}から取得}
-% \changes{v1.0l-u01}{2016/06/19}{p\LaTeX{}の変更に追随。}
+% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
+% \changes{v1.0m-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2016/06/19 v1.0l-u01 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2016/08/26 v1.0m-u01 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -263,15 +264,25 @@
 % したがって\file{uplatex.ltx}はとても短いものとなっています。
 % \file{latex.ltx}には\LaTeX{}のコマンドが、
 % \file{uplcore.ltx}にはup\LaTeXe{}で拡張したコマンドが定義されています。
-% \changes{v1.0g-u00}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
-% \changes{v1.0i-u00}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
-%
 %    \begin{macrocode}
 %<*plcore>
+%    \end{macrocode}
+%
+% \file{latex.ltx}の末尾で使われている|\dump|をいったん無効化します。
+%    \begin{macrocode}
 \let\orgdump\dump
 \let\dump\relax
+%    \end{macrocode}
+%
+% \file{latex.ltx}を読み込み、起動時のバナーを保存します。
+% \changes{v1.0g-u00}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
+%    \begin{macrocode}
 \input latex.ltx
 \edef\platexBANNER{\the\everyjob}% save LaTeX banner
+%    \end{macrocode}
+%
+% \file{uplcore.ltx}を読み込み、このup\LaTeX{}のバージョンを表示します。
+%    \begin{macrocode}
 \typeout{**************************^^J%
          *^^J%
          * making upLaTeX format^^J%
@@ -280,11 +291,35 @@
 \makeatletter
 \input uplcore.ltx
 \the\everyjob
+%    \end{macrocode}
+%
+% 起動時に\file{uplatex.cfg}がある場合、それを読み込むようにします。
+% バージョン2016/07/01ではコードを\file{uplcore.ltx}に入れていました
+% が、\file{uplatex.ltx}へ移動しました。
+% \changes{v1.0m-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
+%    \begin{macrocode}
+\everyjob\expandafter{%
+  \the\everyjob
+  \IfFileExists{uplatex.cfg}{%
+    \typeout{*************************^^J%
+             * Loading uplatex.cfg.^^J%
+             *************************}%
+    \input{uplatex.cfg}}{}%
+}
+%    \end{macrocode}
+%
+% フォーマットファイルにダンプします。
+% \changes{v1.0i-u00}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
+%    \begin{macrocode}
 \let\dump\orgdump
 \let\orgdump\@undefined
 \makeatother
 \dump
-%<plcore>\endinput
+%\endinput
+%    \end{macrocode}
+%
+%    \begin{macrocode}
 %</plcore>
 %    \end{macrocode}
 %
@@ -604,7 +639,7 @@
 % ここからが本文ページとなります。
 % ^^AA \changes{v1.0c}{1997/01/29}{Rename pltpatch to plpatch.}
 % \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
-% \changes{v1.0l}{2016/06/19}{パッチレベルを\file{plvers.dtx}から取得}
+% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
 %    \begin{macrocode}
 \begin{document}
  \title{The up\LaTeXe\ Sources}

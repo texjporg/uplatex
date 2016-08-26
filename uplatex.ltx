@@ -42,11 +42,18 @@
 \makeatletter
 \input uplcore.ltx
 \the\everyjob
+\everyjob\expandafter{%
+  \the\everyjob
+  \IfFileExists{uplatex.cfg}{%
+    \typeout{*************************^^J%
+             * Loading uplatex.cfg.^^J%
+             *************************}%
+    \input{uplatex.cfg}}{}%
+}
 \let\dump\orgdump
 \let\orgdump\@undefined
 \makeatother
 \dump
-\endinput
 \endinput
 %%
 %% End of file `uplatex.ltx'.
