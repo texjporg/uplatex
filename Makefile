@@ -5,6 +5,7 @@ KANJI = -kanji=utf8
 FONTMAP = -f ipaex.map -f uptex-ipaex.map
 
 default: $(TARGET1) $(TARGET3)
+strip: $(TARGET1)
 all: $(TARGET1) $(TARGET2)
 
 PLFMT = uplatex.ltx uplcore.ltx ukinsoku.tex upldefs.ltx \
@@ -57,9 +58,20 @@ uplatex.pdf: uplatex.dvi
 upldoc.pdf: upldoc.dvi
 	dvipdfmx $(FONTMAP) upldoc.dvi
 
-.PHONY: clean
+.PHONY: clean cleanstrip cleanall cleandoc
 clean:
+	rm -f $(PLFMT) $(PLCLS) \
+	uplatex.dvi upldoc.dvi \
+	upldoc.tex Xins.ins
+cleanstrip:
+	rm -f $(PLFMT) $(PLCLS) \
+	upldoc.tex Xins.ins
+cleanall:
 	rm -f $(PLFMT) $(PLCLS) \
 	uplatex.dvi upldoc.dvi \
 	uplatex.pdf upldoc.pdf \
 	upldoc.tex Xins.ins
+cleandoc:
+	rm -f \
+	uplatex.dvi upldoc.dvi \
+	uplatex.pdf upldoc.pdf
