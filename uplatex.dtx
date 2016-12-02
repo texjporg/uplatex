@@ -186,13 +186,17 @@
 %\fi
 % \end{chuui}
 %
-% アスキー\pTeX{}には、高品質の日本語組版ソフトウェアとしてデファクト
-% スタンダードの地位にあるといえます。しかし、
-% (1) 直接使える文字集合が原則的にJIS X 0208（JIS第1,2水準）の範囲に限定
-% されていること、
-% (2) 8bitの非英語欧文との親和性が高いとは言えないこと、
-% (3) \pTeX{}の利用が日本語に限られ、中国語・韓国語との混植への利用が
-% 進んでいないこと、といった弱点がありました。
+%\ifJAPANESE
+% アスキー\pTeX{}は、高品質の日本語組版ソフトウェアとしてデファクト
+% スタンダードの地位にあるといえます。しかし、\pTeX{}には
+% \begin{itemize}
+% \item 直接使える文字集合が原則的にJIS X 0208（JIS第1,2水準）の範囲に限定
+%   されていること、
+% \item 8bitの非英語欧文との親和性が高いとは言えないこと、
+% \item \pTeX{}の利用が日本語に限られ、中国語・韓国語との混植への利用が
+%   進んでいないこと
+% \end{itemize}
+% といった弱点がありました。
 %
 % これらの弱点を克服するため、\pTeX{}の内部コードをUnicode化した拡張版
 % が\upTeX{}です。また、\upTeX{}上で用いるUnicode版\pLaTeX{}が\upLaTeX{}で
@@ -203,9 +207,34 @@
 % リポジトリ\footnote{\texttt{https://github.com/texjporg/uplatex}}で
 % 管理しています。
 %
-% より詳細な\upTeX{}や\upLaTeX{}の情報は、
-% それぞれ\file{README\_uplatex.txt}や\file{README\_uptex.txt}などの
+% より詳細な\upTeX{}の情報は、\file{README\_uptex.txt}などの
 % テキストファイルを参照してください。
+%\else
+% ASCII \pTeX\ is the most popular \TeX\ engine in Japan and is widely
+% used for a high-quality typesetting, even for commercial printing.
+% However, \pTeX\ has some limitations:
+% \begin{itemize}
+% \item The Character set available is limited to JIS X 0208,
+%   namely JIS level-1 and level-2
+% \item Difficulty in handlign 8-bit Latin, due to legacy double byte
+%   Japanese encodings
+% \item Difficulty in typesetting CJK (Chinese, Japanese and Korean)
+%  multilingual documents
+% \end{itemize}
+%
+% To overcome these weak points,
+% a Unicode extension of \pTeX, \upTeX, has been
+% developed.\footnote{\texttt{http://www.t-lab.opal.ne.jp/tex/uptex.html}}
+% The Unicode \pLaTeX\ format run on \upTeX\ is called \upLaTeX.
+% Current \upLaTeX\ is maintained by Japanese \TeX\ Development
+% Community,\footnote{\texttt{https://texjp.org}}
+% in sync with \pLaTeX\ community
+% edition.\footnote{\texttt{https://github.com/texjporg/platex}}
+% The development version is available from
+% GitHub repository\footnote{\texttt{https://github.com/texjporg/uplatex}}.
+%
+% For detail of \upTeX, please refer to \file{README\_uptex.txt}.
+%\fi
 %
 %
 % \clearpage
