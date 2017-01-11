@@ -162,7 +162,7 @@
 %
 % \begin{macro}{\c@@paper}
 % 用紙サイズを示すために使います。
-% A4, A5, B4, B5 用紙はそれぞれ、1, 2, 3, 4 として表されます。
+% A4, A5, B4, B5用紙はそれぞれ、1, 2, 3, 4として表されます。
 %    \begin{macrocode}
 %<*article|report|book>
 \newcounter{@paper}
@@ -178,7 +178,7 @@
 %
 % \begin{macro}{\@ptsize}
 % 組版をするポイント数の一の位を保存するために使います。
-% 0, 1, 2 のいずれかです。
+% 0, 1, 2のいずれかです。
 %    \begin{macrocode}
 \newcommand{\@ptsize}{}
 %    \end{macrocode}
@@ -1831,7 +1831,7 @@
 % ヘッダに見出しを、フッタにページ番号を出力します。
 %
 % このスタイルは、両面印刷と片面印刷とで形式が異なります。
-% \changes{v1.0d}{1995/08/23}{横組の evenfoot が中央揃えになっていたのを修正}
+% \changes{v1.0d}{1995/08/23}{横組のevenfootが中央揃えになっていたのを修正}
 % \changes{v1.0d}{1996/03/05}{横組で偶数ページと奇数ページの設定が逆なのを修正}
 %    \begin{macrocode}
 \if@twoside
@@ -1986,7 +1986,7 @@
     }%
     {\if@restonecol\twocolumn \else \newpage \fi
 %    \end{macrocode}
-% 二段組モードでなければ、タイトルページの直後のページのページ番号も1に
+% 両面モードでなければ、タイトルページの直後のページのページ番号も1に
 % します。
 %    \begin{macrocode}
      \if@twoside\else
@@ -3471,7 +3471,7 @@
 %
 % \changes{v1.6}{2006/06/27}{フォントコマンドを修正。ありがとう、ymtさん。}
 %    p\LaTeX{} 2.09
-%    compatibility mode では和文数式フォントfam が2重定義されていた
+%    compatibility mode では和文数式フォントfamが2重定義されていた
 %    ので、その部分を変更しました。
 %    \begin{macrocode}
 \if@enablejfam
@@ -4220,7 +4220,7 @@
 %<*yoko>
 \if@twoside
   \@mparswitchtrue
-\else 
+\else
   \@mparswitchfalse
 \fi
 %</yoko>
