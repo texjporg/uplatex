@@ -1029,7 +1029,14 @@
 \fi
 %% File: uplvers.dtx
 \def\documentstyle{%
-  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility mode}\@ehc
+  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility
+    mode.\MessageBreak Use \noexpand\documentclass instead}{%
+    \noexpand\documentstyle is an old convention of LaTeX 2.09,
+    which has been\MessageBreak obsolete since 1995. upLaTeX is
+    first released in 2007, so we do\MessageBreak not provide any
+    emulation of the LaTeX 2.09 author environment.\MessageBreak
+    New documents should use Standard LaTeX conventions, and
+    start\MessageBreak with the \noexpand\documentclass command.}%
   \documentclass}
 \ifx\patch@level\@undefined % fallback if undefined in LaTeX
   \def\patch@level{0}\fi

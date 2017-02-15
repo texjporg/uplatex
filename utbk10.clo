@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesFile{utbk10.clo}
-  [2016/12/18 v1.7c-u00
+  [2017/02/15 v1.7d-u00
   Standard upLaTeX file (size option)]
 \renewcommand{\normalsize}{%
     \@setfontsize\normalsize\@xpt{17}%
