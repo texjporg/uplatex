@@ -1,12 +1,13 @@
-TARGET1 = uplatex.ltx ujarticle.cls
-TARGET2 = uplatex.pdf upldoc.pdf
-TARGET3 = uplatex.dvi upldoc.dvi
+STRIPTARGET = uplatex.ltx ujarticle.cls
+PDFTARGET = uplatex.pdf upldoc.pdf
+DVITARGET = uplatex.dvi upldoc.dvi
 KANJI = -kanji=utf8
 FONTMAP = -f ipaex.map -f uptex-ipaex.map
+TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
 
-default: $(TARGET1) $(TARGET3)
-strip: $(TARGET1)
-all: $(TARGET1) $(TARGET2)
+default: $(STRIPTARGET) $(DVITARGET)
+strip: $(STRIPTARGET)
+all: $(STRIPTARGET) $(PDFTARGET)
 
 PLFMT = uplatex.ltx uplcore.ltx ukinsoku.tex upldefs.ltx \
 	jy2mc.fd jy2gt.fd jt2mc.fd jt2gt.fd uptrace.sty
@@ -58,20 +59,36 @@ uplatex.pdf: uplatex.dvi
 upldoc.pdf: upldoc.dvi
 	dvipdfmx $(FONTMAP) upldoc.dvi
 
-.PHONY: clean cleanstrip cleanall cleandoc
+.PHONY: install clean cleanstrip cleanall cleandoc
+install:
+	mkdir -p ${TEXMF}/doc/uplatex/base
+	cp ./LICENSE ${TEXMF}/doc/uplatex/base/
+	cp ./README.md ${TEXMF}/doc/uplatex/base/
+	cp ./*.pdf ${TEXMF}/doc/uplatex/base/
+	cp ./*.txt ${TEXMF}/doc/uplatex/base/
+	mkdir -p ${TEXMF}/source/uplatex/base
+	cp ./Makefile ${TEXMF}/source/uplatex/base/
+	cp ./*.dtx ${TEXMF}/source/uplatex/base/
+	cp ./*.ins ${TEXMF}/source/uplatex/base/
+	mkdir -p ${TEXMF}/tex/uplatex/base
+	cp ./ukinsoku.tex ${TEXMF}/tex/uplatex/base/
+	cp ./*.clo ${TEXMF}/tex/uplatex/base/
+	cp ./*.cls ${TEXMF}/tex/uplatex/base/
+	cp ./*.fd  ${TEXMF}/tex/uplatex/base/
+	cp ./*.ltx ${TEXMF}/tex/uplatex/base/
+	cp ./*.sty ${TEXMF}/tex/uplatex/base/
+	mkdir -p ${TEXMF}/tex/uplatex/config
+	cp ./uplatex.ini ${TEXMF}/tex/uplatex/config/
 clean:
 	rm -f $(PLFMT) $(PLCLS) \
-	uplatex.dvi upldoc.dvi \
+	$(DVITARGET) \
 	upldoc.tex Xins.ins
 cleanstrip:
 	rm -f $(PLFMT) $(PLCLS) \
 	upldoc.tex Xins.ins
 cleanall:
 	rm -f $(PLFMT) $(PLCLS) \
-	uplatex.dvi upldoc.dvi \
-	uplatex.pdf upldoc.pdf \
+	$(DVITARGET) $(PDFTARGET) \
 	upldoc.tex Xins.ins
 cleandoc:
-	rm -f \
-	uplatex.dvi upldoc.dvi \
-	uplatex.pdf upldoc.pdf
+	rm -f $(DVITARGET) $(PDFTARGET)

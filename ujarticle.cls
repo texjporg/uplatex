@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ujarticle}
-  [2017/02/15 v1.7d-u00
+  [2017/03/05 v1.7e-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -81,8 +81,8 @@
   \tombowtrue \tombowdatetrue
   \setlength{\@tombowwidth}{.1\p@}%
   \@bannertoken{%
-     \jobname\space:\space\number\year/\number\month/\number\day
-      (\number\hour:\number\minute)}
+     \jobname\space(\number\year-\two@digits\month-\two@digits\day
+     \space\two@digits\hour:\two@digits\minute)}%
   \maketombowbox}
 \DeclareOption{tombo}{%
   \tombowtrue \tombowdatefalse

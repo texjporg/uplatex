@@ -19,7 +19,7 @@
 %% File: uplvers.dtx
 \def\pfmtname{pLaTeX2e}
 \def\pfmtversion
-   {2016/11/29u01}
+   {2017/04/08u01}
 \def\ppatch@level{0}
 \def\plIncludeInRelease#1{\kernel@ifnextchar[%
   {\@plIncludeInRelease{#1}}
@@ -83,9 +83,11 @@
 \let\notffam@list\kfam@list
 \newbox\tstrutbox
 \newbox\zstrutbox
+\newbox\ystrutbox
+\def\strutbox{\iftdir\tstrutbox\else\ystrutbox\fi}
 \def\strut{\relax
   \ifydir
-    \ifmmode\copy\strutbox\else\unhcopy\strutbox\fi
+    \ifmmode\copy\ystrutbox\else\unhcopy\ystrutbox\fi
   \else
     \ifmmode\copy\tstrutbox\else\unhcopy\tstrutbox\fi
   \fi}
@@ -93,6 +95,8 @@
    \ifmmode\copy\tstrutbox\else\unhcopy\tstrutbox\fi}}
 \def\zstrut{\relax\hbox{\tate
    \ifmmode\copy\zstrutbox\else\unhcopy\zstrutbox\fi}}
+\def\ystrut{\relax\hbox{\yoko
+    \ifmmode\copy\ystrutbox\else\unhcopy\ystrutbox\fi}}
 \def\DeclareFontEncoding{%
   \begingroup
   \nfss@catcodes
@@ -428,7 +432,7 @@
       \baselineskip\f@linespread\baselineskip
       \normalbaselineskip\baselineskip
       \adjustbaseline
-      \setbox\strutbox\hbox{\yoko
+      \setbox\ystrutbox\hbox{\yoko
           \vrule\@width\z@
                 \@height.7\baselineskip \@depth.3\baselineskip}%
       \setbox\tstrutbox\hbox{\tate
@@ -690,9 +694,25 @@
   \fi}
 \gdef\@makecol{%
    \setbox\@outputbox\box\@cclv%
+   \let\@elt\relax % added on LaTeX (ltoutput.dtx 2003/12/16 v1.2k)
    \xdef\@freelist{\@freelist\@midlist}%
    \global \let \@midlist \@empty
    \@combinefloats
+   \let\pltx@textbottom\@textbottom % save (pLaTeX 2017/02/25)
+   \ifvoid\footins\else % changed (pLaTeX 2017/02/25)
+     \setbox\@outputbox \vbox {%
+       \boxmaxdepth \@maxdepth
+       \unvbox \@outputbox
+       \@textbottom % inserted here (pLaTeX 2017/02/25)
+       \vskip \skip\footins
+       \color@begingroup
+         \normalcolor
+         \footnoterule
+         \unvbox \footins
+       \color@endgroup
+       }%
+       \let\@textbottom\relax % disable temporarily (pLaTeX 2017/02/25)
+   \fi
    \ifvbox\@kludgeins
      \@makespecialcolbox
    \else
@@ -703,16 +723,9 @@
        \iftdir\vbox{\hskip\z@}\fi
        \vskip -\dimen@
        \@textbottom
-       \ifvoid\footins\else % for pLaTeX
-         \vskip \skip\footins
-         \color@begingroup
-            \normalcolor
-            \footnoterule
-            \unvbox \footins
-         \color@endgroup
-       \fi
        }%
    \fi
+   \let\@textbottom\pltx@textbottom % restore (pLaTeX 2017/02/25)
    \global \maxdepth \@maxdepth
 }
 \gdef\@makespecialcolbox{%
@@ -964,7 +977,7 @@
     \@latex@warning{Reference `#3' on page \thepage \space
               undefined}%
   \else
-    \expandafter#2#1\relax% change \null to \relax
+    \expandafter#2#1\relax{}% change \null to \relax{}
   \fi}
 \if@compatibility\else
 \def\verb{\relax\ifmmode\hbox\else\leavevmode\fi
