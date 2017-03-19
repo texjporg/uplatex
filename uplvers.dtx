@@ -61,12 +61,17 @@
 % \changes{v1.1-u01}{2016/09/14}{起動時のバナーを取得するコードを改良}
 % \changes{v1.1a}{2017/02/20}{\LaTeX\ \texttt{!<2017/01/01!>}版対応確認}
 % \changes{v1.1a-u01}{2017/03/05}{p\LaTeX{}の変更に追随。}
+% \changes{v1.1b}{2017/03/19}{\cs{l@nohyphenation}の定義を保証
+%    (sync with ltfinal 2017/03/09 v2.0t)}
+% \changes{v1.1b}{2017/03/19}{\cs{document@default@language}の定義を保証
+%    (sync with ltfinal 2017/03/09 v2.0t)}
+% \changes{v1.1b-u01}{2017/03/19}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2017/03/05 v1.1a-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2017/03/19 v1.1b-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -207,6 +212,9 @@
 %  }{}
 %    \end{macrocode}
 %
+% \subsection{起動時に表示するバナー}
+%
+% \begin{macro}{\everyjob}
 % 起動時に表示される文字列です。
 % \LaTeX{}にパッチがあてられている場合は、それも表示します。
 %
@@ -267,12 +275,47 @@
 \endgroup \platexTMP
 %</plfinal>
 %    \end{macrocode}
+% \end{macro}
 %
 % ^^A 起動時に\file{uplatex.cfg}がある場合、それを読み込むようにする
 % ^^A コードは、\file{uplcore.ltx}から\file{uplatex.ltx}へ移動しました。
 % \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加}
 % \changes{v1.0z-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
 %    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
+%
+% \subsection{ハイフネーション関連}
+%
+% \begin{macro}{\l@nohyphenation}
+% \LaTeXe\ 2017-05-01で、|\verb|の途中でハイフネーションが起きないように
+% する修正が入りました。この修正には|\l@nohyphenation|が定義済みでなければ
+% なりませんが、通常はBabelの定義ファイルによって提供されています。
+% \LaTeXe{}は特殊な状況も想定してltfinalで対策しているようですので、
+% p\LaTeXe{}も念のためplfinalで対策します（参考：latex2e svn r1405）。
+% \changes{v1.1b}{2017/03/19}{\cs{l@nohyphenation}の定義を保証
+%    (sync with ltfinal 2017/03/09 v2.0t)}
+%    \begin{macrocode}
+%<*plfinal>
+\ifx\l@nohyphenation \@undefined
+  \newlanguage\l@nohyphenation
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\document@default@language}
+% \LaTeXe\ 2017-05-01で導入されたパラメータです。更新タイミングのずれの
+% 可能性を考慮し、p\LaTeXe{}でも準備しておきます。verbatim環境の途中で
+% 改ページが起きた場合にヘッダでハイフネーションが抑制されないように、
+% |\@outputpage|で|\language|をリセットするときに使われます
+% （参考：latex2e svn r1407）。
+% \changes{v1.1b}{2017/03/19}{\cs{document@default@language}の定義を保証
+%    (sync with ltfinal 2017/03/09 v2.0t)}
+%    \begin{macrocode}
+\ifx\document@default@language \@undefined
+  \let\document@default@language\m@ne
+\fi
+%</plfinal>
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsection{latexreleaseパッケージへの対応}
 %
