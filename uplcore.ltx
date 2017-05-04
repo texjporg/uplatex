@@ -19,7 +19,7 @@
 %% File: uplvers.dtx
 \def\pfmtname{pLaTeX2e}
 \def\pfmtversion
-   {2017/04/08u01}
+   {2017/05/05u01}
 \def\ppatch@level{0}
 \def\plIncludeInRelease#1{\kernel@ifnextchar[%
   {\@plIncludeInRelease{#1}}
@@ -693,6 +693,19 @@
   \else
     \unskip \reserved@e {\reserved@f#1}\nobreak \hfil \break \null
     \ignorespaces
+  \fi}
+\def\@no@lnbk #1[#2]{%
+  \ifvmode
+    \@nolnerr
+  \else
+    \@tempskipa\lastskip
+    \unskip
+    \penalty #1\@getpen{#2}%
+    \hskip\z@\relax %% added (2017/05/03)
+    \ifdim\@tempskipa>\z@
+      \hskip\@tempskipa
+      \ignorespaces
+    \fi
   \fi}
 \gdef\@makecol{%
    \setbox\@outputbox\box\@cclv%
