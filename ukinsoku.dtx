@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016 Japanese TeX Development Community
+%  Copyright (c) 2016-2017 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -19,10 +19,16 @@
 % \StopEventually{}
 %
 % \iffalse
+% \changes{v1.0-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
+% \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
+%    前禁則ペナルティをU+30FBと同じ値に設定}
+% \fi
+%
+% \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2011/05/07 v1.0-u00 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2017/08/02 v1.0-u01 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -41,7 +47,9 @@
 % 参照してください。
 %
 % なお、このファイルのコード部分は、
-% 以前のバージョンで配布された\file{ukinsoku.tex}と同一です。
+% p\TeX{}やp\LaTeX{}で配布されている\file{kinsoku.tex}に、
+% JIS X 0213の定義文字などの設定を追加したものです。
+% \changes{v1.0-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
 %
 %    \begin{macrocode}
 %<*plcore>
@@ -86,6 +94,8 @@
 %
 % \subsection{全角文字に対する禁則}
 % ここでは、全角文字に対する禁則の設定を行なっています。
+% \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
+%    前禁則ペナルティをU+30FBと同じ値に設定}
 %
 %    \begin{macrocode}
 %%全角文字
@@ -191,6 +201,7 @@
 \postbreakpenalty`¡=10000
 \postbreakpenalty`¿=10000
 \prebreakpenalty`ː=10000
+\prebreakpenalty`·=10000
 \prebreakpenalty`ª=10000
 \prebreakpenalty`º=10000
 \prebreakpenalty`¹=10000
