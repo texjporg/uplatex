@@ -21,7 +21,7 @@
 % \iffalse
 % \changes{v1.0-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
 % \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
-%    前禁則ペナルティをU+30FBと同じ値に設定}
+%    前禁則ペナルティをU+30FBと同じ値に設定、注意点を明文化}
 % \fi
 %
 % \iffalse
@@ -94,8 +94,29 @@
 %
 % \subsection{全角文字に対する禁則}
 % ここでは、全角文字に対する禁則の設定を行なっています。
+%
+% up\TeX{}/up\LaTeX{}の場合、JIS X 0213（日本）・KS C 5601（韓国）・
+% GB2312（中国）・Big5（台湾）などの文字集合に含まれる、
+% いわゆる全角文字の一部が、8-bit Latinと同じコードポイントを
+% 共有します。すなわち、同じコードポイントが、CJKトークンとしても
+% non-CJKトークンとしても有効に扱われることがあります。
+% 以下に例を示します\footnote{ここで表示しているnon-CJKトークンと
+% して扱われた結果は、up\LaTeX{}のデフォルト従属欧文エンコーディング
+% であるT1の場合のものです。}。
+% {\font\lmr=rm-lmr10\lmr
+% \begin{itemize}
+% \item \texttt{0xA1}: \kchar"A1 (CJK) vs. \char"A1\ (non-CJK)
+% \item \texttt{0xAB}: \kchar"AB (CJK) vs. \char"AB\ (non-CJK)
+% \item \texttt{0xB7}: \kchar"B7 (CJK) vs. \char"B7\ (non-CJK)
+% \item \texttt{0xB9}: \kchar"B9 (CJK) vs. \char"B9\ (non-CJK)
+% \item …
+% \end{itemize}}
+% \file{ukinsoku.tex}ではCJKトークンを優先した禁則設定を行っています。
+% この設定により、同じコードポイントをnon-CJKトークンとして扱う場合に
+% 予期せずLatin-1の文字が禁則対象になってしまいます。
+% 問題が起きた場合は禁則の設定を調整してください。
 % \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
-%    前禁則ペナルティをU+30FBと同じ値に設定}
+%    前禁則ペナルティをU+30FBと同じ値に設定、注意点を明文化}
 %
 %    \begin{macrocode}
 %%全角文字
