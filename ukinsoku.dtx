@@ -22,13 +22,16 @@
 % \changes{v1.0-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
 % \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
 %    前禁則ペナルティをU+30FBと同じ値に設定、注意点を明文化}
+% \changes{v1.0b}{2017/08/05}{％、＆、\%、\&の禁則ペナルティが
+%      誤っていたのを修正（post $\rightarrow$ pre）}
+% \changes{v1.0b-u01}{2017/08/05}{p\LaTeX{}の変更に追随}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2017/08/02 v1.0-u01 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2017/08/05 v1.0b-u01 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -63,6 +66,8 @@
 %
 % \subsection{半角文字に対する禁則}
 % ここでは、半角文字に対する禁則の設定を行なっています。
+% \changes{v1.0b}{2017/08/05}{％、＆、\%、\&の禁則ペナルティが
+%      誤っていたのを修正（post $\rightarrow$ pre）}
 %
 %    \begin{macrocode}
 %%
@@ -73,8 +78,8 @@
 \prebreakpenalty`"=10000
 \postbreakpenalty`\#=500
 \postbreakpenalty`\$=500
-\postbreakpenalty`\%=500
-\postbreakpenalty`\&=500
+\prebreakpenalty`\%=500
+\prebreakpenalty`\&=500
 \postbreakpenalty`\`=10000
 \prebreakpenalty`'=10000
 \prebreakpenalty`)=10000
@@ -167,8 +172,8 @@
 \prebreakpenalty`＝=200
 \postbreakpenalty`＃=200
 \postbreakpenalty`＄=200
-\postbreakpenalty`％=200
-\postbreakpenalty`＆=200
+\prebreakpenalty`％=200
+\prebreakpenalty`＆=200
 \prebreakpenalty`ぁ=150
 \prebreakpenalty`ぃ=150
 \prebreakpenalty`ぅ=150
