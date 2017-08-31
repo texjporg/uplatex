@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ujbook}
-  [2017/03/05 v1.7e-u00
+  [2017/08/31 v1.7f-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
