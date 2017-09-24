@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016 Japanese TeX Development Community
+%  Copyright (c) 2016-2017 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -44,9 +44,9 @@
 % \changes{v1.0e}{2016/02/16}{platexreleaseの説明を追加}
 % \changes{v1.0e-u00}{2016/04/06}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0f}{2016/04/12}{ドキュメントを更新}
-% \changes{v1.0g-u00}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
+% \changes{v1.0g}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
 % \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
-% \changes{v1.0i-u00}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
+% \changes{v1.0i}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
 % \changes{v1.0j}{2016/05/20}{pfltraceの説明を追加}
 % \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
 % \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
@@ -54,14 +54,17 @@
 % \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
 % \changes{v1.0m-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
 %    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
-% \changes{v1.0n-u01}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
+% \changes{v1.0n}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
+% \changes{v1.0n-u01}{2016/09/14}{p\LaTeX{}の変更に追随。}
+% \changes{v1.0o}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
+% \changes{v1.0o-u01}{2017/09/24}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2016/09/14 v1.0n-u01 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2017/09/24 v1.0o-u01 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -109,10 +112,6 @@
 %
 %
 % \changes{v1.0c-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
-% \changes{v1.0e-u00}{2016/04/06}{p\LaTeX{}の変更に追随。}
-% ^^A \changes{v1.0f}{2016/04/12}{ドキュメントを更新}
-% ^^A \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
-% \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
 % \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
 % \begin{chuui}
 % これは、アスキーのオリジナル版からforkしたコミュニティ版\pLaTeXe{}の
@@ -147,17 +146,6 @@
 % この文書は、up\LaTeXe{}の概要を示していますが、使い方のガイドではありません。
 % 元となっているp\LaTeXe{}や\LaTeXe{}については、それぞれp\LaTeXe{}と
 % \LaTeXe{}の付属文書を参照してください。
-% ^^A 元となっているp\LaTeXe{}の機能についての説明は、\cite{platex2e-book}を
-% ^^A 参照してください。日本語\TeX{}については\cite{jtex-tech}を参照してください。
-% ^^A \changes{v1.0}{1995/05/08}{first edition}
-% ^^A \changes{v1.0a}{1995/08/25}{互換性について、\dst{}の使い方、参考文献を追加}
-% ^^A
-% ^^A p\LaTeXe{}では\cite{tate-book}で説明されている、いくつかの拡張コマンドの
-% ^^A 動作を修正しています。その詳細については、\file{plext.dtx}を参照して
-% ^^A ください。
-% ^^A
-% ^^A \LaTeX{}の機能については、\cite{latex-book2}や\cite{latex-comp}などを
-% ^^A 参照してください。新しい機能については\file{usrguide.tex}を参照してください。
 %
 % この文書の構成は次のようになっています。
 %
@@ -213,20 +201,6 @@
 % \begin{chuui}[古いp\LaTeX~2.09ユーザへの注意：]%\normalfont
 % u\pLaTeX{}は新しいマクロパッケージですので、2.09互換モードはサポートして
 % いません。\LaTeXe{}の仕様に従ってドキュメントを作成してください。
-% ^^A クラスファイルとパッケージファイルは、従来、スタイルファイルと呼ばれていた
-% ^^A ものです。\LaTeXe{}ではそれらを、レイアウトに関するものをクラスファイルと
-% ^^A 呼び、マクロの拡張をするものをパッケージファイルと呼んで区別するように
-% ^^A なりました。
-%
-% ^^A \TeX{}文書が使用するクラスは、文書のプリアンブルで|\documentclass|コマンド
-% ^^A を用いて指定します。|\documentclass|ではなく、旧版の|\documentstyle|を
-% ^^A 用いると、自動的に\emph{2.09互換モード}に入ります。
-% ^^A 互換モードは旧版の文書を組版するためだけに作られていますので、
-% ^^A 新しく文書を作成する場合は、|\documentclass|コマンドを用いてください。
-% ^^A 互換モードでは\LaTeX{}の新機能も使えなくなります。
-%
-% ^^A 旧版では、|\documentstyle|のオプションでマクロファイルを読み込んで
-% ^^A いましたが、\LaTeX{}では、|\usepackage|コマンドを用いて読み込みます。
 % \end{chuui}
 %
 % \subsection{フォーマットファイル}
@@ -234,11 +208,11 @@
 % これらは\TeX{}の内部形式に変換された形式となっています。
 % フォーマットファイルを作成するには、
 % ソースファイル``uplatex.ltx''を|iniuptex|プログラムで処理します。
-% ただし、\TeX\ LiveやW32\TeX{}ではこの処理を簡単にする|fmtutil|あるいは
-% |fmtutil-sys|というプログラムが用意されています。
+% ただし、\TeX\ LiveやW32\TeX{}ではこの処理を簡単にする|fmtutil-sys|あるいは
+% |fmtutil|というプログラムが用意されています。
 % 以下を実行すれば、フォーマットファイル\file{uplatex.fmt}が作成されます。
 %\begin{verbatim}
-%   fmtutil --byfmt uplatex
+%   fmtutil-sys --byfmt uplatex
 %\end{verbatim}
 %
 % 次のリストが、``uplatex.ltx''のの内容です。
@@ -300,8 +274,8 @@
 % とパースすることができるようになります。
 %\fi
 %
-% \changes{v1.0g-u00}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
-% \changes{v1.0n-u01}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
+% \changes{v1.0g}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
+% \changes{v1.0n}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
 %    \begin{macrocode}
 \input latex.ltx
 \edef\platexBANNER{\the\everyjob\noexpand\typeout{}\relax}% save LaTeX banner
@@ -336,7 +310,7 @@
 %    \end{macrocode}
 %
 % フォーマットファイルにダンプします。
-% \changes{v1.0i-u00}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
+% \changes{v1.0i}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
 %    \begin{macrocode}
 \let\dump\orgdump
 \let\orgdump\@undefined
@@ -666,6 +640,7 @@
 % ^^AA \changes{v1.0c}{1997/01/29}{Rename pltpatch to plpatch.}
 % \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
 % \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
+% \changes{v1.0o}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
 %    \begin{macrocode}
 \begin{document}
  \title{The up\LaTeXe\ Sources}
@@ -702,8 +677,12 @@
 \ifx\@date\X@date
   \def\Xpatch{0}
   \ifx\patchdate\Xpatch\else
+  % number is assumed
+  \ifx\patchdate>0
     \edef\@date{\@date\space Patch level\space\patchdate}
-  \fi
+  \else
+    \edef\@date{\@date\space Pre-Release\patchdate}
+  \fi\fi
 \else
    \@warning{uplpatch.ltx does not match uplvers.dtx!}
    \let\includeltpatch\relax
