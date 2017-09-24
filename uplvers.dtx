@@ -58,7 +58,8 @@
 % \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加}
 % \changes{v1.0z-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
 %    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
-% \changes{v1.1-u01}{2016/09/14}{起動時のバナーを取得するコードを改良}
+% \changes{v1.1}{2016/09/14}{起動時のバナーを取得するコードを改良}
+% \changes{v1.1-u01}{2016/09/14}{p\LaTeX{}の変更に追随。}
 % \changes{v1.1a}{2017/02/20}{\LaTeX\ \texttt{!<2017/01/01!>}版対応確認}
 % \changes{v1.1a-u01}{2017/03/05}{p\LaTeX{}の変更に追随。}
 % \changes{v1.1b}{2017/03/19}{\cs{l@nohyphenation}の定義を保証
@@ -68,12 +69,14 @@
 % \changes{v1.1b-u01}{2017/03/19}{p\LaTeX{}の変更に追随。}
 % \changes{v1.1c}{2017/04/23}{\LaTeX\ \texttt{!<2017/04/15!>}版対応確認}
 % \changes{v1.1c-u01}{2017/05/04}{p\LaTeX{}の変更に追随。}
+% \changes{v1.1d}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
+% \changes{v1.1d-u01}{2017/09/24}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2017/05/04 v1.1c-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2017/09/24 v1.1d-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -139,10 +142,10 @@
 %</plcore>
 %<platexrelease>\edef\platexreleaseversion
 %<*plcore|platexrelease>
-   {2017/07/29u01}
+   {2017/10/14u01}
 %</plcore|platexrelease>
 %<*plcore>
-\def\ppatch@level{1}
+\def\ppatch@level{-1}
 %</plcore>
 %    \end{macrocode}
 % \end{macro}
@@ -228,7 +231,8 @@
 % \changes{v1.0v}{2016/05/07}{起動時の文字列を最新の\LaTeX{}に合わせた。}
 % \changes{v1.0w}{2016/05/12}{起動時の文字列に入れる\LaTeX{}のバージョンを
 %    元の\LaTeX{}のバナーから引き継ぐように改良}
-% \changes{v1.1-u01}{2016/09/14}{起動時のバナーを取得するコードを改良}
+% \changes{v1.1}{2016/09/14}{起動時のバナーを取得するコードを改良}
+% \changes{v1.1d}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
 %    \begin{macrocode}
 \ifx\patch@level\@undefined % fallback if undefined in LaTeX
   \def\patch@level{0}\fi
@@ -241,11 +245,15 @@
       \everyjob{\noexpand\typeout{%
         \pfmtname\space<\pfmtversion>\space
           (based on \expandafter\parse@@BANNER\platexBANNER)}}%
-    \else
+    \else\ifnum\ppatch@level>0
       \everyjob{\noexpand\typeout{%
         \pfmtname\space<\pfmtversion>+\ppatch@level\space
           (based on \expandafter\parse@@BANNER\platexBANNER)}}%
-    \fi
+    \else
+      \everyjob{\noexpand\typeout{%
+        \pfmtname\space<\pfmtversion>-pre\ppatch@level\space
+          (based on \expandafter\parse@@BANNER\platexBANNER)}}%
+    \fi\fi
   }
 \expandafter
 \endgroup \platexTMP

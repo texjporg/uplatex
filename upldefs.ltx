@@ -16,26 +16,6 @@
 %% File: uplfonts.dtx
 \ProvidesFile{upldefs.ltx}
       [2017/08/05 v1.6h-u00 upLaTeX Kernel (Default settings)]
-\def \check@nocorr@ #1#2\nocorr#3\@nil {%
-  \let \check@icl \relax% \maybe@ic から変更
-  \def \check@icr {\ifvmode \else \aftergroup \maybe@ic \fi}%
-  \def \reserved@a {\nocorr}%
-  \def \reserved@b {#1}%
-  \def \reserved@c {#3}%
-  \ifx \reserved@a \reserved@b
-    \ifx \reserved@c \@empty
-      \let \check@icl \@empty
-    \else
-      \let \check@icl \@empty
-      \let \check@icr \@empty
-    \fi
-  \else
-    \ifx \reserved@c \@empty
-    \else
-      \let \check@icr \@empty
-    \fi
-  \fi
-}
 \DeclareKanjiEncodingDefaults{}{}
 \DeclareErrorKanjiFont{JY2}{mc}{m}{n}{10}
 \DeclareYokoKanjiEncoding{JY2}{}{}
@@ -78,7 +58,11 @@
 \xkanjiskip=.25zw plus1pt minus1pt
 \autoxspacing
 \jcharwidowpenalty=500
+\ifx\protected\@undefined
 \def\<{\inhibitglue}
+\else
+\protected\def\<{\ifvmode\leavevmode\fi\inhibitglue}
+\fi
 \endinput
 %%
 %% End of file `upldefs.ltx'.
