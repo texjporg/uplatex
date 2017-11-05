@@ -2,7 +2,7 @@
 %% File: uplfonts.dtx
 %
 %    pLaTeX fonts files:
-%       Copyright 1995-2001 ASCII Corporation.
+%       Copyright 1994-2006 ASCII Corporation.
 %    and modified for upLaTeX
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
@@ -50,7 +50,7 @@
 %    ありがとう、ymtさん。}
 % \changes{v1.5}{2006/11/10}{\cs{reDeclareMathAlphabet}を修正。
 %    ありがとう、ymtさん。}
-% \changes{v1.5-u01}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
+% \changes{v1.5-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
 % \changes{v1.6}{2016/02/01}{\LaTeX\ \texttt{!<2015/01/01!>}での\cs{em}の
 %    定義変更に対応。\cs{eminnershape}を追加。}
 % \changes{v1.6a}{2016/04/01}{ベースライン補正量が0でないときに
@@ -82,13 +82,18 @@
 %    対処が不要になっていたので削除}
 % \changes{v1.6i}{2017/09/24}{\cs{<}が段落頭でも効くようにした}
 % \changes{v1.6i-u00}{2017/09/24}{p\LaTeX{}の変更に追随。}
+% \changes{v1.6j}{2017/11/06}{\cs{cy@encoding}と\cs{ct@encoding}を
+%    具体的な値ではなく「空」で初期化}
+% \changes{v1.6j}{2017/11/06}{縦横のエンコーディングのセット化を
+%    plcoreからpldefsへ移動}
+% \changes{v1.6j-u00}{2017/11/06}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplfonts.dtx}[2017/09/24 v1.6i-u00 upLaTeX New Font Selection Scheme]
+\ProvidesFile{uplfonts.dtx}[2017/11/06 v1.6j-u00 upLaTeX New Font Selection Scheme]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplfonts.dtx}
@@ -179,12 +184,21 @@
 % |\ck@encoding|は、最後に選択された和文エンコード名を示しています。
 % |\cy@encoding|と|\ct@encoding|はそれぞれ、最後に選択された、
 % 横組用と縦組用の和文エンコード名を示しています。
+%
+% ここでは単に「空」に初期化するだけにしています。
+% \iffalse
+% アスキー版はJY1やJT1という具体的な値で初期化していたが、これらの値は
+% \file{pldefs.ltx}で定義するものであるから、\file{plcore.ltx}で
+% それを使うのはおかしい。
+% \fi
+% \changes{v1.6j}{2017/11/06}{\cs{cy@encoding}と\cs{ct@encoding}を
+%    具体的な値ではなく「空」で初期化}
 %    \begin{macrocode}
 %<*plcore>
 \let\k@encoding\@empty
 \let\ck@encoding\@empty
-\def\cy@encoding{JY2}
-\def\ct@encoding{JT2}
+\let\cy@encoding\@empty
+\let\ct@encoding\@empty
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -731,6 +745,16 @@
 \let\default@KT\@empty
 \let\default@KM\@empty
 \@onlypreamble\DeclareKanjiEncodingDefaults
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\KanjiEncodingPair}
+% 和文の縦横のエンコーディングはそれぞれ対にして扱うため、セット化するための
+% コマンドを定義します。
+% \changes{v1.3n}{2004/08/10}{和文エンコーディングの切り替えを有効化}
+%    \begin{macrocode}
+\def\KanjiEncodingPair#1#2{\@namedef{t@enc@#1}{#2}\@namedef{y@enc@#2}{#1}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2041,7 +2065,7 @@
 %    \begin{macrocode}
 %<*pldefs>
 \ProvidesFile{upldefs.ltx}
-      [2017/08/05 v1.6h-u00 upLaTeX Kernel (Default settings)]
+      [2017/11/06 v1.6j-u00 upLaTeX Kernel (Default settings)]
 %</pldefs>
 %    \end{macrocode}
 %
@@ -2143,6 +2167,12 @@
 %    \begin{macrocode}
 \DeclareTateKanjiEncoding{JT2}{}{}
 \DeclareKanjiSubstitution{JT2}{mc}{m}{n}
+%    \end{macrocode}
+% 縦横のエンコーディングのセット化：
+% \changes{v1.6j}{2017/11/06}{縦横のエンコーディングのセット化を
+%    plcoreからpldefsへ移動}
+%    \begin{macrocode}
+\KanjiEncodingPair{JY2}{JT2}
 %    \end{macrocode}
 % フォント属性のデフォルト値：
 %    \begin{macrocode}
