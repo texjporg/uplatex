@@ -1192,7 +1192,6 @@
 %    \end{macrocode}
 % \end{macro}
 %
-%
 % \begin{macro}{\set@fontsize}
 % |\fontsize|コマンドの内部形式です。
 % ベースラインの設定と、支柱の設定を行ないます。
@@ -2380,6 +2379,9 @@
 % \changes{v1.2}{1995/11/24}{it, sl, sc の宣言を外した}
 % \changes{v1.3b}{1997/01/29}{フォント定義ファイルのサイズ指定の調整}
 % \changes{v1.3b}{1997/03/11}{すべてのサイズをロード可能にした}
+%
+% p\LaTeX{}では従属書体にOT1エンコーディングを用いていましたが、
+% up\LaTeX{}ではT1エンコーディングを用いるように変更しました。
 %    \begin{macrocode}
 %<*JY2mc>
 \DeclareKanjiFamily{JY2}{mc}{}
