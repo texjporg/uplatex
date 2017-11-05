@@ -1193,16 +1193,6 @@
 % \end{macro}
 %
 %
-% \begin{macro}{\KanjiEncodingPair}
-% 和文の縦横のエンコーディングはそれぞれ対にして扱うため、セット化します
-% \changes{v1.3n}{2004/08/10}{和文エンコーディングの切り替えを有効化}
-%    \begin{macrocode}
-\def\KanjiEncodingPair#1#2{\@namedef{t@enc@#1}{#2}\@namedef{y@enc@#2}{#1}}
-\KanjiEncodingPair{JY2}{JT2}
-%    \end{macrocode}
-% \end{macro}
-%
-%
 % \begin{macro}{\set@fontsize}
 % |\fontsize|コマンドの内部形式です。
 % ベースラインの設定と、支柱の設定を行ないます。
