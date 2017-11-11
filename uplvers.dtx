@@ -156,30 +156,6 @@
 % \end{macro}
 % \end{macro}
 %
-% \subsection{\LaTeX~2.09互換モードの抑制}
-%
-% \begin{macro}{\documentstyle}
-% p\LaTeX{}は、|\documentclass|の代わりに|\documentstyle|が使われると
-% \LaTeX~2.09互換モードに入ります。しかし、up\LaTeX{}は新しいマクロ
-% パッケージですので、\LaTeX~2.09互換モードをサポートしません。
-% このため、\file{plcore.dtx}の定義を上書きして明確なエラーを出します。
-% \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
-%    使われた場合に明確なエラーを出すようにした。}
-%    \begin{macrocode}
-%<*plfinal>
-\def\documentstyle{%
-  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility
-    mode.\MessageBreak Use \noexpand\documentclass instead}{%
-    \noexpand\documentstyle is an old convention of LaTeX 2.09,
-    which has been\MessageBreak obsolete since 1995. upLaTeX is
-    first released in 2007, so we do\MessageBreak not provide any
-    emulation of the LaTeX 2.09 author environment.\MessageBreak
-    New documents should use Standard LaTeX conventions, and
-    start\MessageBreak with the \noexpand\documentclass command.}%
-  \documentclass}
-%    \end{macrocode}
-% \end{macro}
-%
 % \section{\LaTeXe{}のバージョンの取得}
 % このファイルの直前で\LaTeXe{}の\file{latex.ltx}が読み込まれているはず
 % なので、その起動時のバナーを保存します。
@@ -227,6 +203,31 @@
 %</plcore>
 %    \end{macrocode}
 %
+% \subsection{\LaTeX~2.09互換モードの抑制}
+%
+% \begin{macro}{\documentstyle}
+% p\LaTeX{}は、|\documentclass|の代わりに|\documentstyle|が使われると
+% \LaTeX~2.09互換モードに入ります。しかし、up\LaTeX{}は新しいマクロ
+% パッケージですので、\LaTeX~2.09互換モードをサポートしません。
+% このため、\file{plcore.dtx}の定義を上書きして明確なエラーを出します。
+% \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
+%    使われた場合に明確なエラーを出すようにした。}
+%    \begin{macrocode}
+%<*plfinal>
+\def\documentstyle{%
+  \@latex@error{upLaTeX does NOT support LaTeX 2.09 compatibility
+    mode.\MessageBreak Use \noexpand\documentclass instead}{%
+    \noexpand\documentstyle is an old convention of LaTeX 2.09,
+    which has been\MessageBreak obsolete since 1995. upLaTeX is
+    first released in 2007, so we do\MessageBreak not provide any
+    emulation of the LaTeX 2.09 author environment.\MessageBreak
+    New documents should use Standard LaTeX conventions, and
+    start\MessageBreak with the \noexpand\documentclass command.}%
+  \documentclass}
+%</plfinal>
+%    \end{macrocode}
+% \end{macro}
+%
 % \subsection{パッチファイルのロード}
 %
 % 次の部分は、up\LaTeXe{}のパッチファイルをロードするためのコードです。
@@ -235,6 +236,7 @@
 % パッチファイルをロードするコードはコメントアウトしました。
 % \changes{v1.0v}{2016/05/07}{パッチファイルをロードするのをやめた。}
 %    \begin{macrocode}
+%<*plfinal>
 %\IfFileExists{uplpatch.ltx}
 %  {\typeout{************************************^^J%
 %            * Appliying patch file uplpatch.ltx *^^J%
