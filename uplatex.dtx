@@ -14,72 +14,119 @@
 %
 % \fi
 %
+% \iffalse
+%<*driver|pldoc>
+\ifx\JAPANESEtrue\undefined
+  \expandafter\newif\csname ifJAPANESE\endcsname
+  \JAPANESEtrue
+\fi
+%</driver|pldoc>
+% \fi
 %
 % \setcounter{StandardModuleDepth}{1}
 % \makeatletter
+%\ifJAPANESE
 % \def\chuui{\@ifnextchar[{\@chuui}{\@chuui[注意：]}}
+%\else
+% \def\chuui{\@ifnextchar[{\@chuui}{\@chuui[Attention: ]}}
+%\fi
 % \def\@chuui[#1]{\par\vskip.5\baselineskip
 %   \noindent{\em #1}\par\bgroup\gtfamily\sffamily}
 % \def\endchuui{\egroup\vskip.5\baselineskip}
 % \makeatother
-% \def\pTeX{p\kern-.15em\TeX}
-% \def\epTeX{$\varepsilon$-\pTeX}
-% \def\pLaTeX{p\kern-.05em\LaTeX}
-% \def\pLaTeXe{p\kern-.05em\LaTeXe}
-% \def\upTeX{u\pTeX}
-% \def\eupTeX{$\varepsilon$-\upTeX}
-% \def\upLaTeX{u\pLaTeX}
-% \def\upLaTeXe{u\pLaTeXe}
+%
+% \iffalse
+%<*driver|pldoc>
+\def\eTeX{$\varepsilon$-\pTeX}
+\def\pTeX{p\kern-.15em\TeX}
+\def\epTeX{$\varepsilon$-\pTeX}
+\def\pLaTeX{p\kern-.05em\LaTeX}
+\def\pLaTeXe{p\kern-.05em\LaTeXe}
+\def\upTeX{u\pTeX}
+\def\eupTeX{$\varepsilon$-\upTeX}
+\def\upLaTeX{u\pLaTeX}
+\def\upLaTeXe{u\pLaTeXe}
+%</driver|pldoc>
+% \fi
+%
 % \StopEventually{}
 %
 % \iffalse
-% \changes{v1.0}{1995/05/08}{first edition}
-% \changes{v1.0a}{1995/08/25}{互換性について、\dst{}の使い方、参考文献を追加}
-% \changes{v1.0b}{1996/02/01}{\file{omake-sh.ins}, \file{omake-pl.ins}を
-%     \dst{}の変更にともなう変更をした}
-% \changes{v1.0c}{1997/01/23}{\LaTeX\ \textt{!<1996/12/01!>}に合わせて修正}
-% \changes{v1.0c-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
-% \changes{v1.0d}{2016/01/27}{\file{mkpldoc.sh}を改善。
-%     p\LaTeXe{}に付属するファイルの説明を更新}
-% \changes{v1.0e}{2016/02/16}{platexreleaseの説明を追加}
-% \changes{v1.0e-u00}{2016/04/06}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0f}{2016/04/12}{ドキュメントを更新}
-% \changes{v1.0g}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
-% \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
-% \changes{v1.0i}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
-% \changes{v1.0j}{2016/05/20}{pfltraceの説明を追加}
-% \changes{v1.0k}{2016/05/21}{変更履歴も出力するようにした}
-% \changes{v1.0k-u00}{2016/05/21}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
-% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
+%\ifJAPANESE
+% \changes{v1.0c-u00}{2011/05/07}{\pLaTeX{}用から\upLaTeX{}用に修正。
+%     (based on platex.dtx 1997/01/29 v1.0c)}
+% \changes{v1.0e-u00}{2016/04/06}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2016/02/16 v1.0e)}
+% \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外
+%     (based on platex.dtx 2016/05/08 v1.0h)}
+% \changes{v1.0k-u00}{2016/05/21}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2016/05/21 v1.0k)}
+% \changes{v1.0k-u01}{2016/06/06}{\upLaTeX{}用にドキュメントを全体的に改訂}
+% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得
+%     (based on platex.dtx 2016/06/19 v1.0l)}
 % \changes{v1.0m-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
-%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
-% \changes{v1.0n}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
-% \changes{v1.0n-u01}{2016/09/14}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0o}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
-% \changes{v1.0p}{2017/11/11}{\LaTeX{}のバナーを保存するコードを
-%    \file{platex.ltx}から\file{plcore.ltx}へ移動}
-% \changes{v1.0p-u01}{2017/09/24}{p\LaTeX{}の変更に追随。}
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
+%     (based on platex.dtx 2016/08/26 v1.0m)}
+% \changes{v1.0n-u01}{2016/09/14}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2016/09/14 v1.0n)}
+% \changes{v1.0p-u01}{2017/11/11}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2017/11/11 v1.0p)}
+% \changes{v1.0q-u01}{2017/11/29}{英語版ドキュメントを追加
+%     (based on platex.dtx 2017/11/29 v1.0q)}
+%\else
+% \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
+%     (based on platex.dtx 1997/01/29 v1.0c)}
+% \changes{v1.0e-u00}{2016/04/06}{Sync with \pLaTeX.
+%     (based on platex.dtx 2016/02/16 v1.0e)}
+% \changes{v1.0h-u00}{2016/05/08}{Exclude \file{uplpatch.ltx} from the document
+%     (based on platex.dtx 2016/05/08 v1.0h)}
+% \changes{v1.0k-u00}{2016/05/21}{Sync with \pLaTeX.
+%     (based on platex.dtx 2016/05/21 v1.0k)}
+% \changes{v1.0k-u01}{2016/06/06}{Update documents for \upLaTeX.}
+% \changes{v1.0l-u01}{2016/06/19}{Get the patch level from \file{uplvers.dtx}
+%     (based on platex.dtx 2016/06/19 v1.0l)}
+% \changes{v1.0m-u01}{2016/08/26}{Moved loading \file{uplatex.cfg}
+%    from \file{uplcore.ltx} to \file{uplatex.ltx}
+%     (based on platex.dtx 2016/08/26 v1.0m)}
+% \changes{v1.0n-u01}{2016/09/14}{Sync with \pLaTeX.
+%     (based on platex.dtx 2016/09/14 v1.0n)}
+% \changes{v1.0p-u01}{2017/11/11}{Sync with \pLaTeX.
+%     (based on platex.dtx 2017/11/11 v1.0p)}
+% \changes{v1.0q-u01}{2017/11/29}{New English documentation added!
+%     (based on platex.dtx 2017/11/29 v1.0q)}
+%\fi
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2017/11/11 v1.0p-u01 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2017/11/29 v1.0q-u01 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
 \GetFileInfo{uplatex.dtx}
-\title{up\LaTeXe{}について}
-\author{Ken Nakano \& Japanese \TeX\ Development Community \& TTK}
+\ifJAPANESE
+\title{\upLaTeXe{}について}
+\author{中野 賢 \& 日本語\TeX{}開発コミュニティ \& TTK}
 \date{作成日：\filedate}
 \renewcommand{\refname}{参考文献}
 \GlossaryPrologue{\section*{変更履歴}%
                   \markboth{変更履歴}{変更履歴}%
                   \addcontentsline{toc}{section}{変更履歴}}
+\else
+\title{About \upLaTeXe{}}
+\author{Ken Nakano \& Japanese \TeX\ Development Community \& TTK}
+\date{Date: \filedate}
+\renewcommand{\refname}{References}
+\GlossaryPrologue{\section*{Change History}%
+                  \markboth{Change History}{Change History}%
+                  \addcontentsline{toc}{section}{Change History}}
+\fi
 \makeatletter
+\ifJAPANESE
 \def\levelchar{>・}
+\fi
 \def\changes@#1#2#3{%
   \let\protect\@unexpandable@protect
   \edef\@tempa{\noexpand\glossary{#2\space#1\levelchar
@@ -113,11 +160,30 @@
 % \fi
 %
 %
-% \changes{v1.0c-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
-% \changes{v1.0k-u01}{2016/06/06}{up\LaTeX{}用にドキュメントを全体的に改訂}
+%\ifJAPANESE
+% \changes{v1.0c-u00}{2011/05/07}{\pLaTeX{}用から\upLaTeX{}用に修正。
+%     (based on platex.dtx 1997/01/29 v1.0c)}
+% \changes{v1.0k-u01}{2016/06/06}{\upLaTeX{}用にドキュメントを全体的に改訂}
+% \changes{v1.0q-u01}{2017/11/29}{英語版ドキュメントを追加
+%     (based on platex.dtx 2017/11/29 v1.0q)}
+%\else
+% \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
+%     (based on platex.dtx 1997/01/29 v1.0c)}
+% \changes{v1.0k-u01}{2016/06/06}{Update documents for \upLaTeX.}
+% \changes{v1.0q-u01}{2017/11/29}{New English documentation added!
+%     (based on platex.dtx 2017/11/29 v1.0q)}
+%\fi
 % \begin{chuui}
-% これは、アスキーのオリジナル版からforkしたコミュニティ版\pLaTeXe{}の
-% 付属文書を\upLaTeXe{}用に書き換えたものです。
+%\ifJAPANESE
+% この文書は、「コミュニティ版\pLaTeXe{}」をベースに\upTeX{}向けの調整を
+% 加えた、「コミュニティ版\upLaTeXe{}」の付属文書です。
+%\else
+% This document provides a brief description of \upLaTeXe, the Japanese
+% extended version of \LaTeXe. This version is based on
+% `\pLaTeXe\ Community Edition.'
+% It is now maintained by Japanese \TeX\ Development
+% Community\footnote{\texttt{https://texjp.org}}.
+%\fi
 % \end{chuui}
 %
 % アスキー\pTeX{}には、高品質の日本語組版ソフトウェアとしてデファクト
@@ -144,11 +210,19 @@
 %
 % \clearpage
 %
+%\ifJAPANESE
 % \section{概要}\label{platex:intro}
-% この文書は、up\LaTeXe{}の概要を示していますが、使い方のガイドではありません。
-% 元となっているp\LaTeXe{}や\LaTeXe{}については、それぞれp\LaTeXe{}と
-% \LaTeXe{}の付属文書を参照してください。
+% この文書は、\upLaTeXe{}の概要を示していますが、使い方のガイドでは
+% ありません。ほとんどの機能は元となっている\pLaTeXe{}や\LaTeXe{}と
+% 同等ですので、それぞれの付属文書を参照してください。
+%\else
+% \section{Introduction}\label{platex:intro}
+% This document briefly describes \upLaTeXe, but is not a manual of \upLaTeXe.
+% The basic functions of \upLaTeXe\ are almost the same with those of
+% \pLaTeXe\ and \LaTeXe, so please refer to the documentation of those formats.
+%\fi
 %
+%\ifJAPANESE
 % この文書の構成は次のようになっています。
 %
 % \begin{quote}
@@ -157,18 +231,18 @@
 %  この節です。この文書についての概要を述べています。
 %
 % \item[第\ref{platex:plcore}節]
-%  up\LaTeXe{}で拡張した機能についての概要です。
+%  \upLaTeXe{}で拡張した機能についての概要です。
 %  付属のクラスファイルやパッケージファイルについても簡単に
 %  説明しています。
 %
-% ^^A \item[第\ref{platex:compatibility}節]
-% ^^A  旧バージョンのp\LaTeX{}との互換性について述べています。
+% \item[第\ref{platex:compatibility}節]
+%  旧バージョンの\pLaTeX{}との互換性について述べています。
 %
 % \item[付録\ref{app:dst}]
 %  この文書ソースの\dst{}のためのオプションについて述べています。
 %
 % \item[付録\ref{app:pldoc}]
-%  up\LaTeXe{}のdtxファイルをまとめて一つのDVIファイルにするための
+%  \upLaTeXe{}のdtxファイルをまとめて一つのDVIファイルにするための
 %  文書ファイルの説明をしています。
 %
 % \item[付録\ref{app:omake}]
@@ -177,12 +251,40 @@
 %  説明しています。
 % \end{description}
 % \end{quote}
+%\else
+% This document consists of following parts:
+%
+% \begin{quote}
+% \begin{description}
+% \item[Section \ref{platex:intro}]
+%  This section; describes this document itself.
+%
+% \item[Section \ref{platex:plcore}]
+%  Brief explanation of extensions in \upLaTeXe.
+%  Also describes the standard classes and packages.
+%
+% \item[Section \ref{platex:compatibility}]
+%  The compatibility note for users of the old version of
+%  \pLaTeXe\ (\pLaTeX\ 2.09).
+%
+% \item[Appendix \ref{app:dst}]
+%  Describes \dst\ Options for this document.
+%
+% \item[Appendix \ref{app:pldoc}]
+%  Description of `upldoc.tex' (counterpart for `source2e.tex' in \LaTeXe).
+%
+% \item[Appendix \ref{app:omake}]
+%  Description of shell script to process `upldoc.tex', and
+%  a tiny perl program to check \dst\ guards.
+% \end{description}
+% \end{quote}
+%\fi
 %
 %
-%
-% \section{up\LaTeXe{}の機能について}\label{platex:plcore}
-% up\LaTeXe{}の機能は、いくつものファイルに分割されて実装されています。
-% これらのファイルはつぎの３種類に分類することができます。
+%\ifJAPANESE
+% \section{\upLaTeXe{}の機能について}\label{platex:plcore}
+% \upLaTeXe{}の機能は、いくつものファイルに分割されて実装されています。
+% これらのファイルはつぎの3種類に分類することができます。
 %
 % \begin{itemize}
 % \item フォーマットファイル
@@ -191,8 +293,8 @@
 % \end{itemize}
 %
 % フォーマットファイルには、基本的な機能が定義されており、
-% up\LaTeXe{}の核となるファイルです。このファイルに定義されているマクロは、
-% 実行時の速度を高めるために、あらかじめ\TeX の内部形式の形で保存されて
+% \upLaTeXe{}の核となるファイルです。このファイルに定義されているマクロは、
+% 実行時の速度を高めるために、あらかじめ\TeX{}の内部形式の形で保存されて
 % います。
 %
 % クラスファイルは文書のレイアウトを設定するファイル、
@@ -200,11 +302,18 @@
 % 前者は|\documentclass|コマンドを用いて読み込み、
 % 後者は|\usepackage|コマンドを用いて読み込みます。
 %
-% \begin{chuui}[古いp\LaTeX~2.09ユーザへの注意：]%\normalfont
-% u\pLaTeX{}は新しいマクロパッケージですので、2.09互換モードはサポートして
+% \begin{chuui}[古い\pLaTeX~2.09ユーザへの注意：]\normalfont
+% \upLaTeX{}は新しいマクロパッケージですので、2.09互換モードはサポートして
 % いません。\LaTeXe{}の仕様に従ってドキュメントを作成してください。
 % \end{chuui}
+%\else
+% \section{About Functions of \pLaTeXe}\label{platex:plcore}
+% The structure of \pLaTeXe\ is similar to that of \LaTeXe;
+% it consists of 3 types of files: a format (platex.ltx),
+% classes and packages.
+%\fi
 %
+%\ifJAPANESE
 % \subsection{フォーマットファイル}
 % フォーマットファイルには、基本的な機能が定義されていますが、
 % これらは\TeX{}の内部形式に変換された形式となっています。
@@ -213,40 +322,70 @@
 % ただし、\TeX\ LiveやW32\TeX{}ではこの処理を簡単にする|fmtutil-sys|あるいは
 % |fmtutil|というプログラムが用意されています。
 % 以下を実行すれば、フォーマットファイル\file{uplatex.fmt}が作成されます。
+%\else
+% \subsection{About the Format}
+% Process ``uplatex.ltx'' with INI mode of |(e)uptex|.
+% A handy command `fmtutil-sys' (or `fmtutil') for this purpose
+% is available in \TeX\ Live. The following command generates \file{uplatex.fmt}.
+%\fi
 %\begin{verbatim}
 %   fmtutil-sys --byfmt uplatex
 %\end{verbatim}
 %
-% 次のリストが、``uplatex.ltx''のの内容です。
-% ただし、このバージョンでは、\LaTeX{}からup\LaTeXe{}への拡張を
+%\ifJAPANESE
+% 次のリストが、\file{uplatex.ltx}の内容です。
+% ただし、このバージョンでは、\LaTeX{}から\upLaTeXe{}への拡張を
 % \file{uplcore.ltx}をロードすることで行ない、
 % \file{latex.ltx}には直接、手を加えないようにしています。
 % したがって\file{uplatex.ltx}はとても短いものとなっています。
 % \file{latex.ltx}には\LaTeX{}のコマンドが、
-% \file{uplcore.ltx}にはup\LaTeXe{}で拡張したコマンドが定義されています。
+% \file{uplcore.ltx}には\upLaTeXe{}で拡張したコマンドが定義されています。
+%\else
+% The content of \file{uplatex.ltx} is shown below.
+% In the current version of \upLaTeX,
+% first we simply load \file{latex.ltx} and
+% modify/extend some definitions by loading \file{uplore.ltx}.
+%\fi
 %    \begin{macrocode}
 %<*plcore>
 %    \end{macrocode}
 %
+%\ifJAPANESE
 % \file{latex.ltx}の末尾で使われている|\dump|をいったん無効化します。
+%\else
+% Temporarily disable |\dump| at the end of \file{latex.ltx}.
+%\fi
 %    \begin{macrocode}
 \let\orgdump\dump
 \let\dump\relax
 %    \end{macrocode}
 %
+%\ifJAPANESE
 % \file{latex.ltx}を読み込みます。
 % \TeX\ Liveの標準的インストールでは、この中でBabel由来のハイフネーション・
 % パターン\file{hyphen.cfg}が読み込まれるはずです。
-%
-% \changes{v1.0g}{2016/05/07}{フォーマット作成時に\LaTeX{}のバナーを一旦保存}
-% \changes{v1.0n}{2016/09/14}{\LaTeX{}のバナーの保存しかたを改良}
-% \changes{v1.0p}{2017/11/11}{\LaTeX{}のバナーを保存するコードを
-%    \file{platex.ltx}から\file{plcore.ltx}へ移動}
+% \changes{v1.0n-u01}{2016/09/14}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2016/09/14 v1.0n)}
+% \changes{v1.0p-u01}{2017/11/11}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2017/11/11 v1.0p)}
+%\else
+% Load \file{latex.ltx} here.
+% Within the standard installation of \TeX\ Live, \file{hyphen.cfg}
+% provided by ``Babel'' package will be used.
+% \changes{v1.0n-u01}{2016/09/14}{Sync with \pLaTeX.
+%     (based on platex.dtx 2016/09/14 v1.0n)}
+% \changes{v1.0p-u01}{2017/11/11}{Sync with \pLaTeX.
+%     (based on platex.dtx 2017/11/11 v1.0p)}
+%\fi
 %    \begin{macrocode}
 \input latex.ltx
 %    \end{macrocode}
 %
-% \file{uplcore.ltx}を読み込み、このup\LaTeX{}のバージョンを表示します。
+%\ifJAPANESE
+% \file{uplcore.ltx}を読み込み、この\upLaTeX{}のバージョンを端末に表示します。
+%\else
+% Load \file{uplcore.ltx} and display \upLaTeX\ version on the terminal.
+%\fi
 %    \begin{macrocode}
 \typeout{**************************^^J%
          *^^J%
@@ -258,11 +397,21 @@
 \the\everyjob
 %    \end{macrocode}
 %
-% 起動時に\file{uplatex.cfg}がある場合、それを読み込むようにします。
+%\ifJAPANESE
+% \upLaTeXe{}の起動時に\file{uplatex.cfg}がある場合、それを読み込む
+% ようにします（\pLaTeXe{}が\file{platex.cfg}を読み込むのと同様）。
 % バージョン2016/07/01ではコードを\file{uplcore.ltx}に入れていました
 % が、\file{uplatex.ltx}へ移動しました。
 % \changes{v1.0m-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
-%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
+%     (based on platex.dtx 2016/08/26 v1.0m)}
+%\else
+% Load \file{uplatex.cfg} if it exists at runtime of \upLaTeXe.
+% (Counterpart of \file{platex.cfg} in \pLaTeXe.)
+% \changes{v1.0m-u01}{2016/08/26}{Moved loading \file{uplatex.cfg}
+%    from \file{uplcore.ltx} to \file{uplatex.ltx}
+%     (based on platex.dtx 2016/08/26 v1.0m)}
+%\fi
 %    \begin{macrocode}
 \everyjob\expandafter{%
   \the\everyjob
@@ -274,8 +423,11 @@
 }
 %    \end{macrocode}
 %
+%\ifJAPANESE
 % フォーマットファイルにダンプします。
-% \changes{v1.0i}{2016/05/12}{一時コマンド\cs{orgdump}を最終的に未定義へ}
+%\else
+% Dump to the format file.
+%\fi
 %    \begin{macrocode}
 \let\dump\orgdump
 \let\orgdump\@undefined
@@ -288,14 +440,15 @@
 %</plcore>
 %    \end{macrocode}
 %
-% 実際にup\LaTeXe{}への拡張を行なっている\file{uplcore.ltx}は、
+%\ifJAPANESE
+% 実際に\upLaTeXe{}への拡張を行なっている\file{uplcore.ltx}は、
 % \dst{}プログラムによって、次のファイルの断片が連結されたものです。
 %
 % \begin{itemize}
-% \item \file{uplvers.dtx}は、up\LaTeXe{}のフォーマットバージョンを
+% \item \file{uplvers.dtx}は、\upLaTeXe{}のフォーマットバージョンを
 %   定義しています。
 % \item \file{uplfonts.dtx}は、\NFSS2を拡張しています。
-% \item このほか、p\LaTeXe{}に含まれる\file{plcore.dtx}をそのまま利用
+% \item このほか、\pLaTeXe{}に含まれる\file{plcore.dtx}をそのまま利用
 %   しています。これは、上記以外のコマンドでフォーマットファイルに
 %   格納されるコマンドを定義しています。
 % \end{itemize}
@@ -303,68 +456,81 @@
 % プリロードフォントや組版パラメータなどの設定は、
 % \file{upldefs.ltx}をロードすることで行なっています。
 % このファイルに記述されている設定を変更すれば、
-% up\LaTeXe{}をカスタマイズすることができます。
+% \upLaTeXe{}をカスタマイズすることができます。
 % カスタマイズする場合は、このファイルを直接、修正するのではなく、
 % \file{upldefs.cfg}という名前でコピーをして、そのファイルを編集します。
-% \file{upldefs.cfg}は\file{upldefs.ltx}の代わりに読み込まれます。
+% フォーマット作成時に\file{upldefs.cfg}が存在した場合は、そちらが
+% \file{upldefs.ltx}の代わりに読み込まれます。
+%\else
+% The file \file{uplcore.ltx}, which provides modifications/extensions
+% to make \upLaTeXe, is a concatenation of stripped files below
+% using \dst\ program.
+%
+% \begin{itemize}
+% \item \file{uplvers.dtx} defines the format version of \upLaTeXe.
+% \item \file{uplfonts.dtx} extends \NFSS2 for Japanese font selection.
+% \item \file{plcore.dtx} (the same content as \pLaTeXe); defines other
+%   modifications to \LaTeXe.
+% \end{itemize}
+%
+% Default settings of pre-loaded fonts and typesetting parameters
+% are done by loading \file{upldefs.ltx}. You can customize
+% \upLaTeXe\ by tuning these settings.
+% If you need to change anything in \file{upldefs.ltx},
+% copy/rename it as \file{upldefs.cfg} and edit it.
+% If a file named \file{upldefs.cfg} is found at a format creation
+% time, it will be read as a substitute of \file{upldefs.ltx}.
+%\fi
 %
 %
+%\ifJAPANESE
 % \subsubsection{バージョン}
-% up\LaTeXe{}のバージョンやフォーマットファイル名は、
-% \file{uplvers.dtx}で定義しています。これは、p\LaTeXe{}のバージョンや
+% \upLaTeXe{}のバージョンやフォーマットファイル名は、
+% \file{uplvers.dtx}で定義しています。これは、\pLaTeXe{}のバージョンや
 % フォーマットファイル名が\file{plvers.dtx}で定義されているのと同じです。
+%\else
+% \subsubsection{Version}
+% The version (like ``\pfmtversion'') and the format name
+% (``\pfmtname'') of \upLaTeXe\ are defined in \file{uplvers.dtx}.
+% This is similar to \pLaTeXe, which defines those in \file{plvers.dtx}.
+%\fi
 %
 %
+%\ifJAPANESE
 % \subsubsection{\NFSS2コマンド}
-% \LaTeX{}では、フォント選択機構として\NFSS2を用いています。
-% p\LaTeXe{}では、オリジナルの\NFSS2 と同様のインターフェイスで、
-% 和文フォントを選択できるように、\file{plfonts.dtx}で\NFSS2を拡張して
-% いますので、up\LaTeXe{}も\file{uplfonts.dtx}で同じ方式を採用しています。
-%
-% ^^A p\LaTeXe{}の\NFSS2は、フォントを切替えるコマンドを指定するときに、
-% ^^A それが欧文書体か和文書体のいずれかを対象とするものかを、
-% ^^A できるだけ意識しないようにする方向で拡張しています。
-% ^^A いいかえれば、コマンドが（可能な限りの）判断をします。
-% ^^A したがって数多くある英語版のクラスファイルやパッケージファイルなどで
-% ^^A 書体の変更を行っている箇所を修正する必要はあまりありません。
+% \upLaTeXe{}は、\pLaTeXe{}と同じ方式で\NFSS2を拡張し、
+% 和文フォントを選択できるようにしています。
 %
 % \file{uplfonts.dtx}ファイルでは、\NFSS2コマンドの定義のほか、プリロード
 % フォントの設定、和文エンコードの定義、組版パラメータなどの設定、
 % フォント定義ファイルなどの記述も含まれています。
+%\else
+% \subsubsection{\NFSS2 Commands}
+% \upLaTeXe\ extends \NFSS2 in the same way as \pLaTeXe, to enable
+% selection of Japanese fonts.
 %
-% ^^A \NFSS2についての詳細は、\LaTeXe に付属の\file{fntguide.tex}を参照して
-% ^^A ください。
-%
-%
-% ^^A \subsubsection{出力ルーチンとフロート}
-% ^^A \file{plcore.dtx}は、次の項目に関するコマンドを日本語処理用に修正や拡張
-% ^^A をしています。
-% ^^A
-% ^^A \begin{itemize}
-% ^^A \item プリアンブルコマンド
-% ^^A \item 改ページ
-% ^^A \item 改行
-% ^^A \item オブジェクトの出力順序
-% ^^A \item トンボ
-% ^^A \item 脚注マクロ
-% ^^A \item 相互参照
-% ^^A \item 疑似タイプ入力
-% ^^A \end{itemize}
+% The file \file{uplfonts.dtx} includes not only \NFSS2 extensions,
+% but also settings of preloaded fonts, definitions of Japanese
+% encodings, typesetting parameters and font defintion (.fd) files.
+%\fi
 %
 %
+%\ifJAPANESE
+% \subsubsection{出力ルーチンとフロート}
+% \upLaTeXe{}は\pLaTeXe{}と共通の\file{plcore.dtx}を使用しています。
+%\else
+% \subsubsection{Output Routine and Floats}
+% \upLaTeXe\ shares \file{plcore.dtx} with \pLaTeXe.
+%\fi
+%
+%
+%\ifJAPANESE
 % \subsection{クラスファイルとパッケージファイル}
-% ^^A クラスファイルとパッケージファイルは、従来、スタイルファイルと呼ばれていた
-% ^^A ものです。\LaTeX{}ではそれらを、レイアウトに関するものをクラスファイルと
-% ^^A 呼び、マクロの拡張をするものをパッケージファイルと呼んで区別するように
-% ^^A なりました。
 %
-% up\LaTeXe{}が提供をする、クラスファイルやパッケージファイルのいくつかは、
-% p\LaTeXe{}に含まれるファイルを修正しています。
-% ^^A 修正箇所には``\texttt{platex}''条件が付けられています。
+% \upLaTeXe{}が提供をする、クラスファイルやパッケージファイルのいくつかは、
+% \pLaTeXe{}に含まれるファイルを修正しています。
 %
-% up\LaTeXe{}に付属のクラスファイルは、次のとおりです。
-% ^^A \changes{v1.0d}{2016/01/27}{p\LaTeXe{}に付属するファイルの説明を更新}
-% ^^A \changes{v1.0j}{2016/05/20}{pfltraceの説明を追加}
+% \upLaTeXe{}に付属のクラスファイルは、次のとおりです。
 %
 % \begin{itemize}
 % \item ujbook.cls, ujarticle.cls, ujreport.cls\par
@@ -372,95 +538,84 @@
 %
 % \item utbook.cls, utarticle.cls, utreport.cls\par
 %   縦組用の標準クラスファイル。\file{ujclasses.dtx}から作成される。
-%
-% ^^A \item jltxdoc.cls\par
-% ^^A   日本語の\file{.dtx}ファイルを組版するためのクラスファイル。
-% ^^A  \file{jltxdoc.dtx}から作成される。
 % \end{itemize}
+%\else
+% \subsection{Classes and Packages}
 %
-% また、up\LaTeXe{}に付属のパッケージファイルは、次のとおりです。
+% Classes and packages bundled with \upLaTeXe\ is based on
+% those in original \pLaTeXe, and modified some parameters.
+%
+% \upLaTeXe\ classes:
 %
 % \begin{itemize}
-% ^^A \item plext.sty\par
-% ^^A   縦組用の拡張コマンドなどが定義されているファイル。
-% ^^A
-% ^^A \item oldpfont.sty\par
-% ^^A   p\LaTeX~2.09のフォントコマンドを提供するパッケージ。
-% ^^A   \file{pl209.dtx}から作成される。
+% \item ujbook.cls, ujarticle.cls, ujreport.cls\par
+%   Standard \emph{yoko-kumi} (horizontal writing) classes;
+%   stripped from \file{ujclasses.dtx}.
 %
+% \item utbook.cls, utarticle.cls, utreport.cls\par
+%   Standard \emph{tate-kumi} (vertical writing) classes;
+%   stripped from \file{ujclasses.dtx}.
+% \end{itemize}
+%\fi
+%
+%\ifJAPANESE
+% また、\upLaTeXe{}に付属のパッケージファイルは、次のとおりです。
+%
+% \begin{itemize}
 % \item uptrace.sty\par
 %   \LaTeX{}でフォント選択コマンドのトレースに使う\file{tracefnt.sty}が
-%   再定義してしまう\NFSS2コマンドを、up\LaTeXe{}用に再々定義するための
+%   再定義してしまう\NFSS2コマンドを、\upLaTeXe{}用に再々定義するための
 %   パッケージ。
 %   \file{uplfonts.dtx}から作成される。
-%
-% ^^A \item pfltrace.sty\par
-% ^^A   \LaTeX{}でフロート関連コマンドのトレースに使う\file{fltrace.sty}%
-% ^^A   \footnote{\LaTeX\ 2014/05/01で追加されました。参考：
-% ^^A   \LaTeXe\ News Issue 21 (ltnews21.tex)}が再定義してしまうコマンド
-% ^^A   を、p\LaTeXe{}用に再々定義するためのパッケージ。
-% ^^A   \file{plcore.dtx}から作成される。
-% ^^A
-% ^^A \item ascmac.sty, tascmac.sty\par
-% ^^A   \LaTeX{}の標準機能の範囲で、図や罫線で囲んだボックスを出力する命令
-% ^^A   などを提供するパッケージ。旧バージョンのp\LaTeX{}でも配布されていた。
-% ^^A
-% ^^A \item nidanfloat.sty\par
-% ^^A   二段組時に段抜きのフロートをページ下部にも配置可能にする
-% ^^A   パッケージ。
 % \end{itemize}
+%\else
+% \upLaTeXe\ packages:
+%
+% \begin{itemize}
+% \item uptrace.sty\par
+%   \upLaTeXe\ version of \file{tracefnt.sty};
+%   the package \file{tracefnt.sty} overwrites \upLaTeXe-style \NFSS2
+%   commands, so \file{uptrace.sty} provides redefinitions to recover
+%   \upLaTeXe\ extensions.
+%   Stripped from \file{uplfonts.dtx}.
+% \end{itemize}
+%\fi
 %
 %
 % \section{旧バージョンとの互換性}\label{platex:compatibility}
 % ここでは、このバージョンと以前のバージョンとの互換性や拡張部分について
 % 説明をしています。
 %
-% \subsection{p\LaTeX{}との互換性}
-% up\LaTeXe{}は、p\LaTeX{}の上位互換という形を取っていますので、
+% \subsection{\pLaTeX{}との互換性}
+% \upLaTeXe{}は、\pLaTeX{}の上位互換という形を取っていますので、
 % クラスファイルやいくつかのコマンドを置き換えるだけで、
-% たいていのp\LaTeX{}文書を簡単にup\LaTeX{}文書に変更することができます。
-% ただし、up\LaTeX{}ではp\LaTeX{}で問題が指摘されていたフォントメトリックの
+% たいていの\pLaTeX{}文書を簡単に\upLaTeX{}文書に変更することができます。
+% ただし、\upLaTeX{}では\pLaTeX{}で問題が指摘されていたフォントメトリックの
 % 不都合などいくつかのパラメータを変更していますので、レイアウトが変化
 % することがあります。
 %
-% また、u\pLaTeX{}は新しいマクロパッケージですので、2.09互換モードを
+% また、\upLaTeX{}は新しいマクロパッケージですので、2.09互換モードを
 % サポートしていません。\LaTeXe{}の仕様に従ってドキュメントを作成して
 % ください。
 %
-% ^^A \subsection{p\LaTeX~2.09との互換性}
-% ^^A p\LaTeXe{}は、\LaTeX{}の上位互換という形を取っていますが、
-% ^^A いくつかのパラメータなども変更しています。
-% ^^A したがって英文書など、\LaTeX{}でも処理できるファイルを
-% ^^A p\LaTeXe{}で処理しても、完全に同じ結果になるとは限りません。
-% ^^A これは、英語版の\LaTeX{}でも同じです。
-% ^^A 詳細は、\LaTeXe に付属の\file{usrguide.tex}を参照してください。
-%
-% p\LaTeX{}向けあるいは\LaTeX{}向けに作られた多くのクラスファイルや
-% パッケージファイルはそのまま使えると思います。ただし、p\LaTeX{}標準の
-% 漢字エンコーディング(JY1, JT1)を前提としたものがup\LaTeX{}で採用した
+% \pLaTeX{}向けあるいは\LaTeX{}向けに作られた多くのクラスファイルや
+% パッケージファイルはそのまま使えると思います。ただし、\pLaTeX{}標準の
+% 漢字エンコーディング(JY1, JT1)を前提としたものが\upLaTeX{}で採用した
 % 漢字エンコーディング(JY2, JT2)と合致しないといったエラーが発生すること
 % もあります。用いようとしているクラスファイルやパッケージファイルが
 % うまく動くかどうかを、完全に確かめる方法は残念ながらありません。
 % 一番簡単なのは、動かしてみることです。不幸にもうまく動かない場合は、
 % ログファイルや付属の文書ファイルを参考に原因を調べてください。
-% ^^A 多くのクラスファイルやパッケージファイルはそのまま使えると思います。
-% ^^A ただし、それらがp\LaTeXe{}で拡張しているコマンドと同じ名前のコマンドを
-% ^^A 再定義している場合は、コマンドの拡張の仕方によってはエラーになることも
-% ^^A あります。用いようとしている、クラスファイルやパッケージファイルが
-% ^^A うまく動くかどうかを、完全に確かめる方法は残念ながらありません。
-% ^^A 一番簡単なのは、動かしてみることです。不幸にもうまく動かない場合は、
-% ^^A ログファイルや付属の文書ファイルを参考に原因を調べてください。
 %
 % \subsection{latexreleaseパッケージへの対応}
-% ^^A \changes{v1.0e}{2016/02/16}{platexreleaseの説明を追加}
 % \LaTeX\ \texttt{<2015/01/01>}で導入されたlatexreleaseパッケージを
-% もとに、新しいp\LaTeX{}ではplatexreleaseパッケージが用意されました。
-% 本来はup\LaTeX{}でも同様のパッケージを用意するのがよいのですが、
-% 現在はp\LaTeX{}からup\LaTeX{}への変更点が含まれていませんので、
+% もとに、新しい\pLaTeX{}ではplatexreleaseパッケージが用意されました。
+% 本来は\upLaTeX{}でも同様のパッケージを用意するのがよいのですが、
+% 現在は\pLaTeX{}から\upLaTeX{}への変更点が含まれていませんので、
 % 幸いplatexreleaseパッケージをそのまま用いることができます。
-% このため、up\LaTeX{}で独自のパッケージを用意することはしていません。
-% platexreleaseパッケージを用いると、過去のup\LaTeX{}をエミュレート
-% したり、フォーマットを作り直すことなく新しいup\LaTeX{}を試したりする
+% このため、\upLaTeX{}で独自のパッケージを用意することはしていません。
+% platexreleaseパッケージを用いると、過去の\upLaTeX{}をエミュレート
+% したり、フォーマットを作り直すことなく新しい\upLaTeX{}を試したりする
 % ことができます。詳細はplatexreleaseのドキュメントを参照してください。
 %
 %
@@ -479,16 +634,17 @@
 % \begin{tabular}{l|p{.8\linewidth}}
 % \emph{オプション} & \emph{意味}\\\hline
 % plcore & フォーマットファイルを作るためのファイルを生成\\
-% pldoc  & up\LaTeXe{}のソースファイルをまとめて組版するための
-%          文書ファイルを生成\\[2mm]
+% pldoc  & \upLaTeXe{}のソースファイルをまとめて組版するための
+%          文書ファイル(upldoc.tex)を生成\\[2mm]
 % shprog & 上記のファイルを作成するためのshスクリプトを生成\\
 % plprog & 入れ子構造を調べる簡単なperlスクリプトを生成\\
 % Xins   & 上記のshスクリプトやperlスクリプトを取り出すための
-%            \dst{}バッチファイルを生成\\
+%            \dst{}バッチファイル(Xins.ins)を生成\\
 % \end{tabular}
 % \end{center}
 % \MakeShortVerb{\|}
 %
+%\ifJAPANESE
 % \subsection{ファイルの取り出し方}
 %
 % たとえば、この文書の``plcore''の部分を``\file{uplatex.ltx}''という
@@ -514,18 +670,18 @@
 %   \input docstrip.tex
 %   \generateFile{uplatex.ltx}{t}{\from{uplatex.dtx}{plcore}}
 %\end{verbatim}
+%\else
+% ^^A (- English version omitted, not so useful -)
+%\fi
 %
 %
 % \section{文書ファイル}\label{app:pldoc}
-% ^^A \changes{v1.0c}{1997/01/25}{Add to filecontents environment for pldoc.dic.}
 % ここでは、このパッケージに含まれているdtxファイルをまとめて組版をするための
 % 文書ファイルについて説明をしています。個別に処理した場合と異なり、
 % 変更履歴や索引も付きます。全体で、およそ120ページ程度になります。
 %
-% |filecontents|環境は、引数に指定されたファイルが存在するときは何も
-% しませんが、存在しないときは、環境内の内容でファイルを作成します。
-% \file{upldoc.dic}ファイルは、mendexプログラムで索引を処理するときに
-% \cs{西暦}, \cs{和暦}に対する「読み」を付けるために必要です。
+% コードは\pLaTeXe{}のものと（ファイル名を除き）ほぼ同一なので、
+% ここでは違っている部分だけ説明します。
 %    \begin{macrocode}
 %<*pldoc>
 \begin{filecontents}{upldoc.dic}
@@ -533,17 +689,21 @@
 和暦    われき
 \end{filecontents}
 %    \end{macrocode}
-% 文書クラスには、\file{jltxdoc}クラスを用います。
-% ^^A \file{plext.dtx}の中でサンプルを組み立てていますので、
-% ^^A \file{plext}パッケージが必要です。
+%\ifJAPANESE
+% \pLaTeXe{}のドキュメントでは、\file{plext.dtx}の中で組み立てるサンプル
+% のために\file{plext}パッケージが必要ですが、\upLaTeXe{}のファイル
+% にはそのようなサンプルが含まれないので除外しています。
+%\else
+% The document of \pLaTeXe\ requires \file{plext} package,
+% since \file{plext.dtx} contains several examples of partial
+% vertical writing. However, we don't have such examples in
+% \upLaTeXe\ files, so no need for it.
+%\fi
 %    \begin{macrocode}
 \documentclass{jltxdoc}
 %\usepackage{plext} %% comment out for upLaTeX
 \listfiles
 
-%    \end{macrocode}
-% いくつかの\TeX{}プリミティブとコマンドを索引に出力しないようにします。
-%    \begin{macrocode}
 \DoNotIndex{\def,\long,\edef,\xdef,\gdef,\let,\global}
 \DoNotIndex{\if,\ifnum,\ifdim,\ifcat,\ifmmode,\ifvmode,\ifhmode,%
             \iftrue,\iffalse,\ifvoid,\ifx,\ifeof,\ifcase,\else,\or,\fi}
@@ -562,23 +722,32 @@
 \DoNotIndex{\dp,\wd,\ht,\setlength,\addtolength}
 \DoNotIndex{\newcommand, \renewcommand}
 
-%    \end{macrocode}
-% 索引と変更履歴の見出しに\cs{part}を用いるように設定をします。
-%    \begin{macrocode}
+\ifJAPANESE
 \IndexPrologue{\part*{索 引}%
                  \markboth{索 引}{索 引}%
                  \addcontentsline{toc}{part}{索 引}%
 イタリック体の数字は、その項目が説明されているページを示しています。
 下線の引かれた数字は、定義されているページを示しています。
 その他の数字は、その項目が使われているページを示しています。}
+\else
+\IndexPrologue{\part*{Index}%
+                 \markboth{Index}{Index}%
+                 \addcontentsline{toc}{part}{Index}%
+The italic numbers denote the pages where the corresponding entry
+is described, numbers underlined point to the definition,
+all others indicate the places where it is used.}
+\fi
 %
+\ifJAPANESE
 \GlossaryPrologue{\part*{変更履歴}%
                  \markboth{変更履歴}{変更履歴}%
                  \addcontentsline{toc}{part}{変更履歴}}
+\else
+\GlossaryPrologue{\part*{Change History}%
+                 \markboth{Change History}{Change History}%
+                 \addcontentsline{toc}{part}{Change History}}
+\fi
 
-%    \end{macrocode}
-% 標準の|\changes|コマンドを、複数ファイルの文書に合うように修正しています。
-%    \begin{macrocode}
 \makeatletter
 \def\changes@#1#2#3{%
   \let\protect\@unexpandable@protect
@@ -601,14 +770,22 @@
 \setcounter{IndexColumns}{2}
 \settowidth\MacroIndent{\ttfamily\scriptsize 000\ }
 %    \end{macrocode}
+%\ifJAPANESE
 % ここからが本文ページとなります。
-% ^^AA \changes{v1.0c}{1997/01/29}{Rename pltpatch to plpatch.}
-% \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外}
-% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得}
-% \changes{v1.0o}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
+% \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外
+%     (based on platex.dtx 2016/05/08 v1.0h)}
+% \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得
+%     (based on platex.dtx 2016/06/19 v1.0l)}
+%\else
+% Here starts the document body.
+% \changes{v1.0h-u00}{2016/05/08}{Exclude \file{uplpatch.ltx} from the document
+%     (based on platex.dtx 2016/05/08 v1.0h)}
+% \changes{v1.0l-u01}{2016/06/19}{Get the patch level from \file{uplvers.dtx}
+%     (based on platex.dtx 2016/06/19 v1.0l)}
+%\fi
 %    \begin{macrocode}
 \begin{document}
- \title{The up\LaTeXe\ Sources}
+ \title{The \upLaTeXe\ Sources}
  \author{Ken Nakano \& Japanese \TeX\ Development Community \& TTK}
 
 % This command will be used to input the patch file
@@ -667,29 +844,14 @@
 
 %\DocInclude{plcore}   % kernel commands (comment out for upLaTeX)
 
-%\DocInclude{plext}    % external commands (comment out for upLaTeX)
-
-%\DocInclude{pl209}    % 2.09 compatibility mode commands (comment out for upLaTeX)
-
 \DocInclude{ukinsoku}  % kinsoku parameter
 
 \DocInclude{ujclasses} % Standard class
 
-%\DocInclude{jltxdoc}  % dtx documents class (comment out for upLaTeX)
-
 %\includeltpatch       % patch file (comment out May 8, 2016)
 
-%    \end{macrocode}
-% \file{ltxdoc.cfg}に|\AtEndOfClass{\OnlyDescription}|が指定されている場合は、
-% ここで終了します。
-%    \begin{macrocode}
 \StopEventually{\end{document}}
 
-%    \end{macrocode}
-% 変更履歴と索引を組版します。
-% 変更履歴ファイルと索引の作り方の詳細については、
-% おまけ\ref{app:shprog}を参照してください。
-%    \begin{macrocode}
 \clearpage
 \pagestyle{headings}
 % Make TeX shut up.
@@ -708,11 +870,6 @@
 
   \PrintIndex
 \endgroup
-%    \end{macrocode}
-% \file{ltxdoc.cfg}に２度目の|\PrintIndex|が指定されているかもしれません。
-% そこで、最後に、変更履歴や索引が２度組版されないように|\PrintChanges|および
-% |\PrintIndex|コマンドを何も実行しないようにします。
-%    \begin{macrocode}
 \let\PrintChanges\relax
 \let\PrintIndex\relax
 \end{document}
@@ -721,78 +878,58 @@
 %
 %
 %
+%\ifJAPANESE
 % \section{おまけプログラム}\label{app:omake}
 %
 % \subsection{シェルスクリプト\file{mkpldoc.sh}}\label{app:shprog}
-% up\LaTeXe{}のマクロ定義ファイルをまとめて組版するときに便利なシェルスクリプトです。
-% このシェルスクリプト\footnote{このシェルスクリプトはUNIX用です。
-% しかしrmコマンドをdeleteコマンドにするなどすれば、簡単にDOSなどのバッチ
-% ファイルに修正することができます。}の使用方法は次のとおりです。
+% \upLaTeXe{}のマクロ定義ファイルをまとめて組版し、変更履歴と索引も
+% 付けるときに便利なシェルスクリプトです。
+% このシェルスクリプトの使用方法は次のとおりです。
 %\begin{verbatim}
 %    sh mkpldoc.sh
 %\end{verbatim}
 %
-% \subsubsection{\file{mkpldoc.sh}の内容}
-% まず、以前に\file{upldoc.tex}を処理したときに作成された、
-% 目次ファイルや索引ファイルなどを削除します。
-% ^^A \changes{v1.0c}{1997/01/23}{Don't copy gind.ist and gglo.ist from
-% ^^A        \$TEXMF/tex/latex2e/base directory.}
-% ^^A \changes{v1.0d}{2016/01/27}{\file{mkpldoc.sh}を改善}
+% コードは\pLaTeXe{}のものと（ファイル名を除き）ほぼ同一なので、
+% ここでは違っている部分だけ説明します。
+%\else
+% \section{Additional Utility Programs}\label{app:omake}
+%
+% \subsection{Shell Script \file{mkpldoc.sh}}\label{app:shprog}
+% A shell script to process `pldoc.tex' and produce a fully indexed
+% source code description. Run |sh mkpldoc.sh| to use it.
+%
+% The script is almost identical to that in \pLaTeXe, so
+% here we describe only the difference.
+%\fi
+%
 %    \begin{macrocode}
 %<*shprog>
 for f in upldoc.toc upldoc.idx upldoc.glo ; do
 if [ -e $f ]; then rm $f; fi
 done
-%    \end{macrocode}
-% そして、\file{ltxdoc.cfg}を空にします。
-% このファイルは、\file{jltxdoc.cls}の定義を変更するものですが、
-% ここでは、変更されたくありません。
-%    \begin{macrocode}
 echo "" > ltxdoc.cfg
-%    \end{macrocode}
-% そして、\file{upldoc.tex}を処理します。
-%    \begin{macrocode}
 uplatex upldoc.tex
 %    \end{macrocode}
-% 索引と変更履歴を作成します。
-% このスクリプトでは、変更履歴や索引を生成するのにmendexプログラムを用いて
-% います。mendexはmakeindexの上位互換のファイル整形コマンドで、
-% 索引語の読みを自動的に付けるなどの機能があります。
-%
-% up\LaTeX{}の場合はmendexコマンドをUTF-8モードで実行する必要があります
-% ので、|-U|というオプションを付けます\footnote{uplatexコマンドも
+%\ifJAPANESE
+% 変更履歴や索引の生成にはmendexを用いますが、
+% \upLaTeX{}の場合はUTF-8モードで実行する必要がありますので、
+% |-U|というオプションを付けます\footnote{uplatexコマンドも
 % 実際にはUTF-8モードで実行する必要がありますが、デフォルトの内部漢字
 % コードがUTF-8に設定されているはずですので、\texttt{-kanji=utf8}を
 % 付けなくても処理できると思います。}。
 % makeindexコマンドには、このオプションがありません。
-%
-% |-s|オプションは、索引ファイルを整形するためのスタイルオプションです。
-% 索引用の\file{gind.ist}と変更履歴用の\file{gglo.ist}は、
-% \LaTeX{}のディストリビューションに付属しています。
-%
-% |-o|は、出力するファイル名を指定するオプションです。
-%
-% |-f|は、項目に``読み''がなくてもエラーとしないオプションです。
-% makeindexコマンドには、このオプションがありません。
+%\else
+% To make the Change log and Glossary (Change History) for
+% \upLaTeX\ using `mendex,' we need to run it in UTF-8 mode.
+% So, option |-U| is important.\footnote{The command `uplatex'
+% should be also in UTF-8 mode, but it defaults to UTF-8 mode;
+% therefore, we don't need to add \texttt{-kanji=utf8} explicitly.}
+%\fi
 %    \begin{macrocode}
 mendex -U -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
 mendex -U -f -s gglo.ist -o upldoc.gls upldoc.glo
-%    \end{macrocode}
-% \file{ltxdoc.cfg}の内容を|\includeonly{}|にし、\file{upldoc.tex}を処理します。
-% このコマンドは、引数に指定されたファイルだけを``|\include|''するための
-% コマンドですが、ここでは何も|\include|したく\emph{ない}ので、
-% 引数には何も指定をしません。
-% しかし、|\input|で指定されているファイルは読み込まれます。
-% したがって、目次や索引や変更履歴のファイルが処理されます。
-% この処理は、主に、これらでエラーが出るかどうかの確認です。
-%    \begin{macrocode}
 echo "\includeonly{}" > ltxdoc.cfg
 uplatex upldoc.tex
-%    \end{macrocode}
-% 最後に、再び\file{ltxdoc.cfg}を空にして、\file{upldoc.tex}を処理をします。
-% 本文を１ページから開始していますので、この後、もう一度処理をする
-% 必要はありません。
-%    \begin{macrocode}
 echo "" > ltxdoc.cfg
 uplatex upldoc.tex
 # EOT
@@ -801,188 +938,38 @@ uplatex upldoc.tex
 %
 %
 % \subsection{perlスクリプト\file{dstcheck.pl}}\label{app:plprog}
-% \dst{}文書ファイルは、\LaTeX{}のソースとその文書を同時に管理する方法として、
-% とてもすぐれていると思います。しかし、たとえば\file{jclasses.dtx}のように、
-% 条件が多くなると、入れ子構造がわからなくなってしまいがちです。
-% \LaTeX{}で処理すれば、エラーによってわかりますが、
-% 文書ファイルが大きくなると面倒です。
+% \pLaTeXe{}のものがそのまま使えるので、\upLaTeXe{}では省略します。
 %
-% ここでは、\dst{}文書ファイルの入れ子構造を調べるのに便利な、
-% perlスクリプトについて説明をしています。
-%
-% このperlスクリプトの使用方法は次のとおりです。
-%
-%\begin{verbatim}
-%    perl dstcheck.pl file-name
-%\end{verbatim}
-%
-% \subsubsection{\file{dstcheck.pl}の内容}
-% 最初に、このperlスクリプトが何をするのかを簡単に記述したコメントを
-% 付けます。
-%    \begin{macrocode}
-%<*plprog>
-##
-## DOCSTRIP 文書内の環境や条件の入れ子を調べる perl スクリプト
-##
-%    \end{macrocode}
-% このスクリプトは、入れ子の対応を調べるために、次のスタックを用います。
-% \meta{条件}あるいは\meta{環境}を開始するコードが現れたときに、
-% それらはスタックにプッシュされ、終了するコードでポップされます。
-% したがって、現在の\meta{条件}あるいは\meta{環境}と、
-% スタックから取り出した\meta{条件}あるいは\meta{環境}と一致すれば、
-% 対応が取れているといえます。そうでなければエラーです。
-%
-% |@dst|スタックには、\meta{条件}が入ります。
-% 条件の開始は、``|%<*|\meta{条件}|>|''です。
-% 条件の終了は、``|%</|\meta{条件}|>|''です。
-% \meta{条件}には、|>|文字が含まれません。
-% |@env|スタックには、\meta{環境}が入ります。
-%
-% 先頭を明示的に示すために、ダミーの値を初期値として用います。
-% スタックは、\meta{条件}あるいは\meta{環境}の名前と、その行番号をペアにして
-% 操作をします。
-%    \begin{macrocode}
-push(@dst,"DUMMY"); push(@dst,"000");
-push(@env,"DUMMY"); push(@env,"000");
-%    \end{macrocode}
-% この|while|ループの中のスクリプトは、文書ファイルの１行ごとに実行をします。
-%    \begin{macrocode}
-while (<>) {
-%    \end{macrocode}
-% 入力行が条件を開始する行なのかを調べます。
-% 条件の開始行ならば、|@dst|スタックに\meta{条件}と行番号をプッシュします。
-%    \begin{macrocode}
-  if (/^%<\*([^>]+)>/) { # check conditions
-    push(@dst,$1);
-    push(@dst,$.);
-%    \end{macrocode}
-% そうでなければ、条件の終了行なのかを調べます。
-% 現在行が条件の終了を示している場合は、|@dst|スタックをポップします。
-%    \begin{macrocode}
-  } elsif (/^%<\/([^>]+)>/) {
-    $linenum = pop(@dst);
-    $conditions = pop(@dst);
-%    \end{macrocode}
-% 現在行の\meta{条件}と、スタックから取り出した\meta{条件}が一致しない場合、
-% その旨のメッセージを出力します。
-%
-% なお、|DUMMY|と一致した場合は、一番外側のループが合っていないと
-% いうことを示しています。このとき、これらのダミー値をスタックに戻します。
-% いつでもスタックの先頭をダミー値にするためです。
-%    \begin{macrocode}
-    if ($1 ne $conditions) {
-      if ($conditions eq "DUMMY") {
-        print "$ARGV: `</$1>' (l.$.) is not started.\n";
-        push(@dst,"DUMMY");
-        push(@dst,"000");
-      } else {
-        print "$ARGV: `<*$conditions>' (l.$linenum) is ended ";
-        print "by `<*$1>' (l.$.)\n";
-      }
-    }
-  }
-%    \end{macrocode}
-% 環境の入れ子も条件と同じように調べます。
-%
-% verbatim環境のときに、その内側をスキップしていることに注意をしてください。
-%    \begin{macrocode}
-  if (/^% *\\begin\{verbatim\}/) { # check environments
-    while(<>) {
-        last if (/^% *\\end\{verbatim\}/);
-    }
-  } elsif (/^% *\\begin\{([^{}]+)\}\{(.*)\}/) {
-    push(@env,$1);
-    push(@env,$.);
-  } elsif (/^% *\\begin\{([^{}]+)\}/) {
-    push(@env,$1);
-    push(@env,$.);
-  } elsif (/^% *\\end\{([^{}]+)\}/) {
-    $linenum = pop(@env);
-    $environment = pop(@env);
-    if ($1 ne $environment) {
-      if ($environment eq "DUMMY") {
-        print "$ARGV: `\\end{$1}' (l.$.) is not started.\n";
-        push(@env,"DUMMY");
-        push(@env,"000");
-      } else {
-        print "$ARGV: \\begin{$environement} (l.$linenum) is ended ";
-        print "by \\end{$1} (l.$.)\n";
-      }
-    }
-  }
-%    \end{macrocode}
-% ここまでが、最初の|while|ループです。
-%    \begin{macrocode}
-}
-%    \end{macrocode}
-% 文書ファイルを読み込んだ後、終了していない条件があるかどうかを確認します。
-% すべての条件の対応がとれていれば、この時点での|@dst|スタックには
-% ダミー値しか入っていません。したがって、対応が取れている場合は、
-% 最初の２つのポップによって、ダミー値が設定されます。
-% ダミー値でなければ、ダミー値になるまで、取り出した値を出力します。
-%    \begin{macrocode}
-$linenum = pop(@dst);
-$conditions = pop(@dst);
-while ($conditions ne "DUMMY") {
-    print "$ARGV: `<*$conditions>' (l.$linenum) is not ended.\n";
-    $linenum = pop(@dst);
-    $conditions = pop(@dst);
-}
-%    \end{macrocode}
-% 環境の入れ子についても、条件の入れ子と同様に確認をします。
-%    \begin{macrocode}
-$linenum = pop(@env);
-$environment = pop(@env);
-while ($environment ne "DUMMY") {
-    print "$ARGV: `\\begin{$environment}' (l.$linenum) is not ended.\n";
-    $linenum = pop(@env);
-    $environment = pop(@env);
-}
-exit;
-%</plprog>
-%    \end{macrocode}
 %
 % \subsection{\dst{}バッチファイル}
-% ^^A \changes{v1.0b}{1996/02/01}{\dst{}にともなう変更}
-% ^^A \changes{v1.0c}{1997/01/23}{\dst{}にともなう変更}
-% ここでは、付録\ref{app:shprog}と付録\ref{app:plprog}で説明をした二つの
-% スクリプトを、このファイルから取り出すための\dst{}バッチファイルについて
-% 説明をしています。
+% 付録\ref{app:shprog}で説明をしたスクリプトを、このファイルから
+% 取り出すための\dst{}バッチファイルです。コードは\pLaTeXe{}の
+% ものと（ファイル名を除き）ほぼ同一なので、説明は割愛します。
 %
-% まず、\dst{}パッケージをロードします。
-% また、実行経過のメッセージを出力しないようにしています。
 %    \begin{macrocode}
 %<*Xins>
 \input docstrip
 \keepsilent
 %    \end{macrocode}
-% \dst{}プログラムは、連続する二つのパーセント記号(\%\%)ではじまる行を
-% メタコメントとみなし、条件によらず出力をします。
-% しかし、``\%''は\TeX{}ではコメントであっても、shやperlにとってはコメント
-% ではありません。そこで、メタコメントとして出力する文字を``\#\#''と
-% 変更します。
+%
 %    \begin{macrocode}
 {\catcode`#=12 \gdef\MetaPrefix{## }}
 %    \end{macrocode}
-% そして、プリアンブルに出力されるメッセージを宣言します。
-% ここでは、とくに何も指定していませんが、宣言をしないとデフォルトの記述が
-% `\%\%'付きで出力されてしまうため、それを抑制する目的で使用しています。
+%
 %    \begin{macrocode}
 \declarepreamble\thispre
 \endpreamble
 \usepreamble\thispre
 %    \end{macrocode}
-% ポストアンブルも同様に、宣言をしないと`|\endinput|'が出力されます。
+%
 %    \begin{macrocode}
 \declarepostamble\thispost
 \endpostamble
 \usepostamble\thispost
 %    \end{macrocode}
-% |\generate|コマンドで、どのファイルに、どのファイルのどの部分を出力するのか
-% を指定します。
+%
 %    \begin{macrocode}
 \generate{
-   \file{dstcheck.pl}{\from{uplatex.dtx}{plprog}}
    \file{mkpldoc.sh}{\from{uplatex.dtx}{shprog}}
 }
 \endbatchfile
@@ -1034,7 +1021,7 @@ exit;
 %
 % \bibitem{perl}
 % 河野真治著
-% \newblock 『入門perl』
+% \newblock 『入門Perl』
 % \newblock アスキー出版局, 1994
 % \end{thebibliography}
 %

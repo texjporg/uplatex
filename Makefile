@@ -51,12 +51,12 @@ upldoc.dvi: $(PLDOC_SRC)
 	rm -f uplatex.cfg
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
-	rm -f mkpldoc.sh dstcheck.pl
+	rm -f mkpldoc.sh #dstcheck.pl
 	uplatex $(KANJI) Xins.ins
 	sh mkpldoc.sh
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
-	rm ltxdoc.cfg upldoc.dic mkpldoc.sh dstcheck.pl
+	rm ltxdoc.cfg upldoc.dic mkpldoc.sh #dstcheck.pl
 
 uplatex-en.dvi: $(INTRODOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
