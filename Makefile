@@ -1,6 +1,8 @@
 STRIPTARGET = uplatex.ltx ujarticle.cls
-PDFTARGET = uplatex.pdf upldoc.pdf
-DVITARGET = uplatex.dvi upldoc.dvi
+DOCTARGET = uplatex upldoc \
+	uplatex-en
+PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
+DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
 KANJI = -kanji=utf8
 FONTMAP = -f ipaex.map -f uptex-ipaex.map
 TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
@@ -38,6 +40,7 @@ ujarticle.cls: $(PLCLS_SRC)
 	rm uplcls.log
 
 uplatex.dvi: $(INTRODOC_SRC)
+	rm -f uplatex.cfg
 	uplatex $(KANJI) uplatex.dtx
 	mendex -U -f -s gglo.ist -o uplatex.gls uplatex.glo
 	uplatex $(KANJI) uplatex.dtx
@@ -45,6 +48,7 @@ uplatex.dvi: $(INTRODOC_SRC)
 	rm uplatex.glo uplatex.gls uplatex.ilg
 
 upldoc.dvi: $(PLDOC_SRC)
+	rm -f uplatex.cfg
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
 	rm -f mkpldoc.sh dstcheck.pl
@@ -54,10 +58,22 @@ upldoc.dvi: $(PLDOC_SRC)
 	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
 	rm ltxdoc.cfg upldoc.dic mkpldoc.sh dstcheck.pl
 
+uplatex-en.dvi: $(INTRODOC_SRC)
+	# built-in echo in shell is troublesome, so use perl instead
+	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
+	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
+	mendex -U -f -s gglo.ist -o uplatex-en.gls uplatex-en.glo
+	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
+	rm uplatex-en.aux uplatex-en.log
+	rm uplatex-en.glo uplatex-en.gls uplatex-en.ilg
+	rm uplatex.cfg
+
 uplatex.pdf: uplatex.dvi
-	dvipdfmx $(FONTMAP) uplatex.dvi
+	dvipdfmx $(FONTMAP) $<
 upldoc.pdf: upldoc.dvi
-	dvipdfmx $(FONTMAP) upldoc.dvi
+	dvipdfmx $(FONTMAP) $<
+uplatex-en.pdf: uplatex-en.dvi
+	dvipdfmx $(FONTMAP) $<
 
 .PHONY: install clean cleanstrip cleanall cleandoc
 install:
