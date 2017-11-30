@@ -582,11 +582,13 @@
 %\fi
 %
 %
-% \section{旧バージョンとの互換性}\label{platex:compatibility}
-% ここでは、このバージョンと以前のバージョンとの互換性や拡張部分について
-% 説明をしています。
+%\ifJAPANESE
+% \section{他のフォーマット・旧バージョンとの互換性}
+% \label{platex:compatibility}
+% ここでは、この\upLaTeXe{}のバージョンと以前のバージョンとの互換性や
+% 拡張部分について説明をしています。
 %
-% \subsection{\pLaTeX{}との互換性}
+% \subsection{\pLaTeX{}および\LaTeX{}との互換性}
 % \upLaTeXe{}は、\pLaTeX{}の上位互換という形を取っていますので、
 % クラスファイルやいくつかのコマンドを置き換えるだけで、
 % たいていの\pLaTeX{}文書を簡単に\upLaTeX{}文書に変更することができます。
@@ -606,7 +608,34 @@
 % うまく動くかどうかを、完全に確かめる方法は残念ながらありません。
 % 一番簡単なのは、動かしてみることです。不幸にもうまく動かない場合は、
 % ログファイルや付属の文書ファイルを参考に原因を調べてください。
+%\else
+% \section{Compatibility with Other Formats and Older Versions}
+% \label{platex:compatibility}
+% Here we provide some information about the compatibility between
+% current \upLaTeXe\ and older versions or original \pLaTeXe/\LaTeXe.
 %
+% \subsection{Compatibility with \pLaTeXe/\LaTeXe}
+% \upLaTeXe\ is in most part upper compatible with \pLaTeXe,
+% so you can move from \pLaTeXe\ to \upLaTeXe\ by simply replacing
+% the document class and some macros. However, some parameters
+% (such as problematic font metrics in \pLaTeXe) are adjusted to
+% be more suitable for Japanese; therefore, you should not expect
+% identical output from both \pLaTeXe\ and \upLaTeXe.
+%
+% Note that \upLaTeX\ is a new format, so we do \emph{not} provide support
+% for 2.09 compatibility mode. Follow the standard \LaTeXe\ convention!
+%
+% We hope that most classes and packages meant for \LaTeXe/\pLaTeXe\ works
+% also for \upLaTeXe\ without any modification. However for example,
+% if a class or a package uses Kanji encoding `JY1' or `JT1' (default on
+% \pLaTeXe), an error complaining the mismatch of Kanji encoding might
+% happen on \upLaTeX, in which the default is `JY2' and `JT2.'
+% We cannot tell whether a class or a package works fine with
+% \pLaTeXe\ beforehand; the easiest way is to try to use it.
+% If it fails, please refer to the log file or a package manual.
+%\fi
+%
+%\ifJAPANESE
 % \subsection{latexreleaseパッケージへの対応}
 % \LaTeX\ \texttt{<2015/01/01>}で導入されたlatexreleaseパッケージを
 % もとに、新しい\pLaTeX{}ではplatexreleaseパッケージが用意されました。
@@ -617,15 +646,26 @@
 % platexreleaseパッケージを用いると、過去の\upLaTeX{}をエミュレート
 % したり、フォーマットを作り直すことなく新しい\upLaTeX{}を試したりする
 % ことができます。詳細はplatexreleaseのドキュメントを参照してください。
+%\else
+% \subsection{Support for Package `latexrelease'}
+% \pLaTeX\ provides `platexrelease' package, which is based on
+% `latexrelease' package (introduced in \LaTeX\ \texttt{<2015/01/01>}).
+% It could be better if we also provide a similar package on \upLaTeX,
+% but currently we don't need it; \upLaTeX\ does not have any recent
+% \upLaTeX-specific changes. So, you can safely use `platexrelease'
+% package for emulating the specified format date.
+%\fi
 %
 %
 %
 % \appendix
 %
+%\ifJAPANESE
 % \section{\dst{}プログラムのためのオプション}\label{app:dst}
-% この文書のソース(uplatex.dtx)を\dst{}プログラムによって処理することによって、
+% この文書のソース(\file{uplatex.dtx})を\dst{}プログラムで
+% 処理することによって、
 % いくつかの異なるファイルを生成することができます。
-% \dst プログラムの詳細は、\file{docstrip.dtx}を参照してください。
+% \dst{}プログラムの詳細は、\file{docstrip.dtx}を参照してください。
 %
 % この文書の\dst{}プログラムのためのオプションは、次のとおりです。
 %
@@ -637,51 +677,67 @@
 % pldoc  & \upLaTeXe{}のソースファイルをまとめて組版するための
 %          文書ファイル(upldoc.tex)を生成\\[2mm]
 % shprog & 上記のファイルを作成するためのshスクリプトを生成\\
-% plprog & 入れ子構造を調べる簡単なperlスクリプトを生成\\
 % Xins   & 上記のshスクリプトやperlスクリプトを取り出すための
-%            \dst{}バッチファイル(Xins.ins)を生成\\
+%          \dst{}バッチファイル(Xins.ins)を生成\\
 % \end{tabular}
 % \end{center}
 % \MakeShortVerb{\|}
-%
-%\ifJAPANESE
-% \subsection{ファイルの取り出し方}
-%
-% たとえば、この文書の``plcore''の部分を``\file{uplatex.ltx}''という
-% ファイルにするときの手順はつぎのようになります。
-%
-% \begin{enumerate}
-% \item uplatex docstrip
-% \item 入力ファイルの拡張子（dtx）を入力する。
-% \item 出力ファイルの拡張子（ltx）を入力する。
-% \item \dst{}オプション（plcore）を入力する。
-% \item 入力ファイル名（uplatex）を入力する。
-% \item \file{uplatex.ltx}が存在する場合は、確認を求めてくるので、
-%  ``y''を入力する。
-% \item 別の処理を行なうかを問われるので、``n''を入力する。
-% \end{enumerate}
-% これで、\file{uplatex.ltx}が作られます。
-%
-% あるいは、次のような内容のファイル\file{fmt.ins}を作成し、
-% |uplatex fmt.ins|することでも\file{uplatex.ltx}を作ることができます。
-%
-%\begin{verbatim}
-%   \def\batchfile{fmt.ins}
-%   \input docstrip.tex
-%   \generateFile{uplatex.ltx}{t}{\from{uplatex.dtx}{plcore}}
-%\end{verbatim}
 %\else
-% ^^A (- English version omitted, not so useful -)
+% \section{\dst\ Options}\label{app:dst}
+% By processing \file{uplatex.dtx} with \dst\ program,
+% different files can be generated.
+% Here are the \dst\ options for this document:
+%
+% \DeleteShortVerb{\|}
+% \begin{center}
+% \begin{tabular}{l|p{.8\linewidth}}
+% \emph{Option} & \emph{Function}\\\hline
+% plcore & Generates a fragment of format sources\\
+% pldoc  & Generates `upldoc.tex' for typesetting
+%          \upLaTeXe\ sources\\[2mm]
+% shprog & Generates a shell script to process `upldoc.tex'\\
+% Xins   & Generates a \dst\ batch file `Xins.ins' for
+%          generating the above shell/perl scripts\\
+% \end{tabular}
+% \end{center}
+% \MakeShortVerb{\|}
 %\fi
 %
 %
+%\ifJAPANESE
 % \section{文書ファイル}\label{app:pldoc}
 % ここでは、このパッケージに含まれているdtxファイルをまとめて組版をするための
 % 文書ファイルについて説明をしています。個別に処理した場合と異なり、
-% 変更履歴や索引も付きます。全体で、およそ120ページ程度になります。
+% 変更履歴や索引も付きます。
+%
+% デフォルトではソースコードの説明が日本語で書かれます。
+% もし英語の説明書を読みたい場合は、\par\medskip
+% \begin{minipage}{.5\textwidth}\ttfamily
+% | |\cs{newif}\cs{ifJAPANESE}
+% \end{minipage}\par\medskip\noindent
+% という内容の\file{uplatex.cfg}を予め用意してから\file{upldoc.tex}を
+% 処理してください（2016年7月1日以降の\upLaTeXe{}が必要）。
 %
 % コードは\pLaTeXe{}のものと（ファイル名を除き）ほぼ同一なので、
 % ここでは違っている部分だけ説明します。
+%\else
+% \section{Documentation of \upLaTeXe\ sources}\label{app:pldoc}
+% The contents of `upldoc.tex' for typesetting \upLaTeXe\ sources
+% is described here. Compared to individual processings,
+% batch processing using `upldoc.tex' prints also changes and an index.
+%
+% By default, the description of \upLaTeXe\ sources is written in
+% Japanese. If you need English version, first save\par\medskip
+% \begin{minipage}{.5\textwidth}\ttfamily
+% | |\cs{newif}\cs{ifJAPANESE}
+% \end{minipage}\par\medskip\noindent
+% as \file{uplatex.cfg}, and process \file{upldoc.tex}
+% (\upLaTeXe\ newer than July 2016 is required).
+%
+% Here we explain only difference between \file{pldoc.tex} (\pLaTeXe)
+% and \file{upldoc.tex} (\upLaTeXe).
+%\fi
+%
 %    \begin{macrocode}
 %<*pldoc>
 \begin{filecontents}{upldoc.dic}
