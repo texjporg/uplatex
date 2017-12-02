@@ -1023,14 +1023,26 @@ uplatex upldoc.tex
 %    \end{macrocode}
 %
 %
+%\ifJAPANESE
 % \subsection{perlスクリプト\file{dstcheck.pl}}\label{app:plprog}
 % \pLaTeXe{}のものがそのまま使えるので、\upLaTeXe{}では省略します。
+%\else
+% \subsection{Perl Script \file{dstcheck.pl}}\label{app:plprog}
+% The one from \pLaTeXe\ can be use without any change, so
+% omitted here in \upLaTeXe.
+%\fi
 %
 %
+%\ifJAPANESE
 % \subsection{\dst{}バッチファイル}
 % 付録\ref{app:shprog}で説明をしたスクリプトを、このファイルから
 % 取り出すための\dst{}バッチファイルです。コードは\pLaTeXe{}の
 % ものと（ファイル名を除き）ほぼ同一なので、説明は割愛します。
+%\else
+% Here we introduce a \dst\ batch file `Xins.ins,' which generates the
+% script described in Appendix \ref{app:shprog}.
+% The code is almost identical to that in \pLaTeXe.
+%\fi
 %
 %    \begin{macrocode}
 %<*Xins>
