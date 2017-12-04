@@ -75,13 +75,15 @@
 %    \cs{platexrelease}のエミュレート内部処理を分離}
 % \changes{v1.1f}{2017/11/11}{\LaTeX{}のバナーを保存するコードを
 %    \file{platex.ltx}から\file{plcore.ltx}へ移動}
-% \changes{v1.1f-u01}{2017/11/01}{p\LaTeX{}の変更に追随。}
+% \changes{v1.1g}{2017/12/04}{\pLaTeX{}のバナーの定義時に
+%    \cs{pfmtname}, \cs{pfmtversion}, \cs{ppatch@level}を展開しないように}
+% \changes{v1.1g-u01}{2017/12/04}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2017/11/11 v1.1f-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2017/12/04 v1.1g-u01 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -282,6 +284,8 @@
 %    元の\LaTeX{}のバナーから引き継ぐように改良}
 % \changes{v1.1}{2016/09/14}{起動時のバナーを取得するコードを改良}
 % \changes{v1.1d}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
+% \changes{v1.1g}{2017/12/04}{\pLaTeX{}のバナーの定義時に
+%    \cs{pfmtname}, \cs{pfmtversion}, \cs{ppatch@level}を展開しないように}
 %    \begin{macrocode}
 \ifx\patch@level\@undefined % fallback if undefined in LaTeX
   \def\patch@level{0}\fi
@@ -289,23 +293,19 @@
   \def\ppatch@level{0}\fi
 \begingroup
   \def\parse@@BANNER\typeout#1\typeout#2#3\relax{#1}
-  \edef\platexTMP{%
-    \ifnum\ppatch@level=0
-      \everyjob{\noexpand\typeout{%
-        \pfmtname\space<\pfmtversion>\space
-          (based on \expandafter\parse@@BANNER\platexBANNER)}}%
-    \else\ifnum\ppatch@level>0
-      \everyjob{\noexpand\typeout{%
-        \pfmtname\space<\pfmtversion>+\ppatch@level\space
-          (based on \expandafter\parse@@BANNER\platexBANNER)}}%
-    \else
-      \everyjob{\noexpand\typeout{%
-        \pfmtname\space<\pfmtversion>-pre\ppatch@level\space
-          (based on \expandafter\parse@@BANNER\platexBANNER)}}%
-    \fi\fi
-  }
-\expandafter
-\endgroup \platexTMP
+  \toks0=\expandafter\expandafter\expandafter{%
+           \expandafter\parse@@BANNER\platexBANNER}
+  \ifnum\ppatch@level=0
+    \toks2={\pfmtname\space<\pfmtversion>\space}%
+  \else\ifnum\ppatch@level>0
+    \toks2={\pfmtname\space<\pfmtversion>+\ppatch@level\space}%
+  \else
+    \toks2={\pfmtname\space<\pfmtversion>-pre\ppatch@level\space}%
+  \fi\fi
+  \edef\platexBANNER{\the\toks2 (based on \the\toks0)}
+  \global\everyjob\expandafter{%
+    \expandafter\typeout\expandafter{\platexBANNER}}%
+\endgroup
 %    \end{macrocode}
 %
 % p\LaTeX{}やup\LaTeX{}は、独自のハイフネーション・パターンを定義していません。
@@ -319,16 +319,12 @@
 %    \begin{macrocode}
 \begingroup
   \def\parse@@BANNER\typeout#1\typeout#2#3\relax{#2}
-  \edef\platexTMP{%
-    \the\everyjob\noexpand\typeout{\expandafter\parse@@BANNER\platexBANNER}%
-  }
-  \everyjob=\expandafter{\platexTMP}%
-  \edef\platexTMP{%
-    \noexpand\let\noexpand\platexBANNER=\noexpand\@undefined
-    \noexpand\everyjob={\the\everyjob}%
-  }
-  \expandafter
-\endgroup \platexTMP
+  \toks0=\expandafter\expandafter\expandafter{%
+           \expandafter\parse@@BANNER\platexBANNER}
+  \edef\platexBANNER{\the\everyjob \noexpand\typeout{\the\toks0}}
+  \global\everyjob\expandafter{\platexBANNER}%
+\endgroup
+\let\platexBANNER=\@undefined
 %</plfinal>
 %    \end{macrocode}
 % \end{macro}
