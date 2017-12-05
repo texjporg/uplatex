@@ -87,13 +87,16 @@
 % \changes{v1.6j}{2017/11/06}{縦横のエンコーディングのセット化を
 %    plcoreからpldefsへ移動}
 % \changes{v1.6j-u00}{2017/11/06}{p\LaTeX{}の変更に追随。}
+% \changes{v1.6k}{2017/12/05}{デフォルト設定ファイルの読み込みを
+%    \file{plcore.ltx}から\file{platex.ltx}へ移動}
+% \changes{v1.6k-u00}{2017/12/05}{p\LaTeX{}の変更に追随。}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplfonts.dtx}[2017/11/06 v1.6j-u00 upLaTeX New Font Selection Scheme]
+\ProvidesFile{uplfonts.dtx}[2017/12/05 v1.6k-u00 upLaTeX New Font Selection Scheme]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplfonts.dtx}
@@ -2100,19 +2103,12 @@
 %
 %
 % \subsection{デフォルト設定ファイルの読み込み}
-% 最後に、デフォルト設定ファイルである、\file{upldefs.ltx}を読み込みます。
-% このファイルについての詳細は、第\ref{plfonts:pldefs}節を参照してください。
-% \TeX{}の入力ファイル検索パスに設定されているディレクトリに\file{upldefs.cfg}%
-% ファイルがある場合は、そのファイルを使います。
-%    \begin{macrocode}
-%<*plcore>
-\InputIfFileExists{upldefs.cfg}
-           {\typeout{*************************************^^J%
-                     * Local config file upldefs.cfg used^^J%
-                     *************************************}}%
-           {\input{upldefs.ltx}}
-%</plcore>
-%    \end{macrocode}
+% デフォルト設定ファイル\file{upldefs.ltx}は、もともと\file{uplcore.ltx}の途中で
+% 読み込んでいましたが、2018年以降の新しいコミュニティ版\upLaTeX{}では
+% \file{uplatex.ltx}から読み込むことにしました。
+% 実際の中身については、第\ref{plfonts:pldefs}節を参照してください。
+% \changes{v1.6k}{2017/12/05}{デフォルト設定ファイルの読み込みを
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
 %
 %
 %

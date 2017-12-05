@@ -24,6 +24,11 @@
          **************************}
 \makeatletter
 \input uplcore.ltx
+\InputIfFileExists{upldefs.cfg}
+           {\typeout{*************************************^^J%
+                     * Local config file upldefs.cfg used^^J%
+                     *************************************}}%
+           {\input{upldefs.ltx}}
 \the\everyjob
 \everyjob\expandafter{%
   \the\everyjob

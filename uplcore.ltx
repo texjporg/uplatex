@@ -19,8 +19,8 @@
 %% File: uplvers.dtx
 \def\pfmtname{pLaTeX2e}
 \def\pfmtversion
-   {2017/10/28u01}
-\def\ppatch@level{2}
+   {2017/12/10u01}
+\def\ppatch@level{-1}
 \edef\platexBANNER{\the\everyjob\noexpand\typeout{}\relax}% save LaTeX banner
 \def\plIncludeInRelease#1{\kernel@ifnextchar[%
   {\@plIncludeInRelease{#1}}
@@ -660,11 +660,6 @@
     \pltx@cond{\ifnum0\ifcat A\noexpand#21\fi\ifcat=\noexpand#21\fi>\z@}\fi
       {\@firstoftwo}{\@secondoftwo}%
   }{\@secondoftwo}}
-\InputIfFileExists{upldefs.cfg}
-           {\typeout{*************************************^^J%
-                     * Local config file upldefs.cfg used^^J%
-                     *************************************}}%
-           {\input{upldefs.ltx}}
 %% File: plcore.dtx
 \def\NeedsTeXFormat#1{%
    \def\reserved@a{#1}%
