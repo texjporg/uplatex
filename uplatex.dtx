@@ -399,9 +399,9 @@
 %    \end{macrocode}
 %
 %\ifJAPANESE
-% \file{uplcore.ltx}を読み込み、この\upLaTeX{}のバージョンを端末に表示します。
+% \file{uplcore.ltx}を読み込みます。
 %\else
-% Load \file{uplcore.ltx} and display \upLaTeX\ version on the terminal.
+% Load \file{uplcore.ltx}.
 %\fi
 %    \begin{macrocode}
 \typeout{**************************^^J%
@@ -411,6 +411,16 @@
          **************************}
 \makeatletter
 \input uplcore.ltx
+%    \end{macrocode}
+%
+%\ifJAPANESE
+% フォーマット作成時に\upLaTeX{}のバージョンがわかるように、
+% 端末に表示します。
+%\else
+% Display \upLaTeX\ version on the terminal, so that
+% it can be easily recognized during format creation.
+%\fi
+%    \begin{macrocode}
 \the\everyjob
 %    \end{macrocode}
 %
