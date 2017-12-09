@@ -19,71 +19,38 @@
 % \StopEventually{}
 %
 % \iffalse
-% \changes{v1.0}{1995/05/16}{p\LaTeXe\ 用に\file{ltvers.dtx}を修正}
-% \changes{v1.0a}{1995/08/30}{\LaTeX\ \texttt{!<1995/06/01!>}版用に修正}
-% \changes{v1.0b}{1996/01/31}{\LaTeX\ \texttt{!<1995/12/01!>}版用に修正}
-% \changes{v1.0c}{1997/01/11}{\LaTeX\ \texttt{!<1996/06/01!>}版用に修正}
-% \changes{v1.0d}{1997/01/23}{\LaTeX\ \texttt{!<1996/12/01!>}版用に修正}
-% \changes{v1.0e}{1997/07/02}{\LaTeX\ \texttt{!<1997/06/01!>}版用に修正}
-% \changes{v1.0f}{1998/02/17}{\LaTeX\ \texttt{!<1997/12/01!>}版用に修正}
-% \changes{v1.0g}{1998/09/01}{\LaTeX\ \texttt{!<1998/06/01!>}版用に修正}
-% \changes{v1.0h}{1999/04/05}{\LaTeX\ \texttt{!<1998/12/01!>}版用に修正}
-% \changes{v1.0i}{1999/08/09}{\LaTeX\ \texttt{!<1999/06/01!>}版用に修正}
-% \changes{v1.0j}{2000/02/29}{\LaTeX\ \texttt{!<1999/12/01!>}版用に修正}
-% \changes{v1.0k}{2000/11/03}{\LaTeX\ \texttt{!<2000/06/01!>}版用に修正}
-% \changes{v1.0l}{2001/09/04}{\LaTeX\ \texttt{!<2001/06/01!>}版用に修正}
-% \changes{v1.0m}{2004/08/10}{\LaTeX\ \texttt{!<2003/12/01!>}版対応確認}
-% \changes{v1.0n}{2005/01/04}{plfonts.dtxバグ修正}
-% \changes{v1.0o}{2006/01/04}{plfonts.dtxバグ修正}
-% \changes{v1.0p}{2006/06/27}{plfonts.dtx \LaTeX\ \texttt{!<2005/12/01!>}対応}
-% \changes{v1.0q}{2006/11/10}{plfonts.dtxバグ修正}
-% \changes{v1.0q-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。}
-% \changes{v1.0r}{2016/01/26}{plcore.dtx p\TeX\ (r28720)対応}
-% \changes{v1.0s}{2016/02/01}{\LaTeX\ \texttt{!<2015/01/01!>}のlatexreleaseに
-%    対応するためのコードを導入}
-% \changes{v1.0t}{2016/02/03}{\cs{plIncludeInRelease}と
-%    \cs{plEndIncludeInRelease}を新設。}
-% \changes{v1.0u}{2016/04/17}{\LaTeX\ \texttt{!<2016/03/31!>}版対応確認}
-% \changes{v1.0u-u00}{2016/04/17}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0v}{2016/05/07}{パッチファイルをロードするのをやめた。}
-% \changes{v1.0v}{2016/05/07}{起動時の文字列を最新の\LaTeX{}に合わせた。}
-% \changes{v1.0w}{2016/05/12}{起動時の文字列に入れる\LaTeX{}のバージョンを
-%    元の\LaTeX{}のバナーから引き継ぐように改良}
+% \changes{v1.0q-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。
+%     (based on plvers.dtx 2006/11/10 v1.0q)}
+% \changes{v1.0u-u00}{2016/04/17}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2016/04/17 v1.0u)}
 % \changes{v1.0w-u00}{2016/05/12}{起動時の文字列に入れるBabelのバージョンを
-%    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた}
+%    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた
+%     (based on plvers.dtx 2016/05/12 v1.0w)}
 % \changes{v1.0w-u01}{2016/05/21}{サポート外の\LaTeX~2.09互換モードが
 %    使われた場合に明確なエラーを出すようにした。}
-% \changes{v1.0x}{2016/06/19}{パッチレベルを\file{plvers.dtx}で設定}
-% \changes{v1.0x-u01}{2016/06/19}{p\LaTeX{}の変更に追随。}
-% \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加}
+% \changes{v1.0x-u01}{2016/06/19}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2016/06/19 v1.0x)}
+% \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加
+%     (based on plvers.dtx 2016/06/27 v1.0y)}
 % \changes{v1.0z-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
-%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
-% \changes{v1.1}{2016/09/14}{起動時のバナーを取得するコードを改良}
-% \changes{v1.1-u01}{2016/09/14}{p\LaTeX{}の変更に追随。}
-% \changes{v1.1a}{2017/02/20}{\LaTeX\ \texttt{!<2017/01/01!>}版対応確認}
-% \changes{v1.1a-u01}{2017/03/05}{p\LaTeX{}の変更に追随。}
-% \changes{v1.1b}{2017/03/19}{\cs{l@nohyphenation}の定義を保証
-%    (sync with ltfinal 2017/03/09 v2.0t)}
-% \changes{v1.1b}{2017/03/19}{\cs{document@default@language}の定義を保証
-%    (sync with ltfinal 2017/03/09 v2.0t)}
-% \changes{v1.1b-u01}{2017/03/19}{p\LaTeX{}の変更に追随。}
-% \changes{v1.1c}{2017/04/23}{\LaTeX\ \texttt{!<2017/04/15!>}版対応確認}
-% \changes{v1.1c-u01}{2017/05/04}{p\LaTeX{}の変更に追随。}
-% \changes{v1.1d}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
-% \changes{v1.1d-u01}{2017/09/24}{p\LaTeX{}の変更に追随。}
-% \changes{v1.1e}{2017/11/09}{\file{latexrelease}と
-%    \cs{platexrelease}のエミュレート内部処理を分離}
-% \changes{v1.1f}{2017/11/11}{\LaTeX{}のバナーを保存するコードを
-%    \file{platex.ltx}から\file{plcore.ltx}へ移動}
-% \changes{v1.1g}{2017/12/04}{\pLaTeX{}のバナーの定義時に
-%    \cs{pfmtname}, \cs{pfmtversion}, \cs{ppatch@level}を展開しないように}
-% \changes{v1.1g-u01}{2017/12/04}{p\LaTeX{}の変更に追随。}
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
+%     (based on plvers.dtx 2016/08/26 v1.0z)}
+% \changes{v1.1-u01}{2016/09/14}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2016/09/14 v1.1)}
+% \changes{v1.1c-u01}{2017/05/04}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2017/04/23 v1.1c)}
+% \changes{v1.1d-u01}{2017/09/24}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2017/09/24 v1.1d)}
+% \changes{v1.1g-u01}{2017/12/04}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2017/12/04 v1.1g)}
+% \changes{v1.1g-u02}{2017/12/10}{p\LaTeX{}との統合のため、
+%    up\LaTeX{}のバージョンと最小限の変更だけを定義するようにした}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2017/12/04 v1.1g-u01 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2017/12/10 v1.1g-u02 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -100,110 +67,57 @@
 % \section{up\LaTeXe{}のバージョンの設定}
 % まず、このディストリビューションでのup\LaTeXe{}の日付とバージョン番号
 % を定義します。
+% このバージョンのup\LaTeXe{}のフォーマット作成では、
+% p\LaTeXe{}が提供する\file{plcore.ltx}の後から
+% \file{uplcore.ltx}が読まれなければなりません。
 %
-% \changes{v1.0}{1995/05/16}{p\LaTeXe\ 用に\file{ltvers.dtx}を修正}
-% \changes{v1.0a}{1995/08/30}{\LaTeX\ \texttt{!<1995/06/01!>}版用に修正}
-% \changes{v1.0b}{1996/01/31}{\LaTeX\ \texttt{!<1995/12/01!>}版用に修正}
-% \changes{v1.0c}{1997/01/11}{\LaTeX\ \texttt{!<1996/06/01!>}版用に修正}
-% \changes{v1.0d}{1997/01/23}{\LaTeX\ \texttt{!<1996/12/01!>}版用に修正}
-% \changes{v1.0e}{1997/07/02}{\LaTeX\ \texttt{!<1997/06/01!>}版用に修正}
-% \changes{v1.0f}{1998/02/17}{\LaTeX\ \texttt{!<1997/12/01!>}版用に修正}
-% \changes{v1.0g}{1998/09/01}{\LaTeX\ \texttt{!<1998/06/01!>}版用に修正}
-% \changes{v1.0h}{1999/04/05}{\LaTeX\ \texttt{!<1998/12/01!>}版用に修正}
-% \changes{v1.0i}{1999/08/09}{\LaTeX\ \texttt{!<1999/06/01!>}版用に修正}
-% \changes{v1.0j}{2000/02/29}{\LaTeX\ \texttt{!<1999/12/01!>}版用に修正}
-% \changes{v1.0k}{2000/11/03}{\LaTeX\ \texttt{!<2000/06/01!>}版用に修正}
-% \changes{v1.0l}{2001/09/04}{\LaTeX\ \texttt{!<2001/06/01!>}版用に修正}
-% \changes{v1.0m}{2004/08/10}{\LaTeX\ \texttt{!<2003/12/01!>}版対応確認}
-% \changes{v1.0s}{2016/02/01}{\LaTeX\ \texttt{!<2015/01/01!>}版用に修正}
-% \changes{v1.0u}{2016/04/17}{\LaTeX\ \texttt{!<2016/03/31!>}版対応確認}
-% \changes{v1.1a}{2017/02/20}{\LaTeX\ \texttt{!<2017/01/01!>}版対応確認}
-% \changes{v1.1c}{2017/04/23}{\LaTeX\ \texttt{!<2017/04/15!>}版対応確認}
+% \changes{v1.0q-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。
+%     (based on plvers.dtx 2006/11/10 v1.0q)}
+% \changes{v1.1g-u02}{2017/12/10}{p\LaTeX{}との統合のため、
+%    up\LaTeX{}のバージョンと最小限の変更だけを定義するようにした}
 %
-% このバージョンのup\LaTeXe{}は、次のバージョンの\LaTeX{}\footnote{%
-% \LaTeX\ authors: Johannes Braams, David Carlisle, Alan Jeffrey,
-%   Leslie Lamport, Frank Mittelbach, Chris Rowley, Rainer Sch\"opf}を
-% もとにしています。
+% まず、次のバージョンのp\LaTeX{}が利用可能なことを確認します。
 %    \begin{macrocode}
-%<*2ekernel>
-%\def\fmtname{LaTeX2e}
-%\edef\fmtversion
-%</2ekernel>
-%<latexrelease>\edef\latexreleaseversion
-%<platexrelease>\edef\p@known@latexreleaseversion
-%<*2ekernel|latexrelease|platexrelease>
-   {2017/04/15}
-%</2ekernel|latexrelease|platexrelease>
+%<*plcore>
+\ifx\pfmtversion\@undefined
+    \errhelp{Please update your TeX installation; if not available,
+             obtain it^^Jmanually from CTAN
+             (https://www.ctan.org/pkg/uplatex) or from^^JGitHub
+             (https://github.com/texjporg/uplatex).}%
+    \errmessage{This should not happen!^^JThere should be some
+                inconsistency in your installation;^^Jtry
+                removing old `uplatex.ltx' and install the
+                latest one}\@@end
+\else
+  \ifnum\expandafter\@parse@version\pfmtversion\@nil<20171210
+    \errhelp{Please update your TeX installation; if not available,
+             obtain it^^Jmanually from CTAN
+             (https://www.ctan.org/pkg/platex) or from^^JGitHub
+             (https://github.com/texjporg/platex).}%
+    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2017/12/10
+                or newer!^^JObtain a newer version of `platex',
+                otherwise upLaTeX2e setup will^^Jnever succeed}\@@end
+  \fi
+\fi
+%</plcore>
 %    \end{macrocode}
 %
 % \begin{macro}{\pfmtname}
 % \begin{macro}{\pfmtversion}
 % \begin{macro}{\ppatch@level}
 % up\LaTeXe{}のフォーマットファイル名とバージョンです。
-% \changes{v1.0x}{2016/06/19}{パッチレベルを\file{plvers.dtx}で設定}
+% フォーマット名はp\LaTeXe{}のもの (\pfmtname) をそのまま引き継ぎ、
+% バージョンはp\LaTeXe{}のものの末尾に``u02''のようにサフィックスを付けます。
 %    \begin{macrocode}
 %<*plcore>
-\def\pfmtname{pLaTeX2e}
-\def\pfmtversion
-%</plcore>
-%<platexrelease>\edef\platexreleaseversion
-%<*plcore|platexrelease>
-   {2017/12/10u01}
-%</plcore|platexrelease>
-%<*plcore>
-\def\ppatch@level{-1}
+%\def\pfmtname{pLaTeX2e}
+\def\uppatch@level{u02}
+\edef\pfmtversion{\pfmtversion\uppatch@level}
 %</plcore>
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
-%
-% \subsection{\LaTeXe{}のバージョンの取得}
-% このファイルの直前で\LaTeXe{}の\file{latex.ltx}が読み込まれているはず
-% なので、その起動時のバナーを保存します。
-%
-% 2016/05/07の実装では、\file{platex.ltx}のなかで
-%\begin{verbatim}
-% \edef\platexBANNER{\the\everyjob}
-%\end{verbatim}
-% としてバナーを保存し、この内容が
-%\begin{verbatim}
-%   \typeout{LaTeX2e version}\typeout{Babel version}
-%\end{verbatim}
-% という4つのトークンから成ると仮定して、\file{plcore.ltx}のなかで
-%\begin{verbatim}
-%   \def\parse@@BANNER#1#2#3#4{#2}
-%\end{verbatim}
-% のようにパースしていました。ところが、この「4つのトークンから成る」と
-% いう仮定はBabel由来の\file{hyphen.cfg}を使用した場合のみ成り立ち、
-% それ以外の特別な\file{hyphen.cfg}や\file{hyphen.ltx}を使用した場合に
-% エラーになってしまいます。
-% そこで、新たに2016/09/14の実装では、\file{platex.ltx}のなかで
-%\begin{verbatim}
-% \edef\platexBANNER{\the\everyjob\noexpand\typeout{}\relax}
-%\end{verbatim}
-% としてダミーを追加します（|\relax|はただの区切りトークンの役割）。
-% こうすると、|\platexBANNER|の内容は、Babelの\file{hyphen.cfg}のとき
-%\begin{verbatim}
-%   \typeout{LaTeX2e version}\typeout{Babel version}\typeout{}\relax
-%\end{verbatim}
-% となり、それ以外のとき
-%\begin{verbatim}
-%   \typeout{LaTeX2e version}\typeout{}\relax
-%\end{verbatim}
-% となるはずです。このように、少なくとも|\typeout|が2回含まれています
-% ので、\file{plcore.ltx}のなかで
-%\begin{verbatim}
-%   \def\parse@@BANNER\typeout#1\typeout#2#3\relax{#1}
-%\end{verbatim}
-% とパースすることができるようになります。
-% \changes{v1.1f}{2017/11/11}{\LaTeX{}のバナーを保存するコードを
-%    \file{platex.ltx}から\file{plcore.ltx}へ移動}
-%    \begin{macrocode}
-%<*plcore>
-\edef\platexBANNER{\the\everyjob\noexpand\typeout{}\relax}% save LaTeX banner
-%</plcore>
-%    \end{macrocode}
 %
 % \subsection{\LaTeX~2.09互換モードの抑制}
 %
@@ -230,209 +144,33 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsection{パッチファイルのロード}
-%
-% 次の部分は、up\LaTeXe{}のパッチファイルをロードするためのコードです。
-% バグを修正するためのパッチを配布するかもしれません。
-%
-% パッチファイルをロードするコードはコメントアウトしました。
-% \changes{v1.0v}{2016/05/07}{パッチファイルをロードするのをやめた。}
-%    \begin{macrocode}
-%<*plfinal>
-%\IfFileExists{uplpatch.ltx}
-%  {\typeout{************************************^^J%
-%            * Appliying patch file uplpatch.ltx *^^J%
-%            ************************************}
-%  \def\pfmtversion@topatch{unknown}
-%  \input{uplpatch.ltx}
-%  \ifx\pfmtversion\pfmtversion@topatch
-%    \ifx\ppatch@level\@undefined
-%      \typeout{^^J^^J^^J%
-%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-%   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
-%   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J^^J%
-%   !! Please check if iniptex found an old patch file:^^J%
-%   !! --- if so, rename it or delete it, and redo the^^J%
-%   !!     iniptex run.^^J%
-%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
-%      \batchmode \@@end
-%    \fi
-%  \else
-%      \typeout{^^J^^J^^J%
-%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-%   !! Patch file `uplpatch.ltx' (for version <\pfmtversion@topatch>)^^J%
-%   !! is not suitable for version <\pfmtversion> of upLaTeX.^^J%
-%   !!^^J%
-%   !! Please check if iniptex found an old patch file:^^J%
-%   !! --- if so, rename it or delete it, and redo the^^J%
-%   !!     iniptex run.^^J%
-%   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J}%
-%      \batchmode \@@end
-%  \fi
-%  \let\pfmtversion@topatch\relax
-%  }{}
-%    \end{macrocode}
-%
 % \subsection{起動時に表示するバナー}
 %
 % \begin{macro}{\everyjob}
-% up\LaTeXe{}が起動されたときに表示される文字列です。
-% \LaTeXe{}のバージョンも併せて表示します。
-%
-% \changes{v1.0v}{2016/05/07}{起動時の文字列を最新の\LaTeX{}に合わせた。}
-% \changes{v1.0w}{2016/05/12}{起動時の文字列に入れる\LaTeX{}のバージョンを
-%    元の\LaTeX{}のバナーから引き継ぐように改良}
-% \changes{v1.1}{2016/09/14}{起動時のバナーを取得するコードを改良}
-% \changes{v1.1d}{2017/09/24}{パッチレベルが負の数の場合をpre-release扱いへ}
-% \changes{v1.1g}{2017/12/04}{\pLaTeX{}のバナーの定義時に
-%    \cs{pfmtname}, \cs{pfmtversion}, \cs{ppatch@level}を展開しないように}
-%    \begin{macrocode}
-\ifx\patch@level\@undefined % fallback if undefined in LaTeX
-  \def\patch@level{0}\fi
-\ifx\ppatch@level\@undefined % fallback if undefined in upLaTeX
-  \def\ppatch@level{0}\fi
-\begingroup
-  \def\parse@@BANNER\typeout#1\typeout#2#3\relax{#1}
-  \toks0=\expandafter\expandafter\expandafter{%
-           \expandafter\parse@@BANNER\platexBANNER}
-  \ifnum\ppatch@level=0
-    \toks2={\pfmtname\space<\pfmtversion>\space}%
-  \else\ifnum\ppatch@level>0
-    \toks2={\pfmtname\space<\pfmtversion>+\ppatch@level\space}%
-  \else
-    \toks2={\pfmtname\space<\pfmtversion>-pre\ppatch@level\space}%
-  \fi\fi
-  \edef\platexBANNER{\the\toks2 (based on \the\toks0)}
-  \global\everyjob\expandafter{%
-    \expandafter\typeout\expandafter{\platexBANNER}}%
-\endgroup
-%    \end{macrocode}
-%
-% p\LaTeX{}やup\LaTeX{}は、独自のハイフネーション・パターンを定義していません。
+% up\LaTeXe{}が起動されたときに表示される文字列は、
+% p\LaTeXe{}の中ですでに設定されています。
+% またup\LaTeX{}も独自のハイフネーション・パターンを定義していないので、
 % \TeX\ Liveの標準的インストールでは、代わりに\LaTeX{}が読み込んでいる
-% Babelパッケージのものが適用されるはずですから、起動時の文字列にも
-% \file{hyphen.cfg}のバージョンを反映します（Babelパッケージの
-% \file{hyphen.cfg}でない場合は、何も表示されず空行になるはずです）。
+% Babelパッケージのものが適用されるはずです。
 %
 % \changes{v1.0w-u00}{2016/05/12}{起動時の文字列に入れるBabelのバージョンを
-%    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた}
-%    \begin{macrocode}
-\begingroup
-  \def\parse@@BANNER\typeout#1\typeout#2#3\relax{#2}
-  \toks0=\expandafter\expandafter\expandafter{%
-           \expandafter\parse@@BANNER\platexBANNER}
-  \edef\platexBANNER{\the\everyjob \noexpand\typeout{\the\toks0}}
-  \global\everyjob\expandafter{\platexBANNER}%
-\endgroup
-\let\platexBANNER=\@undefined
-%</plfinal>
-%    \end{macrocode}
-% \end{macro}
+%    元の\LaTeX{}のバナーから取得するコードを\file{uplatex.ini}から取り入れた
+%     (based on plvers.dtx 2016/05/12 v1.0w)}
+% \changes{v1.1-u01}{2016/09/14}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2016/09/14 v1.1)}
+% \changes{v1.1d-u01}{2017/09/24}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2017/09/24 v1.1d)}
+% \changes{v1.1g-u01}{2017/12/04}{p\LaTeX{}の変更に追随。
+%     (based on plvers.dtx 2017/12/04 v1.1g)}
 %
 % ^^A 起動時に\file{uplatex.cfg}がある場合、それを読み込むようにする
 % ^^A コードは、\file{uplcore.ltx}から\file{uplatex.ltx}へ移動しました。
-% \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加}
+% \changes{v1.0y-u01}{2016/06/29}{\file{uplatex.cfg}の読み込みを追加
+%     (based on plvers.dtx 2016/06/27 v1.0y)}
 % \changes{v1.0z-u01}{2016/08/26}{\file{uplatex.cfg}の読み込みを
-%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動}
-%
-% \subsection{ハイフネーション関連}
-%
-% \begin{macro}{\l@nohyphenation}
-% \LaTeXe\ 2017-04-15で、|\verb|の途中でハイフネーションが起きないように
-% する修正が入りました。この修正には|\l@nohyphenation|が定義済みでなければ
-% なりませんが、通常はBabelの定義ファイルによって提供されています。
-% \LaTeXe{}は特殊な状況も想定してltfinalで対策しているようですので、
-% p\LaTeXe{}も念のためplfinalで対策します（参考：latex2e svn r1405）。
-% \changes{v1.1b}{2017/03/19}{\cs{l@nohyphenation}の定義を保証
-%    (sync with ltfinal 2017/03/09 v2.0t)}
-%    \begin{macrocode}
-%<*plfinal>
-\ifx\l@nohyphenation \@undefined
-  \newlanguage\l@nohyphenation
-\fi
-%    \end{macrocode}
+%    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
+%     (based on plvers.dtx 2016/08/26 v1.0z)}
 % \end{macro}
-%
-% \begin{macro}{\document@default@language}
-% \LaTeXe\ 2017-04-15で導入されたパラメータです。更新タイミングのずれの
-% 可能性を考慮し、p\LaTeXe{}でも準備しておきます。verbatim環境の途中で
-% 改ページが起きた場合にヘッダでハイフネーションが抑制されないように、
-% |\@outputpage|で|\language|をリセットするときに使われます
-% （参考：latex2e svn r1407）。
-% \changes{v1.1b}{2017/03/19}{\cs{document@default@language}の定義を保証
-%    (sync with ltfinal 2017/03/09 v2.0t)}
-%    \begin{macrocode}
-\ifx\document@default@language \@undefined
-  \let\document@default@language\m@ne
-\fi
-%</plfinal>
-%    \end{macrocode}
-% \end{macro}
-%
-% \subsection{latexreleaseパッケージへの対応}
-%
-% 最後に、latexreleaseパッケージへの対応です。
-% \begin{macro}{\plIncludeInRelease}
-% \changes{v1.0t}{2016/02/03}{\cs{plIncludeInRelease}と
-%    \cs{plEndIncludeInRelease}を新設。}
-% \changes{v1.1e}{2017/11/09}{\file{latexrelease}と
-%    \cs{platexrelease}のエミュレート内部処理を分離}
-%    \begin{macrocode}
-%<*plcore|platexrelease>
-\def\plIncludeInRelease#1{\kernel@ifnextchar[%
-  {\@plIncludeInRelease{#1}}
-  {\@plIncludeInRelease{#1}[#1]}}
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\def\@plIncludeInRelease#1[#2]{\@plIncludeInRele@se{#2}}
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\def\@plIncludeInRele@se#1#2#3{%
-  \toks@{[#1] #3}%
-  \expandafter\ifx\csname\string#2+\@currname+plIIR\endcsname\relax
-    \ifnum\expandafter\@parse@version#1//00\@nil
-          >\expandafter\@parse@version\pfmtversion//00\@nil
-      \GenericInfo{}{Skipping: \the\toks@}%
-     \expandafter\expandafter\expandafter\@gobble@plIncludeInRelease
-    \else
-      \GenericInfo{}{Applying: \the\toks@}%
-      \expandafter\let\csname\string#2+\@currname+plIIR\endcsname\@empty
-    \fi
-  \else
-    \GenericInfo{}{Already applied: \the\toks@}%
-    \expandafter\@gobble@plIncludeInRelease
-  \fi
-}
-%    \end{macrocode}
-%
-%    \begin{macrocode}
-\long\def\@gobble@plIncludeInRelease#1\plEndIncludeInRelease{}
-\let\plEndIncludeInRelease\relax
-%</plcore|platexrelease>
-%    \end{macrocode}
-% \end{macro}
-%
-% \LaTeXe{}が提供するlatexreleaseパッケージが読み込まれていて、
-% かつp\LaTeXe{}が提供するplatexreleaseパッケージが読み込まれていない
-% 場合は、警告を出します。
-% \changes{v1.0s}{2016/02/01}{latexrelease利用時に警告を出すようにした}
-%    \begin{macrocode}
-%<*plfinal>
-\AtBeginDocument{%
-  \@ifpackageloaded{latexrelease}{%
-    \@ifpackageloaded{platexrelease}{}{%
-      \@latex@warning@no@line{%
-        Package latexrelease is loaded.\MessageBreak
-        Some patches in pLaTeX2e core may be overwritten.\MessageBreak
-        Consider using platexrelease.\MessageBreak
-        See platex.pdf for detail}%
-    }%
-  }{}%
-}
-%</plfinal>
-%    \end{macrocode}
 %
 % \Finale
 %

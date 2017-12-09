@@ -14,8 +14,7 @@ all: $(STRIPTARGET) $(PDFTARGET)
 PLFMT = uplatex.ltx uplcore.ltx ukinsoku.tex upldefs.ltx \
 	jy2mc.fd jy2gt.fd jt2mc.fd jt2gt.fd uptrace.sty
 
-PLFMT_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx plcore.dtx \
-	ukinsoku.dtx
+PLFMT_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx ukinsoku.dtx
 
 PLCLS = ujarticle.cls ujreport.cls ujbook.cls ujsize10.clo \
 	ujsize11.clo ujsize12.clo ujbk10.clo ujbk11.clo ujbk12.clo \

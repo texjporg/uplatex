@@ -77,6 +77,8 @@
 % \changes{v1.0s-u01}{2017/12/05}{デフォルト設定ファイルの読み込みを
 %    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
 %     (based on platex.dtx 2017/12/05 v1.0s)}
+% \changes{v1.0t-u02}{2017/12/10}{\file{uplcore.ltx}の前に
+%    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
@@ -102,6 +104,8 @@
 % \changes{v1.0s-u01}{2017/12/05}{Moved loading default settings
 %    from \file{uplcore.ltx} to \file{uplatex.ltx}
 %     (based on platex.dtx 2017/12/05 v1.0s)}
+% \changes{v1.0t-u02}{2017/12/10}{Load \file{plcore.ltx} before
+%    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
 %\fi
 % \fi
 %
@@ -109,7 +113,7 @@
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2017/12/05 v1.0s-u01 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2017/12/10 v1.0t-u02 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -405,9 +409,13 @@
 %    \end{macrocode}
 %
 %\ifJAPANESE
-% \file{uplcore.ltx}を読み込みます。
+% \file{plcore.ltx}と\file{uplcore.ltx}を読み込みます。
+% \changes{v1.0t-u02}{2017/12/10}{\file{uplcore.ltx}の前に
+%    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
 %\else
-% Load \file{uplcore.ltx}.
+% Load \file{plcore.ltx} and \file{uplcore.ltx}.
+% \changes{v1.0t-u02}{2017/12/10}{Load \file{plcore.ltx} before
+%    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
 %\fi
 %    \begin{macrocode}
 \typeout{**************************^^J%
@@ -416,6 +424,7 @@
          *^^J%
          **************************}
 \makeatletter
+\input plcore.ltx
 \input uplcore.ltx
 %    \end{macrocode}
 %
@@ -950,8 +959,8 @@ all others indicate the places where it is used.}
 \makeatletter
 \let\patchdate=\@empty
 \begingroup
-   \def\ProvidesFile#1\pfmtversion#2#3\ppatch@level#4{%
-      \date{#2}\xdef\patchdate{#4}\endinput}
+   \def\ProvidesFile#1[#2 #3]#4\def\uppatch@level#5{%
+      \date{#2}\xdef\patchdate{#5}\endinput}
    \input{uplvers.dtx}
 \global\let\X@date=\@date
 
@@ -967,12 +976,8 @@ all others indicate the places where it is used.}
 \ifx\@date\X@date
   \def\Xpatch{0}
   \ifx\patchdate\Xpatch\else
-  % number is assumed
-  \ifnum\patchdate>0
-    \edef\@date{\@date\space Patch level\space\patchdate}
-  \else
-    \edef\@date{\@date\space Pre-Release\patchdate}
-  \fi\fi
+    \edef\@date{\@date\space version \patchdate}
+  \fi
 \else
    \@warning{uplpatch.ltx does not match uplvers.dtx!}
    \let\includeltpatch\relax
