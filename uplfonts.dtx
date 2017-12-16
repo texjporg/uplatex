@@ -99,7 +99,7 @@
 % \begin{center}
 % \begin{tabular}{l|p{0.7\linewidth}}
 % \emph{オプション} & \emph{意味}\\\hline
-% plcore & \file{uplfonts.ltx}を生成します。\\
+% plcore & \file{uplcore.ltx}の断片を生成するオプションでしたが、削除。\\
 % trace  & \file{uptrace.sty}を生成します。\\
 % JY2mc  & 横組用、明朝体のフォント定義ファイルを生成します。\\
 % JY2gt  & 横組用、ゴシック体のフォント定義ファイルを生成します。\\
@@ -168,7 +168,8 @@
 %
 % \subsection{テキストフォント}
 % テキストフォントのための属性やエラー書体などの宣言です。
-%
+% p\LaTeX{}のデフォルトの横組エンコードはJY1、縦組エンコードはJT1ですが、
+% up\LaTeX{}では横組エンコードはJY2、縦組エンコードはJT2とします。
 % \noindent
 % 縦横エンコード共通：
 %    \begin{macrocode}
@@ -277,7 +278,7 @@
 % \subsection{プリロードフォント}
 % あらかじめフォーマットファイルにロードされるフォントの宣言です。
 % \dst{}プログラムのオプションでロードされるフォントのサイズを
-% 変更することができます。\file{uplatex.ins}では|xpt|を指定しています。
+% 変更することができます。\file{uplfmt.ins}では|xpt|を指定しています。
 %    \begin{macrocode}
 %<*xpt>
 \DeclarePreloadSizes{JY2}{mc}{m}{n}{5,7,10,12}
@@ -411,7 +412,7 @@
 % \changes{v1.3b}{1997/01/29}{フォント定義ファイルのサイズ指定の調整}
 % \changes{v1.3b}{1997/03/11}{すべてのサイズをロード可能にした}
 %
-% p\LaTeX{}では従属書体にOT1エンコーディングを用いていましたが、
+% p\LaTeX{}では従属書体にOT1エンコーディングを指定していましたが、
 % up\LaTeX{}ではT1エンコーディングを用いるように変更しました。
 %    \begin{macrocode}
 %<*JY2mc>
