@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2017 Japanese TeX Development Community
+%  Copyright (c) 2016-2018 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -25,13 +25,16 @@
 % \changes{v1.0b}{2017/08/05}{％、＆、\%、\&の禁則ペナルティが
 %      誤っていたのを修正（post $\rightarrow$ pre）}
 % \changes{v1.0b-u01}{2017/08/05}{p\LaTeX{}の変更に追随}
+% \changes{v1.0b-u02}{2018/01/27}{up\TeX{}の将来の変更に備え、
+%      Latin-1 Supplementのうち属性がLatinのもの
+%      (Latin-1 letters)をコードポイントで指定}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2017/08/05 v1.0b-u01 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2018/01/27 v1.0b-u02 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -122,6 +125,9 @@
 % 問題が起きた場合は禁則の設定を調整してください。
 % \changes{v1.0-u01}{2017/08/02}{U+00B7 (MIDDLE DOT; JIS X 0213)の
 %    前禁則ペナルティをU+30FBと同じ値に設定、注意点を明文化}
+% \changes{v1.0b-u02}{2018/01/27}{up\TeX{}の将来の変更に備え、
+%      Latin-1 Supplementのうち属性がLatinのもの
+%      (Latin-1 letters)をコードポイントで指定}
 %
 %    \begin{macrocode}
 %%全角文字
@@ -228,8 +234,8 @@
 \postbreakpenalty`¿=10000
 \prebreakpenalty`ː=10000
 \prebreakpenalty`·=10000
-\prebreakpenalty`ª=10000
-\prebreakpenalty`º=10000
+\prebreakpenalty"AA=10000% ª
+\prebreakpenalty"BA=10000% º
 \prebreakpenalty`¹=10000
 \prebreakpenalty`²=10000
 \prebreakpenalty`³=10000
@@ -258,8 +264,8 @@
 %%
 %%\postbreakpenalty`¡=10000
 %%\postbreakpenalty`¿=10000
-%%\prebreakpenalty`º=10000
-%%\prebreakpenalty`ª=10000
+%%\prebreakpenalty"BA=10000% º
+%%\prebreakpenalty"AA=10000% ª
 \prebreakpenalty`™=10000
 %%
 %% kinsoku  半角片仮名
@@ -513,8 +519,8 @@
 \inhibitxspcode`⁉=1
 \inhibitxspcode`¡=2
 \inhibitxspcode`¿=2
-\inhibitxspcode`ª=1
-\inhibitxspcode`º=1
+\inhibitxspcode"AA=1% ª
+\inhibitxspcode"BA=1% º
 \inhibitxspcode`¹=1
 \inhibitxspcode`²=1
 \inhibitxspcode`³=1
