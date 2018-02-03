@@ -15,7 +15,7 @@
 %% 
 %% File: uplfonts.dtx
 \ProvidesFile{jt2mc.fd}
-       [2011/05/07 v1.5-u00 KANJI font defines]
+       [2018/02/04 v1.6l-u02 KANJI font defines]
 \DeclareKanjiFamily{JT2}{mc}{}
 \DeclareRelationFont{JT2}{mc}{m}{}{T1}{cmr}{m}{}
 \DeclareRelationFont{JT2}{mc}{bx}{}{T1}{cmr}{bx}{}

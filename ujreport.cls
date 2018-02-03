@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ujreport}
-  [2017/09/19 v1.7g-u00
+  [2018/02/04 v1.7h-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -132,6 +132,7 @@
 \ExecuteOptions{a4paper,10pt,oneside,onecolumn,final,openany}
 \ProcessOptions\relax
 \input{ujsize1\@ptsize.clo}
+\def\Cjascale{0.962216}
 \if@stysize
   \setlength\columnsep{2\Cwd}
 \else

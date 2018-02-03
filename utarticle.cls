@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{utarticle}
-  [2017/09/19 v1.7g-u00
+  [2018/02/04 v1.7h-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -125,6 +125,7 @@
 \ProcessOptions\relax
 \input{utsize1\@ptsize.clo}
 \RequirePackage{plext}
+\def\Cjascale{0.962216}
 \if@stysize
   \setlength\columnsep{3\Cwd}
 \else

@@ -49,13 +49,15 @@
 %    ptraceパッケージを読み込むだけとした}
 % \changes{v1.6k-u02}{2017/12/10}{p\LaTeX{}との統合のため、
 %    up\LaTeX{}用の最小限の変更だけを定義するようにした}
+% \changes{v1.6l-u02}{2018/02/04}{p\LaTeX{}の変更に追随。
+%     (based on plfonts.dtx 2018/02/04 v1.6l)}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplfonts.dtx}[2017/12/10 v1.6k-u02 upLaTeX New Font Selection Scheme]
+\ProvidesFile{uplfonts.dtx}[2018/02/04 v1.6l-u02 upLaTeX New Font Selection Scheme]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplfonts.dtx}
@@ -161,7 +163,7 @@
 %    \begin{macrocode}
 %<*pldefs>
 \ProvidesFile{upldefs.ltx}
-      [2017/11/06 v1.6j-u00 upLaTeX Kernel (Default settings)]
+      [2018/02/04 v1.6l-u02 upLaTeX Kernel (Default settings)]
 %</pldefs>
 %    \end{macrocode}
 %
@@ -214,7 +216,7 @@
 \input{jt2mc.fd}
 \input{jt2gt.fd}
 %    \end{macrocode}
-% フォントを有効にする
+% フォントを有効にします。
 %    \begin{macrocode}
 \fontencoding{JT2}\selectfont
 \fontencoding{JY2}\selectfont
@@ -403,7 +405,7 @@
 %<JY2gt>\ProvidesFile{jy2gt.fd}
 %<JT2mc>\ProvidesFile{jt2mc.fd}
 %<JT2gt>\ProvidesFile{jt2gt.fd}
-%<JY2mc,JY2gt,JT2mc,JT2gt>       [2011/05/07 v1.5-u00 KANJI font defines]
+%<JY2mc,JY2gt,JT2mc,JT2gt>       [2018/02/04 v1.6l-u02 KANJI font defines]
 %    \end{macrocode}
 % 横組用、縦組用ともに、
 % 明朝体のシリーズ|bx|がゴシック体となるように宣言しています。
@@ -413,6 +415,13 @@
 %
 % p\LaTeX{}では従属書体にOT1エンコーディングを指定していましたが、
 % up\LaTeX{}ではT1エンコーディングを用いるように変更しました。
+% また、要求サイズ（指定されたフォントサイズ）が10ptのとき、
+% 全角幅の実寸が9.62216ptとなるようにしますので、
+% 和文スケール値（$1\,\mathrm{zw} \div \textmc{要求サイズ}$）は
+% $9.62216\,\mathrm{pt}/10\,\mathrm{pt}=0.962216$です。
+% upjis系のメトリックは全角幅が10ptでデザインされているので、
+% これを0.962216倍で読込みます。
+% \changes{v1.6l}{2018/02/04}{和文スケール値を明文化}
 %    \begin{macrocode}
 %<*JY2mc>
 \DeclareKanjiFamily{JY2}{mc}{}
