@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2017 Japanese TeX Development Community
+%  Copyright (c) 2016-2018 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -77,8 +77,10 @@
 % \changes{v1.0s-u01}{2017/12/05}{デフォルト設定ファイルの読み込みを
 %    \file{uplcore.ltx}から\file{uplatex.ltx}へ移動
 %     (based on platex.dtx 2017/12/05 v1.0s)}
-% \changes{v1.0t-u02}{2017/12/10}{\file{uplcore.ltx}の前に
+% \changes{v1.0s-u02}{2017/12/10}{\file{uplcore.ltx}の前に
 %    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
+% \changes{v1.0u-u02}{2018/02/18}{\pLaTeX{}の変更に追随。
+%     (based on platex.dtx 2018/02/18 v1.0u)}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
@@ -104,8 +106,10 @@
 % \changes{v1.0s-u01}{2017/12/05}{Moved loading default settings
 %    from \file{uplcore.ltx} to \file{uplatex.ltx}
 %     (based on platex.dtx 2017/12/05 v1.0s)}
-% \changes{v1.0t-u02}{2017/12/10}{Load \file{plcore.ltx} before
+% \changes{v1.0s-u02}{2017/12/10}{Load \file{plcore.ltx} before
 %    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
+% \changes{v1.0u-u02}{2018/02/18}{Sync with \pLaTeX.
+%     (based on platex.dtx 2018/02/18 v1.0u)}
 %\fi
 % \fi
 %
@@ -113,7 +117,7 @@
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2017/12/10 v1.0t-u02 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2018/02/18 v1.0u-u02 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -412,11 +416,11 @@
 %
 %\ifJAPANESE
 % \file{plcore.ltx}と\file{uplcore.ltx}を読み込みます。
-% \changes{v1.0t-u02}{2017/12/10}{\file{uplcore.ltx}の前に
+% \changes{v1.0s-u02}{2017/12/10}{\file{uplcore.ltx}の前に
 %    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
 %\else
 % Load \file{plcore.ltx} and \file{uplcore.ltx}.
-% \changes{v1.0t-u02}{2017/12/10}{Load \file{plcore.ltx} before
+% \changes{v1.0s-u02}{2017/12/10}{Load \file{plcore.ltx} before
 %    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
 %\fi
 %    \begin{macrocode}
