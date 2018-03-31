@@ -47,12 +47,13 @@
 %    up\LaTeX{}のバージョンと最小限の変更だけを定義するようにした}
 % \changes{v1.1h-u02}{2018/02/18}{p\LaTeX{}の変更に追随。
 %     (based on plvers.dtx 2018/01/10 v1.1h)}
+% \changes{v1.1i-u02}{2018/03/31}{p\LaTeXe\ 2018/03/09以降必須}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2018/02/18 v1.1h-u02 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2018/03/31 v1.1i-u02 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -79,6 +80,7 @@
 %    up\LaTeX{}のバージョンと最小限の変更だけを定義するようにした}
 %
 % まず、次のバージョンのp\LaTeX{}が利用可能なことを確認します。
+% \changes{v1.1i-u02}{2018/03/31}{p\LaTeXe\ 2018/03/09以降必須}
 %    \begin{macrocode}
 %<*plcore>
 \ifx\pfmtversion\@undefined
@@ -91,7 +93,7 @@
                 removing old `uplatex.ltx' and install the
                 latest one}\@@end
 \else
-  \ifnum\expandafter\@parse@version\pfmtversion\@nil<20180309
+  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20180309
     \errhelp{Please update your TeX installation; if not available,
              obtain it^^Jmanually from CTAN
              (https://www.ctan.org/pkg/platex) or from^^JGitHub
