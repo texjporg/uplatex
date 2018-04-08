@@ -81,6 +81,9 @@
 %    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
 % \changes{v1.0u-u02}{2018/02/18}{\pLaTeX{}の変更に追随。
 %     (based on platex.dtx 2018/02/18 v1.0u)}
+% \changes{v1.0w-u02}{2018/04/08}{安全のためフォーマット作成時の
+%    バナー表示をやめた
+%     (based on platex.dtx 2018/04/08 v1.0w)}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
@@ -110,6 +113,9 @@
 %    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
 % \changes{v1.0u-u02}{2018/02/18}{Sync with \pLaTeX.
 %     (based on platex.dtx 2018/02/18 v1.0u)}
+% \changes{v1.0w-u02}{2018/04/08}{Stop showing banner during
+%    format generation for safety
+%     (based on platex.dtx 2018/04/08 v1.0w)}
 %\fi
 % \fi
 %
@@ -117,7 +123,7 @@
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2018/02/18 v1.0u-u02 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2018/04/08 v1.0w-u02 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -460,14 +466,23 @@
 %    \end{macrocode}
 %
 %\ifJAPANESE
-% フォーマット作成時に\upLaTeX{}のバージョンがわかるように、
-% 端末に表示します。
+% 以前のバージョンでは、フォーマット作成時に\upLaTeX{}のバージョンが
+% わかるように、端末に表示していましたが、|\everyjob| にバナー表示
+% 以外のコードが含まれる可能性を考慮し、安全のためやめました。
+% \changes{v1.0w-u02}{2018/04/08}{安全のためフォーマット作成時の
+%    バナー表示をやめた
+%     (based on platex.dtx 2018/04/08 v1.0w)}
 %\else
-% Display \upLaTeX\ version on the terminal, so that
-% it can be easily recognized during format creation.
+% In the previous version, we displayed \upLaTeX\ version
+% on the terminal, so that it can be easily recognized
+% during format creation; however |\everyjob| can contain
+% any code other than showing a banner, so now disabled.
+% \changes{v1.0w-u02}{2018/04/08}{Stop showing banner during
+%    format generation for safety
+%     (based on platex.dtx 2018/04/08 v1.0w)}
 %\fi
 %    \begin{macrocode}
-\the\everyjob
+%\the\everyjob
 %    \end{macrocode}
 %
 %\ifJAPANESE
