@@ -28,13 +28,14 @@
 % \changes{v1.0b-u02}{2018/01/27}{up\TeX{}の将来の変更に備え、
 %      Latin-1 Supplementのうち属性がLatinのもの
 %      (Latin-1 letters)をコードポイントで指定}
+% \changes{v1.0b-u03}{2018/04/08}{\LaTeX\ 2018-04-01対策}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2018/01/27 v1.0b-u02 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2018/04/08 v1.0b-u03 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -128,6 +129,17 @@
 % \changes{v1.0b-u02}{2018/01/27}{up\TeX{}の将来の変更に備え、
 %      Latin-1 Supplementのうち属性がLatinのもの
 %      (Latin-1 letters)をコードポイントで指定}
+%
+% なお、以下で複数回登場する |"AA| と |"BA| はそれぞれªとºですが、
+% \LaTeXe\ 2018-04-01でUTF-8入力になった影響で、これらの文字は
+% |macrocode| 環境内のコードに（たとえ |%| に続くコメントであっても）
+% 書けなくなってしまったようです。これらの文字で
+% docstrip処理中にエラー
+%\begin{verbatim}
+%   ! Argument of \@font@info has an extra }.
+%\end{verbatim}
+% が出ないように、コメントからも削除しました。
+% \changes{v1.0b-u03}{2018/04/08}{\LaTeX\ 2018-04-01対策}
 %
 %    \begin{macrocode}
 %%全角文字
@@ -234,8 +246,8 @@
 \postbreakpenalty`¿=10000
 \prebreakpenalty`ː=10000
 \prebreakpenalty`·=10000
-\prebreakpenalty"AA=10000% ª
-\prebreakpenalty"BA=10000% º
+\prebreakpenalty"AA=10000
+\prebreakpenalty"BA=10000
 \prebreakpenalty`¹=10000
 \prebreakpenalty`²=10000
 \prebreakpenalty`³=10000
@@ -264,8 +276,8 @@
 %%
 %%\postbreakpenalty`¡=10000
 %%\postbreakpenalty`¿=10000
-%%\prebreakpenalty"BA=10000% º
-%%\prebreakpenalty"AA=10000% ª
+%%\prebreakpenalty"BA=10000
+%%\prebreakpenalty"AA=10000
 \prebreakpenalty`™=10000
 %%
 %% kinsoku  半角片仮名
@@ -519,8 +531,8 @@
 \inhibitxspcode`⁉=1
 \inhibitxspcode`¡=2
 \inhibitxspcode`¿=2
-\inhibitxspcode"AA=1% ª
-\inhibitxspcode"BA=1% º
+\inhibitxspcode"AA=1
+\inhibitxspcode"BA=1
 \inhibitxspcode`¹=1
 \inhibitxspcode`²=1
 \inhibitxspcode`³=1
@@ -530,8 +542,8 @@
 %%
 %%\inhibitxspcode`¡=2
 %%\inhibitxspcode`¿=2
-%%\inhibitxspcode"BA=1% º
-%%\inhibitxspcode"AA=1% ª
+%%\inhibitxspcode"BA=1
+%%\inhibitxspcode"AA=1
 \inhibitxspcode`™=1
 %%
 %% inhibitxspcode  半角片仮名
