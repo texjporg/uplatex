@@ -1,6 +1,6 @@
 STRIPTARGET = uplatex.ltx ujarticle.cls
 DOCTARGET = uplatex upldoc \
-	uplatex-en
+	uplatex-en upldoc-en
 PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
 DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
 KANJI = -kanji=utf8
@@ -50,12 +50,12 @@ upldoc.dvi: $(PLDOC_SRC)
 	rm -f uplatex.cfg
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
-	rm -f mkpldoc.sh #dstcheck.pl
+	rm -f mkpldoc*.sh #dstcheck.pl
 	uplatex $(KANJI) Xins.ins
 	sh mkpldoc.sh
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
-	rm ltxdoc.cfg upldoc.dic mkpldoc.sh #dstcheck.pl
+	rm ltxdoc.cfg upldoc.dic mkpldoc*.sh #dstcheck.pl
 
 uplatex-en.dvi: $(INTRODOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
@@ -67,11 +67,26 @@ uplatex-en.dvi: $(INTRODOC_SRC)
 	rm uplatex-en.glo uplatex-en.gls uplatex-en.ilg
 	rm uplatex.cfg
 
+upldoc-en.dvi: $(PLDOC_SRC)
+	# built-in echo in shell is troublesome, so use perl instead
+	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
+	rm -f upldoc.tex Xins.ins
+	uplatex $(KANJI) upldocs.ins
+	rm -f mkpldoc*.sh #dstcheck.pl
+	uplatex $(KANJI) Xins.ins
+	sh mkpldoc-en.sh
+	rm *.aux *.log upldoc-en.toc upldoc-en.idx upldoc-en.ind upldoc-en.ilg
+	rm upldoc-en.glo upldoc-en.gls upldoc.tex Xins.ins
+	rm ltxdoc.cfg upldoc.dic mkpldoc*.sh #dstcheck.pl
+	rm uplatex.cfg
+
 uplatex.pdf: uplatex.dvi
 	dvipdfmx $(FONTMAP) $<
 upldoc.pdf: upldoc.dvi
 	dvipdfmx $(FONTMAP) $<
 uplatex-en.pdf: uplatex-en.dvi
+	dvipdfmx $(FONTMAP) $<
+upldoc-en.pdf: upldoc-en.dvi
 	dvipdfmx $(FONTMAP) $<
 
 .PHONY: install clean cleanstrip cleanall cleandoc

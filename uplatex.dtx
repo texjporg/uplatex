@@ -1047,11 +1047,11 @@ all others indicate the places where it is used.}
 %
 %    \begin{macrocode}
 %<*shprog>
-for f in upldoc.toc upldoc.idx upldoc.glo ; do
-if [ -e $f ]; then rm $f; fi
-done
+%<ja>rm -f upldoc.toc upldoc.idx upldoc.glo
+%<en>rm -f upldoc-en.toc upldoc-en.idx upldoc-en.glo
 echo "" > ltxdoc.cfg
-uplatex upldoc.tex
+%<ja>uplatex upldoc.tex
+%<en>uplatex -jobname=upldoc-en upldoc.tex
 %    \end{macrocode}
 %\ifJAPANESE
 % 変更履歴や索引の生成にはmendexを用いますが、
@@ -1069,12 +1069,16 @@ uplatex upldoc.tex
 % therefore, we don't need to add \texttt{-kanji=utf8} explicitly.}
 %\fi
 %    \begin{macrocode}
-mendex -U -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
-mendex -U -f -s gglo.ist -o upldoc.gls upldoc.glo
+%<ja>mendex -U -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
+%<en>mendex -U -s gind.ist -d upldoc.dic -o upldoc-en.ind upldoc-en.idx
+%<ja>mendex -U -f -s gglo.ist -o upldoc.gls upldoc.glo
+%<en>mendex -U -f -s gglo.ist -o upldoc-en.gls upldoc-en.glo
 echo "\includeonly{}" > ltxdoc.cfg
-uplatex upldoc.tex
+%<ja>uplatex upldoc.tex
+%<en>uplatex -jobname=upldoc-en upldoc.tex
 echo "" > ltxdoc.cfg
-uplatex upldoc.tex
+%<ja>uplatex upldoc.tex
+%<en>uplatex -jobname=upldoc-en upldoc.tex
 # EOT
 %</shprog>
 %    \end{macrocode}
@@ -1126,7 +1130,8 @@ uplatex upldoc.tex
 %
 %    \begin{macrocode}
 \generate{
-   \file{mkpldoc.sh}{\from{uplatex.dtx}{shprog}}
+   \file{mkpldoc.sh}{\from{uplatex.dtx}{shprog,ja}}
+   \file{mkpldoc-en.sh}{\from{uplatex.dtx}{shprog,en}}
 }
 \endbatchfile
 %</Xins>
