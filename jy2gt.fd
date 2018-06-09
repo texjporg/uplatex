@@ -15,11 +15,12 @@
 %% 
 %% File: uplfonts.dtx
 \ProvidesFile{jy2gt.fd}
-       [2018/02/04 v1.6l-u02 KANJI font defines]
+       [2018/06/09 v1.6q-u02 KANJI font defines]
 \DeclareKanjiFamily{JY2}{gt}{}
 \DeclareRelationFont{JY2}{gt}{m}{}{T1}{cmr}{bx}{}
 \DeclareFontShape{JY2}{gt}{m}{n}{<->s*[0.962216]upjisg-h}{}
 \DeclareFontShape{JY2}{gt}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{gt}{b}{n}{<->ssub*gt/bx/n}{}
 \endinput
 %%
 %% End of file `jy2gt.fd'.

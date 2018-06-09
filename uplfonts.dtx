@@ -51,13 +51,15 @@
 %    up\LaTeX{}用の最小限の変更だけを定義するようにした}
 % \changes{v1.6l-u02}{2018/02/04}{p\LaTeX{}の変更に追随。
 %     (based on plfonts.dtx 2018/02/04 v1.6l)}
+% \changes{v1.6q-u02}{2018/06/09}{p\LaTeX{}の変更に追随。
+%     (based on plfonts.dtx 2018/06/09 v1.6q)}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplfonts.dtx}[2018/02/04 v1.6l-u02 upLaTeX New Font Selection Scheme]
+\ProvidesFile{uplfonts.dtx}[2018/06/09 v1.6q-u02 upLaTeX New Font Selection Scheme]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplfonts.dtx}
@@ -405,13 +407,15 @@
 %<JY2gt>\ProvidesFile{jy2gt.fd}
 %<JT2mc>\ProvidesFile{jt2mc.fd}
 %<JT2gt>\ProvidesFile{jt2gt.fd}
-%<JY2mc,JY2gt,JT2mc,JT2gt>       [2018/02/04 v1.6l-u02 KANJI font defines]
+%<JY2mc,JY2gt,JT2mc,JT2gt>       [2018/06/09 v1.6q-u02 KANJI font defines]
 %    \end{macrocode}
 % 横組用、縦組用ともに、
 % 明朝体のシリーズ|bx|がゴシック体となるように宣言しています。
-% \changes{v1.2}{1995/11/24}{it, sl, sc の宣言を外した}
+% \changes{v1.2}{1995/11/24}{it, sl, scの宣言を外した}
 % \changes{v1.3b}{1997/01/29}{フォント定義ファイルのサイズ指定の調整}
 % \changes{v1.3b}{1997/03/11}{すべてのサイズをロード可能にした}
+% また、シリーズ|b|は同じ書体の|bx|と等価になるように宣言します。
+% \changes{v1.6q}{2018/06/09}{シリーズbもbxと同様に宣言}
 %
 % p\LaTeX{}では従属書体にOT1エンコーディングを指定していましたが、
 % up\LaTeX{}ではT1エンコーディングを用いるように変更しました。
@@ -429,6 +433,7 @@
 \DeclareRelationFont{JY2}{mc}{bx}{}{T1}{cmr}{bx}{}
 \DeclareFontShape{JY2}{mc}{m}{n}{<->s*[0.962216]upjisr-h}{}
 \DeclareFontShape{JY2}{mc}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{mc}{b}{n}{<->ssub*mc/bx/n}{}
 %</JY2mc>
 %<*JT2mc>
 \DeclareKanjiFamily{JT2}{mc}{}
@@ -436,18 +441,21 @@
 \DeclareRelationFont{JT2}{mc}{bx}{}{T1}{cmr}{bx}{}
 \DeclareFontShape{JT2}{mc}{m}{n}{<->s*[0.962216]upjisr-v}{}
 \DeclareFontShape{JT2}{mc}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{mc}{b}{n}{<->ssub*mc/bx/n}{}
 %</JT2mc>
 %<*JY2gt>
 \DeclareKanjiFamily{JY2}{gt}{}
 \DeclareRelationFont{JY2}{gt}{m}{}{T1}{cmr}{bx}{}
 \DeclareFontShape{JY2}{gt}{m}{n}{<->s*[0.962216]upjisg-h}{}
 \DeclareFontShape{JY2}{gt}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JY2}{gt}{b}{n}{<->ssub*gt/bx/n}{}
 %</JY2gt>
 %<*JT2gt>
 \DeclareKanjiFamily{JT2}{gt}{}
 \DeclareRelationFont{JT2}{gt}{m}{}{T1}{cmr}{bx}{}
 \DeclareFontShape{JT2}{gt}{m}{n}{<->s*[0.962216]upjisg-v}{}
 \DeclareFontShape{JT2}{gt}{bx}{n}{<->ssub*gt/m/n}{}
+\DeclareFontShape{JT2}{gt}{b}{n}{<->ssub*gt/bx/n}{}
 %</JT2gt>
 %    \end{macrocode}
 %
