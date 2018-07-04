@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ujarticle}
-  [2018/02/04 v1.7h-u00
+  [2018/07/03 v1.8-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -765,7 +765,7 @@
   \kern2.6\p@}
 \newcommand\@makefntext[1]{\parindent 1em
   \noindent\hb@xt@ 1.8em{\hss\@makefnmark}#1}
-\newif\if西暦 \西暦false
+\newif\if西暦 \西暦true
 \def\西暦{\西暦true}
 \def\和暦{\西暦false}
 \newcount\heisei \heisei\year \advance\heisei-1988\relax
