@@ -1,6 +1,6 @@
 STRIPTARGET = uplatex.ltx ujarticle.cls
 DOCTARGET = uplatex upldoc \
-	uplatex-en upldoc-en
+	uplatex-en #upldoc-en
 PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
 DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
 KANJI = -kanji=utf8
