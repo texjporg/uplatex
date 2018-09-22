@@ -81,9 +81,15 @@
 %    \file{plcore.ltx}を読み込むようにした（最近の\pLaTeX{}が前提）}
 % \changes{v1.0u-u02}{2018/02/18}{\pLaTeX{}の変更に追随。
 %     (based on platex.dtx 2018/02/18 v1.0u)}
+% \changes{v1.0v-u02}{2018/04/06}{最新のsource2eへの追随
+%     (based on platex.dtx 2018/04/06 v1.0v)}
 % \changes{v1.0w-u02}{2018/04/08}{安全のためフォーマット作成時の
 %    バナー表示をやめた
 %     (based on platex.dtx 2018/04/08 v1.0w)}
+% \changes{v1.0x-u02}{2018/09/03}{ドキュメントを更新
+%     (based on platex.dtx 2018/09/03 v1.0x)}
+% \changes{v1.0y-u02}{2018/09/22}{最終更新日を\file{upldoc.pdf}に表示
+%     (based on platex.dtx 2018/09/22 v1.0y)}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
@@ -113,9 +119,15 @@
 %    \file{uplcore.ltx} (recent version of \pLaTeX\ is assumed)}
 % \changes{v1.0u-u02}{2018/02/18}{Sync with \pLaTeX.
 %     (based on platex.dtx 2018/02/18 v1.0u)}
+% \changes{v1.0v-u02}{2018/04/06}{Sync with the latest \file{source2e.tex}
+%     (based on platex.dtx 2018/04/06 v1.0v)}
 % \changes{v1.0w-u02}{2018/04/08}{Stop showing banner during
 %    format generation for safety
 %     (based on platex.dtx 2018/04/08 v1.0w)}
+% \changes{v1.0x-u02}{2018/09/03}{Update document.
+%     (based on platex.dtx 2018/09/03 v1.0x)}
+% \changes{v1.0y-u02}{2018/09/22}{Show last update info on \file{upldoc.pdf}
+%     (based on platex.dtx 2018/09/22 v1.0y)}
 %\fi
 % \fi
 %
@@ -123,7 +135,7 @@
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2018/04/08 v1.0w-u02 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2018/09/22 v1.0y-u02 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -188,25 +200,29 @@
 % \changes{v1.0k-u01}{2016/06/06}{\upLaTeX{}用にドキュメントを全体的に改訂}
 % \changes{v1.0q-u01}{2017/11/29}{英語版ドキュメントを追加
 %     (based on platex.dtx 2017/11/29 v1.0q)}
+% \changes{v1.0x-u02}{2018/09/03}{ドキュメントを更新
+%     (based on platex.dtx 2018/09/03 v1.0x)}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
 % \changes{v1.0k-u01}{2016/06/06}{Update documents for \upLaTeX.}
 % \changes{v1.0q-u01}{2017/11/29}{New English documentation added!
 %     (based on platex.dtx 2017/11/29 v1.0q)}
+% \changes{v1.0x-u02}{2018/09/03}{Update document.
+%     (based on platex.dtx 2018/09/03 v1.0x)}
 %\fi
-% \begin{chuui}
 %\ifJAPANESE
+% \begin{chuui}
 % この文書は、「コミュニティ版\pLaTeXe{}」をベースに\upTeX{}向けの調整を
 % 加えた、「コミュニティ版\upLaTeXe{}」の付属文書です。
-%\else
-% This document provides a brief description of \upLaTeXe, the Japanese
-% extended version of \LaTeXe. This version is based on
-% `\pLaTeXe\ Community Edition.'
-% It is now maintained by Japanese \TeX\ Development
-% Community\footnote{\texttt{https://texjp.org}}.
-%\fi
 % \end{chuui}
+%\else
+% \begin{chuui}[]
+% This document provides a brief description of \upLaTeXe, the Unicode
+% version of Japanese \pLaTeXe. This version is based on
+% `\pLaTeXe\ Community Edition.'
+% \end{chuui}
+%\fi
 %
 %\ifJAPANESE
 % アスキー\pTeX{}は、高品質の日本語組版ソフトウェアとしてデファクト
@@ -925,7 +941,8 @@ all others indicate the places where it is used.}
 \makeatletter
 \def\changes@#1#2#3{%
   \let\protect\@unexpandable@protect
-  \edef\@tempa{\noexpand\glossary{#2\space\currentfile\space#1\levelchar
+  \edef\@tempa{\noexpand\glossary{#2\space
+               \currentfile\space#1\levelchar
                \ifx\saved@macroname\@empty
                   \space\actualchar\generalname
                \else
@@ -937,6 +954,14 @@ all others indicate the places where it is used.}
                \fi
                :\levelchar #3}}%
   \@tempa\endgroup\@esphack}
+\renewcommand*\MacroFont{\fontencoding\encodingdefault
+                   \fontfamily\ttdefault
+                   \fontseries\mddefault
+                   \fontshape\updefault
+                   \small
+                   \hfuzz 6pt\relax}
+\renewcommand*\l@subsection{\@dottedtocline{2}{1.5em}{2.8em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{3.8em}{3.4em}}
 \makeatother
 \RecordChanges
 \CodelineIndex
@@ -945,24 +970,27 @@ all others indicate the places where it is used.}
 \settowidth\MacroIndent{\ttfamily\scriptsize 000\ }
 %    \end{macrocode}
 %\ifJAPANESE
-% ここからが本文ページとなります。
+% この文書のタイトル・著者・日付を設定します。
 % \changes{v1.0h-u00}{2016/05/08}{ドキュメントから\file{uplpatch.ltx}を除外
 %     (based on platex.dtx 2016/05/08 v1.0h)}
 % \changes{v1.0l-u01}{2016/06/19}{パッチレベルを\file{uplvers.dtx}から取得
 %     (based on platex.dtx 2016/06/19 v1.0l)}
+% \changes{v1.0y-u02}{2018/09/22}{最終更新日を\file{upldoc.pdf}に表示
+%     (based on platex.dtx 2018/09/22 v1.0y)}
 %\else
-% Here starts the document body.
+% Set the title, authors and the date for this document.
 % \changes{v1.0h-u00}{2016/05/08}{Exclude \file{uplpatch.ltx} from the document
 %     (based on platex.dtx 2016/05/08 v1.0h)}
 % \changes{v1.0l-u01}{2016/06/19}{Get the patch level from \file{uplvers.dtx}
 %     (based on platex.dtx 2016/06/19 v1.0l)}
+% \changes{v1.0y-u02}{2018/09/22}{Show last update info on \file{upldoc.pdf}
+%     (based on platex.dtx 2018/09/22 v1.0y)}
 %\fi
 %    \begin{macrocode}
-\begin{document}
  \title{The \upLaTeXe\ Sources}
  \author{Ken Nakano \& Japanese \TeX\ Development Community \& TTK}
 
-% Get the date and patch level from uplvers.dtx
+% Get the (temporary) date and up-patch level from uplvers.dtx
 \makeatletter
 \let\patchdate=\@empty
 \begingroup
@@ -976,8 +1004,35 @@ all others indicate the places where it is used.}
 \ifx\patchdate\Xpatch\else
   \edef\@date{\@date\space version \patchdate}
 \fi
-\makeatother
 
+% Obtain the last update info, as upLaTeX does not change format date
+% -> if successful, reconstruct the date completely
+\def\lastupd@te{0000/00/00}
+\begingroup
+   \def\ProvidesFile#1[#2 #3]{%
+      \def\@tempd@te{#2}\endinput
+      \@ifl@t@r{\@tempd@te}{\lastupd@te}{%
+         \global\let\lastupd@te\@tempd@te
+      }{}}
+   \let\ProvidesClass\ProvidesFile
+   \let\ProvidesPackage\ProvidesFile
+   \input{uplvers.dtx}
+   \input{uplfonts.dtx}
+   \input{ukinsoku.dtx}
+   \input{ujclasses.dtx}
+\endgroup
+\@ifl@t@r{\lastupd@te}{0000/00/00}{%
+  \date{Version \patchdate\break (last updated: \lastupd@te)}%
+}{}
+\makeatother
+%    \end{macrocode}
+%\ifJAPANESE
+% ここからが本文ページとなります。
+%\else
+% Here starts the document body.
+%\fi
+%    \begin{macrocode}
+\begin{document}
 \pagenumbering{roman}
 \maketitle
 \renewcommand\maketitle{}
