@@ -95,7 +95,7 @@ install:
 	cp ./LICENSE ${TEXMF}/doc/uplatex/base/
 	cp ./README.md ${TEXMF}/doc/uplatex/base/
 	cp ./*.pdf ${TEXMF}/doc/uplatex/base/
-	cp ./*.txt ${TEXMF}/doc/uplatex/base/
+	#cp ./*.txt ${TEXMF}/doc/uplatex/base/
 	mkdir -p ${TEXMF}/source/uplatex/base
 	cp ./Makefile ${TEXMF}/source/uplatex/base/
 	cp ./*.dtx ${TEXMF}/source/uplatex/base/
