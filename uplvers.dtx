@@ -14,6 +14,23 @@
 %
 % \fi
 %
+% \iffalse
+%<*driver>
+\ifx\JAPANESEtrue\undefined
+  \expandafter\newif\csname ifJAPANESE\endcsname
+  \JAPANESEtrue
+\fi
+\def\eTeX{$\varepsilon$-\TeX}
+\def\pTeX{p\kern-.15em\TeX}
+\def\epTeX{$\varepsilon$-\pTeX}
+\def\pLaTeX{p\kern-.05em\LaTeX}
+\def\pLaTeXe{p\kern-.05em\LaTeXe}
+\def\upTeX{u\pTeX}
+\def\eupTeX{$\varepsilon$-\upTeX}
+\def\upLaTeX{u\pLaTeX}
+\def\upLaTeXe{u\pLaTeXe}
+%</driver>
+% \fi
 %
 % \setcounter{StandardModuleDepth}{1}
 % \StopEventually{}
