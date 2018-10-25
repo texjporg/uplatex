@@ -107,6 +107,9 @@
 % \changes{v1.7h-u00}{2018/02/04}{p\LaTeX{}用に追随}
 % \changes{v1.8}{2018/07/03}{\cs{today}のデフォルトを和暦から西暦に変更}
 % \changes{v1.8-u00}{2018/07/03}{p\LaTeX{}用に追随}
+% \changes{v1.8a}{2018/10/25}{ファイル書き出し時の行末文字対策
+%    (sync with ltsect.dtx 2018/09/26 v1.1c)}
+% \changes{v1.8a-u00}{2018/10/25}{p\LaTeX{}用に追随}
 % \fi
 %
 % \iffalse
@@ -136,7 +139,7 @@
 %<11pt&bk>\ProvidesFile{utbk11.clo}
 %<12pt&bk>\ProvidesFile{utbk12.clo}
 %</tate>
-  [2018/07/03 v1.8-u00
+  [2018/10/25 v1.8a-u00
 %<article|report|book> Standard upLaTeX class]
 %<10pt|11pt|12pt>  Standard upLaTeX file (size option)]
 %<*driver>
@@ -3896,7 +3899,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@tocmarg}
+% \begin{macro}{\@tocrmarg}
 % 複数行にわたる場合の右マージンです。
 %    \begin{macrocode}
 \newcommand{\@tocrmarg}{2.55em}
@@ -3975,14 +3978,18 @@
 % ^^A このコマンドによる影響はありません。
 %
 % このマクロは\file{ltsect.dtx}で定義されています。
+% \changes{v1.8a}{2018/10/25}{ファイル書き出し時の行末文字対策
+%    (sync with ltsect.dtx 2018/09/26 v1.1c)}
 %    \begin{macrocode}
+\providecommand*\protected@file@percent{}
 \def\addcontentsline#1#2#3{%
   \protected@write\@auxout
     {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble
-%<tate>\@temptokena{\rensuji{\thepage}}}%
-%<yoko>\@temptokena{\thepage}}%
+%<tate>     \@temptokena{\rensuji{\thepage}}}%
+%<yoko>     \@temptokena{\thepage}}%
     {\string\@writefile{#1}%
-       {\protect\contentsline{#2}{#3}{\the\@temptokena}}}%
+       {\protect\contentsline{#2}{#3}{\the\@temptokena}%
+        \protected@file@percent}}%
 }
 %    \end{macrocode}
 % \end{macro}
