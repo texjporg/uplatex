@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{ujreport}
-  [2018/10/25 v1.8a-u00
+  [2019/04/02 v1.8b-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -870,27 +870,36 @@
 \def\西暦{\西暦true}
 \def\和暦{\西暦false}
 \newcount\heisei \heisei\year \advance\heisei-1988\relax
-\def\today{{%
-  \iftdir
-    \if西暦
-      \kansuji\number\year 年
-      \kansuji\number\month 月
-      \kansuji\number\day 日
+\def\pltx@today@year@#1{%
+  \ifnum\numexpr\year-#1=1 元\else
+    \ifnum1=\iftdir\ifmdir0\else1\fi\else0\fi
+      \kansuji\number\numexpr\year-#1\relax
     \else
-      平成\ifnum\heisei=1 元年\else\kansuji\number\heisei 年\fi
-      \kansuji\number\month 月
-      \kansuji\number\day 日
+      \number\numexpr\year-#1\relax\nobreak
     \fi
+  \fi 年
+}
+\def\pltx@today@year{%
+  \ifnum\numexpr\year*10000+\month*100+\day<19890108
+    昭和\pltx@today@year@{1925}%
+  \else\ifnum\numexpr\year*10000+\month*100+\day<20190501
+    平成\pltx@today@year@{1988}%
   \else
-    \if西暦
-      \number\year~年
-      \number\month~月
-      \number\day~日
-    \else
-      平成\ifnum\heisei=1 元年\else\number\heisei~年\fi
-      \number\month~月
-      \number\day~日
-    \fi
+    令和\pltx@today@year@{2018}%
+  \fi\fi}
+\def\today{{%
+  \if西暦
+    \ifnum1=\iftdir\ifmdir0\else1\fi\else0\fi\kansuji\number\year
+    \else\number\year\nobreak\fi 年
+  \else
+    \pltx@today@year
+  \fi
+  \ifnum1=\iftdir\ifmdir0\else1\fi\else0\fi
+    \kansuji\number\month 月
+    \kansuji\number\day 日
+  \else
+    \number\month\nobreak 月
+    \number\day\nobreak 日
   \fi}}
 \newcommand{\prepartname}{第}
 \newcommand{\postpartname}{部}
