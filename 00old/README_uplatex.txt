@@ -6,14 +6,13 @@ upLaTeX standard format files and class files
   uplfmt.ins: "uptex uplfmt.ins" generates
      uplatex.ltx, uplcore.ltx, upldefs.ltx,
      jy2{mc,gt}.fd, jt2{mc,gt}.fd, uptrace.sty, ukinsoku.tex
-     from uplatex.dtx, uplvers.dtx, uplfonts.dtx, plcore.dtx, ukinsoku.dtx
+     from uplatex.dtx, uplvers.dtx, uplfonts.dtx, ukinsoku.dtx
   uplcls.ins: "uptex uplcls.ins" generates
      ujarticle.cls, ujreport.cls, ujbook.cls, ujsize{10,11,12}.clo, ujbk{10,11,12}.clo, 
      utarticle.cls, utreport.cls, utbook.cls, utsize{10,11,12}.clo, utbk{10,11,12}.clo
      from ujclasses.dtx
 ## dtx files
-  uplatex.dtx, uplvers.dtx, plcore.dtx: for format files
-     plcore.dtx is as same as that of original pLaTeX2e <2006/11/10>.
+  uplatex.dtx, uplvers.dtx: for format files.
   uplfonts.dtx: for font files.
   ukinsoku.dtx: for kinsoku file.
   ujclasses.dtx: for class files.
@@ -23,44 +22,14 @@ upLaTeX standard format files and class files
 
 
 #### Copyright
-The files in this directory are
-based on "texmf library for Japanese TeX (pTeX)"
-by ASCII Corporation (currently ASCII MEDIA WORKS Inc.)
-and modified for upTeX/upLaTeX.
-These are available under the following license agreement.
 
-===============================================================================
-
-Copyright (C) 1987, 1995 ASCII Corporation.
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met:
-
-1. Redistributions of source code must retain the above copyright
-   notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above copyright
-   notice, this list of conditions and the following disclaimer in the
-   documentation and/or other materials provided with the distribution.
-3. Neither the name of the author may be used to endorse or promote products
-   derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
-IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
-INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
-THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-===============================================================================
+See a file LICENSE.
 
 
 #### ChangeLog
+
+Since 2016-04-17, upLaTeX is maintained by Japanese TeX Development Community.
+See https://github.com/texjporg/uplatex/releases for recent changes.
 
 uptex-1.20 [2014/12/29] TTK
   * re-package for upTeX/upLaTeX Ver.1.20 distribution.
