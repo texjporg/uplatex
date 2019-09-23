@@ -31,13 +31,14 @@
 % \changes{v1.0b-u03}{2018/04/08}{\LaTeX\ 2018-04-01対策}
 % \changes{v1.0b-u04}{2019/01/29}{内部Unicode化されていることを確認}
 % \changes{v1.0b-u05}{2019/05/19}{up\TeX~v1.24の\cs{kcatcode}の既定値のバグ回避}
+% \changes{v1.0b-u06}{2019/09/22}{バグ回避コードがかえって有害なため除去}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2019/05/19 v1.0b-u05 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2019/09/22 v1.0b-u06 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -73,21 +74,8 @@
 \fi
 %    \end{macrocode}
 %
-% up\TeX~v1.24で``Halfwidth and Fullwidth Forms''のブロックの|\kcatcode|の既定値に
-% バグが入ったため、回避策を講じます（このバグはv1.25で修正済み）。
 % \changes{v1.0b-u05}{2019/05/19}{up\TeX~v1.24の\cs{kcatcode}の既定値のバグ回避}
-%    \begin{macrocode}
-%%
-%% default kcatcode, workaround for upTeX 1.24
-\edef\upTeXVersionNumber{\the\uptexversion\uptexrevision}%
-\def\upTeXRevIpXXIV{1.24}%
-\ifx\upTeXVersionNumber\upTeXRevIpXXIV
- \kcatcode"FF00=16% Halfwidth and Fullwidth Forms -> 16(kanji)
- \message{### special kcatcode setting to work around for upTeX 1.24 ###}
-\fi
-\let\upTeXVersionNumber\relax
-\let\upTeXRevIpXXIV\relax
-%    \end{macrocode}
+% \changes{v1.0b-u06}{2019/09/22}{バグ回避コードがかえって有害なため除去}
 %
 % \section{禁則}
 %
