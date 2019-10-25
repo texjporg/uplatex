@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesFile{ujbk12.clo}
-  [2019/10/17 v1.8c-u00
+  [2019/10/25 v1.8d-u00
   Standard upLaTeX file (size option)]
 \renewcommand{\normalsize}{%
     \@setfontsize\normalsize\@xiipt{16.5}%
@@ -26,7 +26,9 @@
    \belowdisplayskip \abovedisplayskip
    \let\@listi\@listI}
 \normalsize
-\MakeRobust\normalsize
+\ifx\MakeRobust\@undefined \else
+  \MakeRobust\normalsize
+\fi
 \setbox0\hbox{\char\jis"3441}%
 \setlength\Cht{\ht0}
 \setlength\Cdp{\dp0}
