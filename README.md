@@ -1,7 +1,10 @@
 # uplatex
 
-The bundle provides pLaTeX2e macros for [upTeX by Takuji Tanaka](http://www.t-lab.opal.ne.jp/tex/uptex_en.html).
-This is a community edition syncing with [platex](https://github.com/texjporg/platex).
+The bundle provides pLaTeX2e format
+for [upTeX by Takuji Tanaka](http://www.t-lab.opal.ne.jp/tex/uptex_en.html).
+This is a community edition maintained by
+[Japanese TeX Development Community](http://texjp.org),
+syncing with [platex](https://github.com/texjporg/platex).
 
 ## Repository
 
