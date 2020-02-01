@@ -65,12 +65,13 @@
 % \changes{v1.1h-u02}{2018/02/18}{p\LaTeX{}の変更に追随。
 %     (based on plvers.dtx 2018/01/10 v1.1h)}
 % \changes{v1.1i-u02}{2018/03/31}{p\LaTeXe\ 2018/03/09以降必須}
+% \changes{v1.1r-u03}{2020/02/01}{p\LaTeXe\ 2020/02/02以降必須}
 % \fi
 %
 % \iffalse
 %<*driver>
 % \fi
-\ProvidesFile{uplvers.dtx}[2018/03/31 v1.1i-u02 upLaTeX Kernel (Version Info)]
+\ProvidesFile{uplvers.dtx}[2020/02/01 v1.1r-u03 upLaTeX Kernel (Version Info)]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{uplvers.dtx}
@@ -87,17 +88,18 @@
 % \section{up\LaTeXe{}のバージョンの設定}
 % まず、このディストリビューションでのup\LaTeXe{}の日付とバージョン番号
 % を定義します。
-% このバージョンのup\LaTeXe{}のフォーマット作成では、
+% 2018/03/09以降、up\LaTeXe{}のフォーマット作成では
 % p\LaTeXe{}が提供する\file{plcore.ltx}の後から
 % \file{uplcore.ltx}が読まれなければなりません。
-%
+% また、2020/02/02以降は|\textmc|や|\em|の定義も
+% \file{upldefs.ltx}ではなく共通の\file{plcore.ltx}に依存します。
+% そのため、p\LaTeX{}のバージョンを確認します。
 % \changes{v1.0q-u00}{2011/05/07}{p\LaTeX{}用からup\LaTeX{}用に修正。
 %     (based on plvers.dtx 2006/11/10 v1.0q)}
 % \changes{v1.1g-u02}{2017/12/10}{p\LaTeX{}との統合のため、
 %    up\LaTeX{}のバージョンと最小限の変更だけを定義するようにした}
-%
-% まず、次のバージョンのp\LaTeX{}が利用可能なことを確認します。
 % \changes{v1.1i-u02}{2018/03/31}{p\LaTeXe\ 2018/03/09以降必須}
+% \changes{v1.1r-u03}{2020/02/01}{p\LaTeXe\ 2020/02/02以降必須}
 %    \begin{macrocode}
 %<*plcore>
 \ifx\pfmtversion\@undefined
@@ -110,12 +112,12 @@
                 removing old `uplatex.ltx' and install the
                 latest one}\@@end
 \else
-  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20180309
+  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20200202
     \errhelp{Please update your TeX installation; if not available,
              obtain it^^Jmanually from CTAN
              (https://ctan.org/pkg/platex) or from^^JGitHub
              (https://github.com/texjporg/platex).}%
-    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2018/03/09
+    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2020/02/02
                 or newer!^^JObtain a newer version of `platex',
                 otherwise upLaTeX2e setup will^^Jnever succeed}\@@end
   \fi
@@ -128,11 +130,11 @@
 % \begin{macro}{\ppatch@level}
 % up\LaTeXe{}のフォーマットファイル名とバージョンです。
 % フォーマット名はp\LaTeXe{}のもの (\pfmtname) をそのまま引き継ぎ、
-% バージョンはp\LaTeXe{}のものの末尾に``u02''のようにサフィックスを付けます。
+% バージョンはp\LaTeXe{}のものの末尾に``u03''のようにサフィックスを付けます。
 %    \begin{macrocode}
 %<*plcore>
 %\def\pfmtname{pLaTeX2e}
-\def\uppatch@level{u02}
+\def\uppatch@level{u03}
 \edef\pfmtversion{\pfmtversion\uppatch@level}
 %</plcore>
 %    \end{macrocode}

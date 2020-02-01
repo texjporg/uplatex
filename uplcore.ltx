@@ -25,17 +25,17 @@
                 removing old `uplatex.ltx' and install the
                 latest one}\@@end
 \else
-  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20180309
+  \ifnum\expandafter\@parse@version\pfmtversion//00\@nil<20200202
     \errhelp{Please update your TeX installation; if not available,
              obtain it^^Jmanually from CTAN
              (https://ctan.org/pkg/platex) or from^^JGitHub
              (https://github.com/texjporg/platex).}%
-    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2018/03/09
+    \errmessage{This version of upLaTeX2e requires pLaTeX2e 2020/02/02
                 or newer!^^JObtain a newer version of `platex',
                 otherwise upLaTeX2e setup will^^Jnever succeed}\@@end
   \fi
 \fi
-\def\uppatch@level{u02}
+\def\uppatch@level{u03}
 \edef\pfmtversion{\pfmtversion\uppatch@level}
 %% File: uplvers.dtx
 \def\documentstyle{%

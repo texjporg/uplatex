@@ -32,7 +32,7 @@
 \newcommand\kanjiencodingdefault{JY2}
 \newcommand\kanjifamilydefault{\mcdefault}
 \newcommand\kanjiseriesdefault{\mddefault}
-\newcommand\kanjishapedefault{\updefault}
+\newcommand\kanjishapedefault{n}% formerly \updefault
 \kanjiencoding{JY2}
 \input{jy2mc.fd}
 \input{jy2gt.fd}
@@ -40,12 +40,6 @@
 \input{jt2gt.fd}
 \fontencoding{JT2}\selectfont
 \fontencoding{JY2}\selectfont
-\DeclareTextFontCommand{\textmc}{\mcfamily}
-\DeclareTextFontCommand{\textgt}{\gtfamily}
-\DeclareRobustCommand\em
-        {\@nomath\em \ifdim \fontdimen\@ne\font >\z@
-                       \eminnershape \else \gtfamily \itshape \fi}%
-\def\eminnershape{\mcfamily \upshape}%
 \DeclarePreloadSizes{JY2}{mc}{m}{n}{5,7,10,12}
 \DeclarePreloadSizes{JY2}{gt}{m}{n}{5,7,10,12}
 \DeclarePreloadSizes{JT2}{mc}{m}{n}{5,7,10,12}
@@ -63,11 +57,6 @@
 \xkanjiskip=.25zw plus1pt minus1pt
 \autoxspacing
 \jcharwidowpenalty=500
-\ifx\protected\@undefined
-\def\<{\inhibitglue}
-\else
-\protected\def\<{\ifvmode\leavevmode\fi\inhibitglue}
-\fi
 \endinput
 %%
 %% End of file `upldefs.ltx'.

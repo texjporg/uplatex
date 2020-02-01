@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{utbook}
-  [2019/10/25 v1.8d-u00
+  [2020/01/03 v1.8e-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -599,16 +599,17 @@
          \usecounter{\@enumctr}%
          \def\makelabel##1{\hss\llap{##1}}}%
    \fi}{\endlist}
-\newcommand{\labelitemi}{\textbullet}
+\newcommand{\labelitemi}{\labelitemfont \textbullet}
 \newcommand{\labelitemii}{%
   \iftdir
-     {\textcircled{~}}
+     {\labelitemfont \textcircled{~}}
   \else
-     {\normalfont\bfseries\textendash}
+     {\labelitemfont \bfseries\textendash}
   \fi
 }
-\newcommand{\labelitemiii}{\textasteriskcentered}
-\newcommand{\labelitemiv}{\textperiodcentered}
+\newcommand{\labelitemiii}{\labelitemfont \textasteriskcentered}
+\newcommand{\labelitemiv}{\labelitemfont \textperiodcentered}
+\newcommand\labelitemfont{\normalfont}
 \renewenvironment{itemize}
   {\ifnum \@itemdepth >\thr@@\@toodeep\else
    \advance\@itemdepth\@ne
