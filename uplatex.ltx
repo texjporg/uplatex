@@ -30,6 +30,7 @@
                      * Local config file upldefs.cfg used^^J%
                      *************************************}}%
            {\input{upldefs.ltx}}
+\ifx\code@after@pldefs\@undefined\else \code@after@pldefs \fi
 \everyjob\expandafter{%
   \the\everyjob
   \IfFileExists{uplatex.cfg}{%
