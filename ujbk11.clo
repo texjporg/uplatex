@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesFile{ujbk11.clo}
-  [2020/01/03 v1.8e-u00
+  [2020/09/30 v1.8f-u00
   Standard upLaTeX file (size option)]
 \renewcommand{\normalsize}{%
     \@setfontsize\normalsize\@xipt{15.5}%

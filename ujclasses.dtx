@@ -122,6 +122,10 @@
 % \changes{v1.8e}{2020/01/03}{Normalize label fonts
 %    (sync with classes.dtx 2019/12/20 v1.4l)}
 % \changes{v1.8e-u00}{2020/01/03}{p\LaTeX{}用に追随}
+% \changes{v1.8f}{2020/09/30}{add a fourth argument for better
+%    hyperref compability
+%    (sync with ltsect.dtx 2020/07/27 v1.1e)}
+% \changes{v1.8f-u00}{2020/09/30}{p\LaTeX{}用に追随}
 % \fi
 %
 % \iffalse
@@ -151,7 +155,7 @@
 %<11pt&bk>\ProvidesFile{utbk11.clo}
 %<12pt&bk>\ProvidesFile{utbk12.clo}
 %</tate>
-  [2020/01/03 v1.8e-u00
+  [2020/09/30 v1.8f-u00
 %<article|report|book> Standard upLaTeX class]
 %<10pt|11pt|12pt>  Standard upLaTeX file (size option)]
 %<*driver>
@@ -4015,21 +4019,23 @@
 %
 % \begin{macro}{\addcontentsline}
 % 縦組の場合にページ番号を|\rensuji|で囲むように変更します。
-% ^^A 横組のときにも`|\rensuji|'コマンドが出力されますが、
-% ^^A このコマンドによる影響はありません。
 %
 % このマクロは\file{ltsect.dtx}で定義されています。
+% ^^A 命令 |\addcontentsline| と |\addtocontents| を組み合わせ
 % \changes{v1.8a}{2018/10/25}{ファイル書き出し時の行末文字対策
 %    (sync with ltsect.dtx 2018/09/26 v1.1c)}
+% \changes{v1.8f}{2020/09/30}{add a fourth argument for better
+%    hyperref compability
+%    (sync with ltsect.dtx 2020/07/27 v1.1e)}
 %    \begin{macrocode}
 \providecommand*\protected@file@percent{}
 \def\addcontentsline#1#2#3{%
   \protected@write\@auxout
     {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble
-%<tate>     \@temptokena{\rensuji{\thepage}}}%
-%<yoko>     \@temptokena{\thepage}}%
-    {\string\@writefile{#1}%
-       {\protect\contentsline{#2}{#3}{\the\@temptokena}%
+%<tate>     \@temptokena{\rensuji{\thepage}}%
+%<yoko>     \@temptokena{\thepage}%
+    }{\string\@writefile{#1}%
+       {\protect\contentsline{#2}{#3}{\the\@temptokena}{}%
         \protected@file@percent}}%
 }
 %    \end{macrocode}

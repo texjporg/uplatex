@@ -16,7 +16,7 @@
 %% File: ujclasses.dtx
 \NeedsTeXFormat{pLaTeX2e}
 \ProvidesClass{utarticle}
-  [2020/01/03 v1.8e-u00
+  [2020/09/30 v1.8f-u00
  Standard upLaTeX class]
 \newcounter{@paper}
 \newif\if@landscape \@landscapefalse
@@ -675,9 +675,9 @@
 \def\addcontentsline#1#2#3{%
   \protected@write\@auxout
     {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble
-     \@temptokena{\rensuji{\thepage}}}%
-    {\string\@writefile{#1}%
-       {\protect\contentsline{#2}{#3}{\the\@temptokena}%
+     \@temptokena{\rensuji{\thepage}}%
+    }{\string\@writefile{#1}%
+       {\protect\contentsline{#2}{#3}{\the\@temptokena}{}%
         \protected@file@percent}}%
 }
 \newcommand{\tableofcontents}{%
