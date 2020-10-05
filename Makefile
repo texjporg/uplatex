@@ -3,10 +3,14 @@ DOCTARGET = uplatex upldoc \
 	uplatex-en #upldoc-en
 PDFTARGET = $(addsuffix .pdf,$(DOCTARGET))
 DVITARGET = $(addsuffix .dvi,$(DOCTARGET))
+TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
+
 KANJI = -kanji=utf8
 #FONTMAP = -f ipaex.map -f uptex-ipaex.map
 FONTMAP = -f haranoaji.map -f uptex-haranoaji.map
-TEXMF = $(shell kpsewhich -var-value=TEXMFHOME)
+LTX = uplatex $(KANJI)
+DPX = dvipdfmx $(FONTMAP)
+MDX = mendex -U
 
 default: $(STRIPTARGET) $(DVITARGET)
 strip: $(STRIPTARGET)
@@ -31,41 +35,41 @@ PLDOC_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx \
 
 uplatex.ltx: $(PLFMT_SRC)
 	rm -f $(PLFMT)
-	uplatex $(KANJI) uplfmt.ins
+	$(LTX) uplfmt.ins
 	rm uplfmt.log
 
 ujarticle.cls: $(PLCLS_SRC)
 	rm -f $(PLCLS)
-	uplatex $(KANJI) uplcls.ins
+	$(LTX) uplcls.ins
 	rm uplcls.log
 
 uplatex.dvi: $(INTRODOC_SRC)
 	rm -f uplatex.cfg
-	uplatex $(KANJI) uplatex.dtx
-	mendex -U -f -s gglo.ist -o uplatex.gls uplatex.glo
-	uplatex $(KANJI) uplatex.dtx
+	$(LTX) uplatex.dtx
+	$(MDX) -f -s gglo.ist -o uplatex.gls uplatex.glo
+	$(LTX) uplatex.dtx
 	rm uplatex.aux uplatex.log
 	rm uplatex.glo uplatex.gls uplatex.ilg
 
 upldoc.dvi: $(PLDOC_SRC)
 	rm -f uplatex.cfg
 	rm -f upldoc.tex Xins.ins
-	uplatex $(KANJI) upldocs.ins
+	$(LTX) upldocs.ins
 	#
 	#rm -f mkpldoc*.sh #dstcheck.pl
-	#uplatex $(KANJI) Xins.ins
+	#$(LTX) Xins.ins
 	#sh mkpldoc.sh
 	#rm mkpldoc*.sh #dstcheck.pl
 	#
 	rm -f upldoc.toc upldoc.idx upldoc.glo
 	echo "" > ltxdoc.cfg
-	uplatex $(KANJI) upldoc.tex
-	mendex -U -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
-	mendex -U -f -s gglo.ist -o upldoc.gls upldoc.glo
+	$(LTX) upldoc.tex
+	$(MDX) -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
+	$(MDX) -f -s gglo.ist -o upldoc.gls upldoc.glo
 	echo "\includeonly{}" > ltxdoc.cfg
-	uplatex $(KANJI) upldoc.tex
+	$(LTX) upldoc.tex
 	echo "" > ltxdoc.cfg
-	uplatex $(KANJI) upldoc.tex
+	$(LTX) upldoc.tex
 	#
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
@@ -75,7 +79,7 @@ uplatex-en.dvi: $(INTRODOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
 	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
 	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
-	mendex -U -f -s gglo.ist -o uplatex-en.gls uplatex-en.glo
+	$(MDX) -f -s gglo.ist -o uplatex-en.gls uplatex-en.glo
 	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
 	rm uplatex-en.aux uplatex-en.log
 	rm uplatex-en.glo uplatex-en.gls uplatex-en.ilg
@@ -85,22 +89,22 @@ upldoc-en.dvi: $(PLDOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
 	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
 	rm -f upldoc.tex Xins.ins
-	uplatex $(KANJI) upldocs.ins
+	$(LTX) upldocs.ins
 	#
 	#rm -f mkpldoc*.sh #dstcheck.pl
-	#uplatex $(KANJI) Xins.ins
+	#$(LTX) Xins.ins
 	#sh mkpldoc-en.sh
 	#rm mkpldoc*.sh #dstcheck.pl
 	#
 	rm -f upldoc-en.toc upldoc-en.idx upldoc-en.glo
 	echo "" > ltxdoc.cfg
-	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
-	mendex -U -s gind.ist -d upldoc.dic -o upldoc-en.ind upldoc-en.idx
-	mendex -U -f -s gglo.ist -o upldoc-en.gls upldoc-en.glo
+	$(LTX) -jobname=upldoc-en upldoc.tex
+	$(MDX) -s gind.ist -d upldoc.dic -o upldoc-en.ind upldoc-en.idx
+	$(MDX) -f -s gglo.ist -o upldoc-en.gls upldoc-en.glo
 	echo "\includeonly{}" > ltxdoc.cfg
-	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
+	$(LTX) -jobname=upldoc-en upldoc.tex
 	echo "" > ltxdoc.cfg
-	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
+	$(LTX) -jobname=upldoc-en upldoc.tex
 	#
 	rm *.aux *.log upldoc-en.toc upldoc-en.idx upldoc-en.ind upldoc-en.ilg
 	rm upldoc-en.glo upldoc-en.gls upldoc.tex Xins.ins
@@ -108,13 +112,13 @@ upldoc-en.dvi: $(PLDOC_SRC)
 	rm uplatex.cfg
 
 uplatex.pdf: uplatex.dvi
-	dvipdfmx $(FONTMAP) $<
+	$(DPX) $<
 upldoc.pdf: upldoc.dvi
-	dvipdfmx $(FONTMAP) $<
+	$(DPX) $<
 uplatex-en.pdf: uplatex-en.dvi
-	dvipdfmx $(FONTMAP) $<
+	$(DPX) $<
 upldoc-en.pdf: upldoc-en.dvi
-	dvipdfmx $(FONTMAP) $<
+	$(DPX) $<
 
 .PHONY: install clean cleanstrip cleanall cleandoc
 install:
