@@ -77,9 +77,9 @@ upldoc.dvi: $(PLDOC_SRC)
 uplatex-en.dvi: $(INTRODOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
 	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
-	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
+	$(LTX) -jobname=uplatex-en uplatex.dtx
 	$(MDX) -f -s gglo.ist -o uplatex-en.gls uplatex-en.glo
-	uplatex -jobname=uplatex-en $(KANJI) uplatex.dtx
+	$(LTX) -jobname=uplatex-en uplatex.dtx
 	rm uplatex-en.aux uplatex-en.log
 	rm uplatex-en.glo uplatex-en.gls uplatex-en.ilg
 	rm uplatex.cfg
