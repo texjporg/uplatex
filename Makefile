@@ -51,12 +51,25 @@ upldoc.dvi: $(PLDOC_SRC)
 	rm -f uplatex.cfg
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
-	rm -f mkpldoc*.sh #dstcheck.pl
-	uplatex $(KANJI) Xins.ins
-	sh mkpldoc.sh
+	#
+	#rm -f mkpldoc*.sh #dstcheck.pl
+	#uplatex $(KANJI) Xins.ins
+	#sh mkpldoc.sh
+	#rm mkpldoc*.sh #dstcheck.pl
+	#
+	rm -f upldoc.toc upldoc.idx upldoc.glo
+	echo "" > ltxdoc.cfg
+	uplatex $(KANJI) upldoc.tex
+	mendex -U -s gind.ist -d upldoc.dic -o upldoc.ind upldoc.idx
+	mendex -U -f -s gglo.ist -o upldoc.gls upldoc.glo
+	echo "\includeonly{}" > ltxdoc.cfg
+	uplatex $(KANJI) upldoc.tex
+	echo "" > ltxdoc.cfg
+	uplatex $(KANJI) upldoc.tex
+	#
 	rm *.aux *.log upldoc.toc upldoc.idx upldoc.ind upldoc.ilg
 	rm upldoc.glo upldoc.gls upldoc.tex Xins.ins
-	rm ltxdoc.cfg upldoc.dic mkpldoc*.sh #dstcheck.pl
+	rm ltxdoc.cfg upldoc.dic
 
 uplatex-en.dvi: $(INTRODOC_SRC)
 	# built-in echo in shell is troublesome, so use perl instead
@@ -73,12 +86,25 @@ upldoc-en.dvi: $(PLDOC_SRC)
 	perl -e "print \"\\\\newif\\\\ifJAPANESE\\n"\" >uplatex.cfg
 	rm -f upldoc.tex Xins.ins
 	uplatex $(KANJI) upldocs.ins
-	rm -f mkpldoc*.sh #dstcheck.pl
-	uplatex $(KANJI) Xins.ins
-	sh mkpldoc-en.sh
+	#
+	#rm -f mkpldoc*.sh #dstcheck.pl
+	#uplatex $(KANJI) Xins.ins
+	#sh mkpldoc-en.sh
+	#mkpldoc*.sh #dstcheck.pl
+	#
+	rm -f upldoc-en.toc upldoc-en.idx upldoc-en.glo
+	echo "" > ltxdoc.cfg
+	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
+	mendex -U -s gind.ist -d upldoc.dic -o upldoc-en.ind upldoc-en.idx
+	mendex -U -f -s gglo.ist -o upldoc-en.gls upldoc-en.glo
+	echo "\includeonly{}" > ltxdoc.cfg
+	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
+	echo "" > ltxdoc.cfg
+	uplatex $(KANJI) -jobname=upldoc-en upldoc.tex
+	#
 	rm *.aux *.log upldoc-en.toc upldoc-en.idx upldoc-en.ind upldoc-en.ilg
 	rm upldoc-en.glo upldoc-en.gls upldoc.tex Xins.ins
-	rm ltxdoc.cfg upldoc.dic mkpldoc*.sh #dstcheck.pl
+	rm ltxdoc.cfg upldoc.dic
 	rm uplatex.cfg
 
 uplatex.pdf: uplatex.dvi
