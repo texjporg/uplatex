@@ -90,7 +90,7 @@ upldoc-en.dvi: $(PLDOC_SRC)
 	#rm -f mkpldoc*.sh #dstcheck.pl
 	#uplatex $(KANJI) Xins.ins
 	#sh mkpldoc-en.sh
-	#mkpldoc*.sh #dstcheck.pl
+	#rm mkpldoc*.sh #dstcheck.pl
 	#
 	rm -f upldoc-en.toc upldoc-en.idx upldoc-en.glo
 	echo "" > ltxdoc.cfg
