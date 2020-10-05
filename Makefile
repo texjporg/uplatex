@@ -30,8 +30,7 @@ PLCLS_SRC = ujclasses.dtx
 
 INTRODOC_SRC = uplatex.dtx
 
-PLDOC_SRC = uplatex.dtx uplvers.dtx uplfonts.dtx \
-	ukinsoku.dtx ujclasses.dtx
+PLDOC_SRC = $(PLFMT_SRC) $(PLCLS_SRC)
 
 uplatex.ltx: $(PLFMT_SRC)
 	rm -f $(PLFMT)
