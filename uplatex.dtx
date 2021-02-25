@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2020 Japanese TeX Development Community
+%  Copyright (c) 2016-2021 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -92,6 +92,7 @@
 %     (based on platex.dtx 2018/09/22 v1.0y)}
 % \changes{v1.0y-u03}{2019/05/22}{ドキュメントを更新}
 % \changes{v1.1b-u03}{2020/09/28}{defs読込後にフック追加}
+% \changes{v1.1c-u03}{2021/02/25}{\file{latex.ltx}の読込チェック}
 %\else
 % \changes{v1.0c-u00}{2011/05/07}{Created \upLaTeX\ version based on \pLaTeX\ one
 %     (based on platex.dtx 1997/01/29 v1.0c)}
@@ -132,6 +133,7 @@
 %     (based on platex.dtx 2018/09/22 v1.0y)}
 % \changes{v1.0y-u03}{2019/05/22}{Update document.}
 % \changes{v1.1b-u03}{2020/09/28}{Add hook after loading defs}
+% \changes{v1.1c-u03}{2021/02/25}{Check for \file{latex.ltx} status}
 %\fi
 % \fi
 %
@@ -139,7 +141,7 @@
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{uplatex.dtx}[2020/09/28 v1.1b-u03 upLaTeX document file]
+\ProvidesFile{uplatex.dtx}[2021/02/25 v1.1c-u03 upLaTeX document file]
 % \iffalse
 \documentclass{jltxdoc}
 \usepackage{plext}
@@ -431,8 +433,8 @@
 %
 %\ifJAPANESE
 % \file{latex.ltx}を読み込みます。
-% \TeX\ Liveの標準的インストールでは、この中でBabel由来のハイフネーション・
-% パターン\file{hyphen.cfg}が読み込まれるはずです。
+% \TeX\ Liveの標準的インストールでは、この中でBabel由来の
+% ハイフネーション・パターン\file{hyphen.cfg}が読み込まれるはずです。
 %\else
 % Load \file{latex.ltx} here.
 % Within the standard installation of \TeX\ Live, \file{hyphen.cfg}
@@ -440,6 +442,24 @@
 %\fi
 %    \begin{macrocode}
 \input latex.ltx
+%    \end{macrocode}
+%
+%\ifJAPANESE
+% この時点で|\typeout|が未定義なら、\LaTeX{}カーネルの読み込みに
+% 失敗していますので、強制終了します（\LaTeXe\ 2017/01/01以降を
+% 非\eTeX{}拡張でフォーマット作成しようとした場合など）。
+% \changes{v1.1c-u03}{2021/02/25}{\file{latex.ltx}の読込チェック}
+%\else
+% If |\typeout| is still undefined, the input of \LaTeX~kernel
+% should have failed; abort now.
+% \changes{v1.1c-u03}{2021/02/25}{Check for \file{latex.ltx} status}
+%\fi
+%    \begin{macrocode}
+\ifx\typeout\undefined
+  \errhelp{Please reinstall LaTeX, or check e-TeX availability.}%
+  \errmessage{Failed to load `latex.ltx' properly}%
+  \expandafter\end
+\fi
 %    \end{macrocode}
 %
 %\ifJAPANESE
