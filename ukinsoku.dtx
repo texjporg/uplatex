@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2020 Japanese TeX Development Community
+%  Copyright (c) 2016-2021 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -34,13 +34,15 @@
 % \changes{v1.0b-u06}{2019/09/22}{バグ回避コードがかえって有害なため除去}
 % \changes{v1.0c}{2020/09/28}{！の\cs{inhibitxspcode}を設定}
 % \changes{v1.0c-u06}{2020/09/28}{p\LaTeX{}の変更に追随}
+% \changes{v1.0d}{2021/03/04}{：の\cs{inhibitxspcode}と:の\cs{xspcode}を設定}
+% \changes{v1.0d-u06}{2021/03/04}{p\LaTeX{}の変更に追随}
 % \fi
 %
 % \iffalse
 %<*driver>
 \NeedsTeXFormat{pLaTeX2e}
 % \fi
-\ProvidesFile{ukinsoku.dtx}[2020/09/28 v1.0c-u06 upLaTeX Kernel]
+\ProvidesFile{ukinsoku.dtx}[2021/03/04 v1.0d-u06 upLaTeX Kernel]
 % \iffalse
 \documentclass{jltxdoc}
 \GetFileInfo{ukinsoku.dtx}
@@ -158,6 +160,7 @@
 % が出ないように、コメントからも削除しました。
 % \changes{v1.0b-u03}{2018/04/08}{\LaTeX\ 2018-04-01対策}
 %
+% \changes{v1.0d}{2021/03/04}{:の\cs{xspcode}を設定}
 %    \begin{macrocode}
 %%全角文字
 \prebreakpenalty`、=10000
@@ -338,6 +341,7 @@
 \xspcode`]=2
 \xspcode``=1
 \xspcode`'=2
+\xspcode`:=2
 \xspcode`;=2
 \xspcode`,=2
 \xspcode`.=2
@@ -487,6 +491,7 @@
 % \end{center}
 %
 % \changes{v1.0c}{2020/09/28}{！の\cs{inhibitxspcode}を設定}
+% \changes{v1.0d}{2021/03/04}{：の\cs{inhibitxspcode}を設定}
 %    \begin{macrocode}
 %%
 %% inhibitxspcode
@@ -494,6 +499,7 @@
 \inhibitxspcode`。=1
 \inhibitxspcode`，=1
 \inhibitxspcode`．=1
+\inhibitxspcode`：=1
 \inhibitxspcode`；=1
 \inhibitxspcode`？=1
 \inhibitxspcode`！=1
