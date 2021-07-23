@@ -1,17 +1,19 @@
 # uplatex
 
-The bundle provides pLaTeX2e format
-for [upTeX by Takuji Tanaka](http://www.t-lab.opal.ne.jp/tex/uptex_en.html).
-This is a community edition maintained by
-[Japanese TeX Development Community](http://texjp.org),
-syncing with [platex](https://github.com/texjporg/platex).
+upLaTeX is a Unicode version of pLaTeX (Japanese LaTeX),
+which runs on upTeX (a pTeX variant with better Unicode support).
+This bundle provides the macros and settings needed to generate
+the upLaTeX format (named "pLaTeX2e") and some classes.
+
+Note: This bundle depends on
+[the community edition of pLaTeX](https://github.com/texjporg/platex).
 
 ## Repository
 
-The bundle is maintained on GitHub:
+This bundle is maintained on GitHub:
 https://github.com/texjporg/uplatex
 
-If you have issues, please let us know from the above page.
+If you have issues, please let us know from the page above.
 
 ## License
 
