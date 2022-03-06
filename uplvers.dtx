@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2020 Japanese TeX Development Community
+%  Copyright (c) 2016-2022 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -73,7 +73,8 @@
 % \fi
 \ProvidesFile{uplvers.dtx}[2020/02/01 v1.1r-u03 upLaTeX Kernel (Version Info)]
 % \iffalse
-\documentclass{jltxdoc}
+\RequirePackage{plautopatch}
+\documentclass[dvipdfmx]{jltxdoc}
 \GetFileInfo{uplvers.dtx}
 \author{Ken Nakano \& Hideaki Togashi \& TTK}
 \title{\filename}

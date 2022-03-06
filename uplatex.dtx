@@ -7,7 +7,7 @@
 %
 %  Copyright (c) 2010 ASCII MEDIA WORKS
 %  Copyright (c) 2016 Takuji Tanaka
-%  Copyright (c) 2016-2021 Japanese TeX Development Community
+%  Copyright (c) 2016-2022 Japanese TeX Development Community
 %
 %  This file is part of the upLaTeX2e system (community edition).
 %  --------------------------------------------------------------
@@ -143,7 +143,8 @@
 % \fi
 \ProvidesFile{uplatex.dtx}[2021/02/25 v1.1c-u03 upLaTeX document file]
 % \iffalse
-\documentclass{jltxdoc}
+\RequirePackage{plautopatch}
+\documentclass[dvipdfmx]{jltxdoc}
 \usepackage{plext}
 \GetFileInfo{uplatex.dtx}
 \ifJAPANESE
@@ -921,7 +922,8 @@
 % \upLaTeXe\ files, so no need for it.
 %\fi
 %    \begin{macrocode}
-\documentclass{jltxdoc}
+\RequirePackage{plautopatch}
+\documentclass[dvipdfmx]{jltxdoc}
 %\usepackage{plext} %% comment out for upLaTeX
 \listfiles
 
